@@ -1,0 +1,27 @@
+// database/migrations/2024_01_01_000001_add_role_id_to_users_table.php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('role_id')->default(4)->constrained('roles')->onDelete('cascade');
+            $table->string('phone')->nullable();
+            $table->string('profile_photo')->nullable();
+            $table->boolean('status')->default(true);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['role_id']);
+            $table->dropColumn(['role_id', 'phone', 'profile_photo', 'status']);
+        });
+    }
+};
