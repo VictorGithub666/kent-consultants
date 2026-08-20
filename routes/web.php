@@ -91,6 +91,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('properties', AdminPropertyController::class);
         Route::post('properties/{property}/change-status', [AdminPropertyController::class, 'changeStatus'])->name('properties.change-status');
         
+        
         // Categories
         Route::resource('categories', PropertyCategoryController::class);
 

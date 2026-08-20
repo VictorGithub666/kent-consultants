@@ -46,22 +46,34 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <img src="{{ $property->main_image ? asset('storage/' . $property->main_image) : asset('images/property-placeholder.jpg') }}" 
-                     alt="{{ $property->name }}" class="img-fluid rounded">
+                @if($property->main_image)
+                    <img src="{{ asset('storage/' . $property->main_image) }}" 
+                         alt="{{ $property->name }}" 
+                         class="img-fluid rounded property-main-image">
+                @else
+                    <div class="property-image-placeholder">
+                        <i class="bi bi-building"></i>
+                        <p>No Image Available</p>
+                    </div>
+                @endif
             </div>
         </div>
         
         @if($property->images->count() > 0)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Additional Images</h5>
+                    <h5><i class="bi bi-images"></i> Additional Images</h5>
                 </div>
                 <div class="card-body">
                     <div class="row g-2">
                         @foreach($property->images as $image)
                             <div class="col-3">
                                 <img src="{{ asset('storage/' . $image->image_path) }}" 
-                                     alt="Property Image" class="img-fluid rounded">
+                                     alt="Property Image" 
+                                     class="img-fluid rounded property-thumbnail"
+                                     data-bs-toggle="modal" 
+                                     data-bs-target="#imageModal"
+                                     data-image="{{ asset('storage/' . $image->image_path) }}">
                             </div>
                         @endforeach
                     </div>
@@ -74,7 +86,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h5>Property Details</h5>
+                <h5><i class="bi bi-info-circle"></i> Property Details</h5>
             </div>
             <div class="card-body">
                 <div class="row g-3">
@@ -109,27 +121,27 @@
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Bedrooms</label>
-                        <div>{{ $property->bedrooms ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->bedrooms ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Bathrooms</label>
-                        <div>{{ $property->bathrooms ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->bathrooms ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Floor Area</label>
-                        <div>{{ $property->floor_area ? number_format($property->floor_area) . ' sq ft' : 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->floor_area ? number_format($property->floor_area) . ' sq ft' : 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Car Parking</label>
-                        <div>{{ $property->car_parking ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->car_parking ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Land Area</label>
-                        <div>{{ $property->land_area ? number_format($property->land_area, 2) . ' Acres' : 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->land_area ? number_format($property->land_area, 2) . ' Acres' : 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Location</label>
-                        <div>{{ $property->location }}</div>
+                        <div class="fw-semibold">{{ $property->location }}</div>
                     </div>
                 </div>
             </div>
@@ -139,10 +151,10 @@
         @if($property->description)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Description</h5>
+                    <h5><i class="bi bi-file-text"></i> Description</h5>
                 </div>
                 <div class="card-body">
-                    <p>{{ $property->description }}</p>
+                    <p class="property-description-text">{{ $property->description }}</p>
                 </div>
             </div>
         @endif
@@ -151,12 +163,12 @@
         @if($property->features->count() > 0)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Features & Amenities</h5>
+                    <h5><i class="bi bi-list-check"></i> Features & Amenities</h5>
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-wrap gap-2">
                         @foreach($property->features as $feature)
-                            <span class="badge bg-light text-dark p-2">
+                            <span class="badge feature-badge">
                                 @if($feature->icon)
                                     <i class="{{ $feature->icon }}"></i>
                                 @endif
@@ -170,11 +182,14 @@
 
         {{-- Meta --}}
         <div class="card mt-4">
+            <div class="card-header">
+                <h5><i class="bi bi-clock-history"></i> Property Meta</h5>
+            </div>
             <div class="card-body">
                 <div class="row g-2">
                     <div class="col-md-6">
                         <label class="text-muted small">Created By</label>
-                        <div>{{ $property->creator->name ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->creator->name ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Created At</label>
@@ -183,7 +198,7 @@
                     @if($property->updated_by)
                         <div class="col-md-6">
                             <label class="text-muted small">Updated By</label>
-                            <div>{{ $property->updater->name ?? 'N/A' }}</div>
+                            <div class="fw-semibold">{{ $property->updater->name ?? 'N/A' }}</div>
                         </div>
                         <div class="col-md-6">
                             <label class="text-muted small">Updated At</label>
@@ -252,6 +267,21 @@
 </div>
 @endcan
 
+{{-- Image Modal --}}
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Property Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="Property Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
 @push('styles')
 <style>
     .text-gold {
@@ -273,5 +303,126 @@
         background: #f8d7da;
         color: #721c24;
     }
+    .property-main-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+    }
+    .property-image-placeholder {
+        width: 100%;
+        height: 300px;
+        background: #f8f6f2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 2px dashed #dee2e6;
+    }
+    .property-image-placeholder i {
+        font-size: 64px;
+        color: #adb5bd;
+    }
+    .property-image-placeholder p {
+        color: #6c757d;
+        margin-top: 12px;
+        font-size: 1rem;
+    }
+    .property-thumbnail {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 2px solid transparent;
+    }
+    .property-thumbnail:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-color: var(--gold-1);
+    }
+    .feature-badge {
+        background: var(--off-white);
+        color: var(--charcoal);
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-weight: 500;
+        border: 1px solid rgba(0,0,0,0.06);
+        font-size: 0.85rem;
+    }
+    .feature-badge i {
+        margin-right: 4px;
+        color: var(--gold-1);
+    }
+    .card-header h5 i {
+        color: var(--gold-1);
+        margin-right: 8px;
+    }
+    .property-description-text {
+        line-height: 1.8;
+        color: var(--text-muted);
+        white-space: pre-line;
+    }
+    .fw-semibold {
+        font-weight: 600;
+    }
+    .btn-group .btn {
+        border-radius: 6px;
+    }
+    .btn-group .btn:not(:last-child) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .btn-group .btn:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    @media (max-width: 576px) {
+        .admin-page-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .admin-page-header .btn-group {
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .admin-page-header .btn-group .btn {
+            flex: 1;
+            min-width: 60px;
+            font-size: 0.85rem;
+            padding: 6px 10px;
+        }
+        .property-thumbnail {
+            height: 60px;
+        }
+        .property-image-placeholder {
+            height: 200px;
+        }
+        .property-image-placeholder i {
+            font-size: 48px;
+        }
+    }
 </style>
 @endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image modal functionality
+        const imageModal = document.getElementById('imageModal');
+        if (imageModal) {
+            imageModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const imageUrl = button.getAttribute('data-image');
+                const modalImage = document.getElementById('modalImage');
+                if (modalImage && imageUrl) {
+                    modalImage.src = imageUrl;
+                }
+            });
+        }
+    });
+</script>
+@endpush
+@endsection

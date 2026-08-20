@@ -127,25 +127,25 @@
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['total_properties'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['total_properties']) }}</div>
                     <div class="stat-label">Total Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['residential'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['residential']) }}</div>
                     <div class="stat-label">Residential Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['commercial'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['commercial']) }}</div>
                     <div class="stat-label">Commercial Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['warehouses'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['warehouses']) }}</div>
                     <div class="stat-label">Warehouses</div>
                 </div>
             </div>

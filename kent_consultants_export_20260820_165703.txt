@@ -6,7 +6,7 @@
  * 
  * Project: kent-consultants
  * Path: /home/victor/Documents/Kent/Website/kent-consultants
- * Date: 2026-08-20 16:26:34
+ * Date: 2026-08-20 16:57:03
  * 
  * This file contains ALL application files for DeepSeek analysis:
  * 
@@ -9134,7 +9134,7 @@ class WebsiteSetting extends Model
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/layouts/website.blade.php
-📏 Size: 2483 bytes
+📏 Size: 2512 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/layouts/website.blade.php --}}
@@ -9166,7 +9166,7 @@ class WebsiteSetting extends Model
     
     @stack('styles')
 </head>
-<body>
+<body class="@yield('body_class')">
     {{-- Preloader --}}
     <div id="preloader">
         <div class="preloader-content">
@@ -11090,7 +11090,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/website/properties/category.blade.php
-📏 Size: 4910 bytes
+📏 Size: 4885 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/website/properties/category.blade.php --}}
@@ -11101,7 +11101,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 @section('content')
 {{-- Category Header --}}
-<section style="color: --gold-1;" class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}');">
+<section class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}');">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
@@ -11371,11 +11371,13 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/website/properties/show.blade.php
-📏 Size: 12028 bytes
+📏 Size: 12069 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/website/properties/show.blade.php --}}
 @extends('layouts.website')
+
+@section('body_class', 'page-dark-nav')
 
 @section('title', $property->name . ' - Kent Consultants Ltd')
 @section('description', Str::limit($property->description ?? 'View this ' . $property->category->name . ' property in ' . $property->location, 160))
@@ -22670,7 +22672,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/layouts/website.blade.php
-📏 Size: 2483 bytes
+📏 Size: 2512 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/layouts/website.blade.php --}}
@@ -22702,7 +22704,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     
     @stack('styles')
 </head>
-<body>
+<body class="@yield('body_class')">
     {{-- Preloader --}}
     <div id="preloader">
         <div class="preloader-content">
@@ -25025,7 +25027,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/website/properties/category.blade.php
-📏 Size: 4910 bytes
+📏 Size: 4885 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/website/properties/category.blade.php --}}
@@ -25036,7 +25038,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 @section('content')
 {{-- Category Header --}}
-<section style="color: --gold-1;" class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}');">
+<section class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}');">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
@@ -25306,11 +25308,13 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/website/properties/show.blade.php
-📏 Size: 12028 bytes
+📏 Size: 12069 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/website/properties/show.blade.php --}}
 @extends('layouts.website')
+
+@section('body_class', 'page-dark-nav')
 
 @section('title', $property->name . ' - Kent Consultants Ltd')
 @section('description', Str::limit($property->description ?? 'View this ' . $property->category->name . ' property in ' . $property->location, 160))
@@ -26294,7 +26298,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/website/properties/category.blade.php
-📏 Size: 4910 bytes
+📏 Size: 4885 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/website/properties/category.blade.php --}}
@@ -26305,7 +26309,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 @section('content')
 {{-- Category Header --}}
-<section style="color: --gold-1;" class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}');">
+<section class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}');">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
@@ -26575,11 +26579,13 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/website/properties/show.blade.php
-📏 Size: 12028 bytes
+📏 Size: 12069 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/website/properties/show.blade.php --}}
 @extends('layouts.website')
+
+@section('body_class', 'page-dark-nav')
 
 @section('title', $property->name . ' - Kent Consultants Ltd')
 @section('description', Str::limit($property->description ?? 'View this ' . $property->category->name . ' property in ' . $property->location, 160))
@@ -30383,7 +30389,7 @@ body {
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: public/css/website.css
-📏 Size: 55697 bytes
+📏 Size: 56283 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 /* public/css/website.css */
@@ -30971,6 +30977,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 991px) {
+
+       a {
+  text-decoration: none;
+}
     .footer .footer-bottom .copyright p {
         text-align: center;
         margin-bottom: 15px;
@@ -33107,6 +33117,24 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: 1fr 1fr;
         gap: 15px;
     }
+}
+
+/* ============================================
+   DARK NAVBAR FOR PROPERTY DETAIL PAGE
+============================================ */
+body.page-dark-nav .header {
+    --background-color: #1a1715 !important;
+    background-color: var(--background-color) !important;
+}
+
+/* Ensure the nav-wrap also has a dark background if needed */
+body.page-dark-nav .header .nav-wrap {
+    background-color: rgba(26, 23, 21, 0.95) !important;
+}
+
+/* On scroll, keep it dark */
+body.page-dark-nav.scrolled .header {
+    --background-color: #1a1715 !important;
 }
 
 ────────────────────────────────────────────────────────────────────────────────
@@ -34488,7 +34516,7 @@ body {
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: public/css/website.css
-📏 Size: 55697 bytes
+📏 Size: 56283 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 /* public/css/website.css */
@@ -35076,6 +35104,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 991px) {
+
+       a {
+  text-decoration: none;
+}
     .footer .footer-bottom .copyright p {
         text-align: center;
         margin-bottom: 15px;
@@ -37212,6 +37244,24 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: 1fr 1fr;
         gap: 15px;
     }
+}
+
+/* ============================================
+   DARK NAVBAR FOR PROPERTY DETAIL PAGE
+============================================ */
+body.page-dark-nav .header {
+    --background-color: #1a1715 !important;
+    background-color: var(--background-color) !important;
+}
+
+/* Ensure the nav-wrap also has a dark background if needed */
+body.page-dark-nav .header .nav-wrap {
+    background-color: rgba(26, 23, 21, 0.95) !important;
+}
+
+/* On scroll, keep it dark */
+body.page-dark-nav.scrolled .header {
+    --background-color: #1a1715 !important;
 }
 
 ────────────────────────────────────────────────────────────────────────────────

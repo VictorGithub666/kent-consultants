@@ -113,6 +113,8 @@ class PropertyController extends Controller
             ->with('success', 'Property created successfully.');
     }
 
+    
+
     public function show(Property $property)
     {
         $property->load(['category', 'images', 'features', 'creator', 'updater']);
