@@ -6,7 +6,7 @@
  * 
  * Project: kent-consultants
  * Path: /home/victor/Documents/Kent/Website/kent-consultants
- * Date: 2026-08-20 16:57:03
+ * Date: 2026-08-21 00:03:47
  * 
  * This file contains ALL application files for DeepSeek analysis:
  * 
@@ -601,7 +601,7 @@ class PropertyCategoryController extends Controller
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: app/Http/Controllers/Admin/PropertyController.php
-📏 Size: 7542 bytes
+📏 Size: 7548 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 <?php
@@ -718,6 +718,8 @@ class PropertyController extends Controller
         return redirect()->route('admin.properties.index')
             ->with('success', 'Property created successfully.');
     }
+
+    
 
     public function show(Property $property)
     {
@@ -1341,7 +1343,7 @@ class CareerController extends Controller
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: app/Http/Controllers/Website/HomeController.php
-📏 Size: 1685 bytes
+📏 Size: 1650 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 <?php
@@ -1356,38 +1358,40 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        $featuredProperties = Property::with(['category', 'images'])
-            ->vacant()
-            ->latest()
-            ->take(6)
-            ->get();
+    // In app/Http/Controllers/Website/HomeController.php
 
-        $categories = PropertyCategory::where('status', true)
-            ->withCount(['properties' => function ($query) {
-                $query->vacant();
-            }])
-            ->get();
+public function index()
+{
+    $featuredProperties = Property::with(['category', 'images'])
+        ->vacant()
+        ->latest()
+        ->take(6)
+        ->get();
 
-        $stats = [
-            'total_properties' => Property::vacant()->count(),
-            'residential' => Property::vacant()
-                ->whereHas('category', function ($q) {
-                    $q->whereIn('slug', ['residential-estates', 'low-cost-housing', 'residential-towers']);
-                })->count(),
-            'commercial' => Property::vacant()
-                ->whereHas('category', function ($q) {
-                    $q->where('slug', 'commercial-buildings');
-                })->count(),
-            'warehouses' => Property::vacant()
-                ->whereHas('category', function ($q) {
-                    $q->where('slug', 'warehouses');
-                })->count(),
-        ];
+    $categories = PropertyCategory::where('status', true)
+        ->withCount(['properties' => function ($query) {
+            $query->vacant();
+        }])
+        ->get();
 
-        return view('website.index', compact('featuredProperties', 'categories', 'stats'));
-    }
+    $stats = [
+        'total_properties' => Property::count(),  // ← FIX: Count ALL properties
+        'residential' => Property::vacant()
+            ->whereHas('category', function ($q) {
+                $q->whereIn('slug', ['residential-estates', 'low-cost-housing', 'residential-towers']);
+            })->count(),
+        'commercial' => Property::vacant()
+            ->whereHas('category', function ($q) {
+                $q->where('slug', 'commercial-buildings');
+            })->count(),
+        'warehouses' => Property::vacant()
+            ->whereHas('category', function ($q) {
+                $q->where('slug', 'warehouses');
+            })->count(),
+    ];
+
+    return view('website.index', compact('featuredProperties', 'categories', 'stats'));
+}
 
     public function about()
     {
@@ -2048,7 +2052,7 @@ class PropertyCategoryController extends Controller
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: app/Http/Controllers/Admin/PropertyController.php
-📏 Size: 7542 bytes
+📏 Size: 7548 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 <?php
@@ -2165,6 +2169,8 @@ class PropertyController extends Controller
         return redirect()->route('admin.properties.index')
             ->with('success', 'Property created successfully.');
     }
+
+    
 
     public function show(Property $property)
     {
@@ -2616,7 +2622,7 @@ class CareerController extends Controller
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: app/Http/Controllers/Website/HomeController.php
-📏 Size: 1685 bytes
+📏 Size: 1650 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 <?php
@@ -2631,38 +2637,40 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        $featuredProperties = Property::with(['category', 'images'])
-            ->vacant()
-            ->latest()
-            ->take(6)
-            ->get();
+    // In app/Http/Controllers/Website/HomeController.php
 
-        $categories = PropertyCategory::where('status', true)
-            ->withCount(['properties' => function ($query) {
-                $query->vacant();
-            }])
-            ->get();
+public function index()
+{
+    $featuredProperties = Property::with(['category', 'images'])
+        ->vacant()
+        ->latest()
+        ->take(6)
+        ->get();
 
-        $stats = [
-            'total_properties' => Property::vacant()->count(),
-            'residential' => Property::vacant()
-                ->whereHas('category', function ($q) {
-                    $q->whereIn('slug', ['residential-estates', 'low-cost-housing', 'residential-towers']);
-                })->count(),
-            'commercial' => Property::vacant()
-                ->whereHas('category', function ($q) {
-                    $q->where('slug', 'commercial-buildings');
-                })->count(),
-            'warehouses' => Property::vacant()
-                ->whereHas('category', function ($q) {
-                    $q->where('slug', 'warehouses');
-                })->count(),
-        ];
+    $categories = PropertyCategory::where('status', true)
+        ->withCount(['properties' => function ($query) {
+            $query->vacant();
+        }])
+        ->get();
 
-        return view('website.index', compact('featuredProperties', 'categories', 'stats'));
-    }
+    $stats = [
+        'total_properties' => Property::count(),  // ← FIX: Count ALL properties
+        'residential' => Property::vacant()
+            ->whereHas('category', function ($q) {
+                $q->whereIn('slug', ['residential-estates', 'low-cost-housing', 'residential-towers']);
+            })->count(),
+        'commercial' => Property::vacant()
+            ->whereHas('category', function ($q) {
+                $q->where('slug', 'commercial-buildings');
+            })->count(),
+        'warehouses' => Property::vacant()
+            ->whereHas('category', function ($q) {
+                $q->where('slug', 'warehouses');
+            })->count(),
+    ];
+
+    return view('website.index', compact('featuredProperties', 'categories', 'stats'));
+}
 
     public function about()
     {
@@ -7562,7 +7570,7 @@ class WebsiteSetting extends Model
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/properties/index.blade.php
-📏 Size: 11044 bytes
+📏 Size: 11057 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/admin/properties/index.blade.php --}}
@@ -7639,6 +7647,7 @@ class WebsiteSetting extends Model
 <div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
+            
             <table class="table table-admin mb-0">
                 <thead>
                     <tr>
@@ -7790,7 +7799,7 @@ class WebsiteSetting extends Model
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/properties/show.blade.php
-📏 Size: 11629 bytes
+📏 Size: 16410 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/admin/properties/show.blade.php --}}
@@ -7841,22 +7850,34 @@ class WebsiteSetting extends Model
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <img src="{{ $property->main_image ? asset('storage/' . $property->main_image) : asset('images/property-placeholder.jpg') }}" 
-                     alt="{{ $property->name }}" class="img-fluid rounded">
+                @if($property->main_image)
+                    <img src="{{ asset('storage/' . $property->main_image) }}" 
+                         alt="{{ $property->name }}" 
+                         class="img-fluid rounded property-main-image">
+                @else
+                    <div class="property-image-placeholder">
+                        <i class="bi bi-building"></i>
+                        <p>No Image Available</p>
+                    </div>
+                @endif
             </div>
         </div>
         
         @if($property->images->count() > 0)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Additional Images</h5>
+                    <h5><i class="bi bi-images"></i> Additional Images</h5>
                 </div>
                 <div class="card-body">
                     <div class="row g-2">
                         @foreach($property->images as $image)
                             <div class="col-3">
                                 <img src="{{ asset('storage/' . $image->image_path) }}" 
-                                     alt="Property Image" class="img-fluid rounded">
+                                     alt="Property Image" 
+                                     class="img-fluid rounded property-thumbnail"
+                                     data-bs-toggle="modal" 
+                                     data-bs-target="#imageModal"
+                                     data-image="{{ asset('storage/' . $image->image_path) }}">
                             </div>
                         @endforeach
                     </div>
@@ -7869,7 +7890,7 @@ class WebsiteSetting extends Model
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h5>Property Details</h5>
+                <h5><i class="bi bi-info-circle"></i> Property Details</h5>
             </div>
             <div class="card-body">
                 <div class="row g-3">
@@ -7904,27 +7925,27 @@ class WebsiteSetting extends Model
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Bedrooms</label>
-                        <div>{{ $property->bedrooms ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->bedrooms ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Bathrooms</label>
-                        <div>{{ $property->bathrooms ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->bathrooms ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Floor Area</label>
-                        <div>{{ $property->floor_area ? number_format($property->floor_area) . ' sq ft' : 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->floor_area ? number_format($property->floor_area) . ' sq ft' : 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Car Parking</label>
-                        <div>{{ $property->car_parking ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->car_parking ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Land Area</label>
-                        <div>{{ $property->land_area ? number_format($property->land_area, 2) . ' Acres' : 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->land_area ? number_format($property->land_area, 2) . ' Acres' : 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Location</label>
-                        <div>{{ $property->location }}</div>
+                        <div class="fw-semibold">{{ $property->location }}</div>
                     </div>
                 </div>
             </div>
@@ -7934,10 +7955,10 @@ class WebsiteSetting extends Model
         @if($property->description)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Description</h5>
+                    <h5><i class="bi bi-file-text"></i> Description</h5>
                 </div>
                 <div class="card-body">
-                    <p>{{ $property->description }}</p>
+                    <p class="property-description-text">{{ $property->description }}</p>
                 </div>
             </div>
         @endif
@@ -7946,12 +7967,12 @@ class WebsiteSetting extends Model
         @if($property->features->count() > 0)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Features & Amenities</h5>
+                    <h5><i class="bi bi-list-check"></i> Features & Amenities</h5>
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-wrap gap-2">
                         @foreach($property->features as $feature)
-                            <span class="badge bg-light text-dark p-2">
+                            <span class="badge feature-badge">
                                 @if($feature->icon)
                                     <i class="{{ $feature->icon }}"></i>
                                 @endif
@@ -7965,11 +7986,14 @@ class WebsiteSetting extends Model
 
         {{-- Meta --}}
         <div class="card mt-4">
+            <div class="card-header">
+                <h5><i class="bi bi-clock-history"></i> Property Meta</h5>
+            </div>
             <div class="card-body">
                 <div class="row g-2">
                     <div class="col-md-6">
                         <label class="text-muted small">Created By</label>
-                        <div>{{ $property->creator->name ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->creator->name ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Created At</label>
@@ -7978,7 +8002,7 @@ class WebsiteSetting extends Model
                     @if($property->updated_by)
                         <div class="col-md-6">
                             <label class="text-muted small">Updated By</label>
-                            <div>{{ $property->updater->name ?? 'N/A' }}</div>
+                            <div class="fw-semibold">{{ $property->updater->name ?? 'N/A' }}</div>
                         </div>
                         <div class="col-md-6">
                             <label class="text-muted small">Updated At</label>
@@ -8047,6 +8071,21 @@ class WebsiteSetting extends Model
 </div>
 @endcan
 
+{{-- Image Modal --}}
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Property Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="Property Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
 @push('styles')
 <style>
     .text-gold {
@@ -8068,8 +8107,129 @@ class WebsiteSetting extends Model
         background: #f8d7da;
         color: #721c24;
     }
+    .property-main-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+    }
+    .property-image-placeholder {
+        width: 100%;
+        height: 300px;
+        background: #f8f6f2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 2px dashed #dee2e6;
+    }
+    .property-image-placeholder i {
+        font-size: 64px;
+        color: #adb5bd;
+    }
+    .property-image-placeholder p {
+        color: #6c757d;
+        margin-top: 12px;
+        font-size: 1rem;
+    }
+    .property-thumbnail {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 2px solid transparent;
+    }
+    .property-thumbnail:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-color: var(--gold-1);
+    }
+    .feature-badge {
+        background: var(--off-white);
+        color: var(--charcoal);
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-weight: 500;
+        border: 1px solid rgba(0,0,0,0.06);
+        font-size: 0.85rem;
+    }
+    .feature-badge i {
+        margin-right: 4px;
+        color: var(--gold-1);
+    }
+    .card-header h5 i {
+        color: var(--gold-1);
+        margin-right: 8px;
+    }
+    .property-description-text {
+        line-height: 1.8;
+        color: var(--text-muted);
+        white-space: pre-line;
+    }
+    .fw-semibold {
+        font-weight: 600;
+    }
+    .btn-group .btn {
+        border-radius: 6px;
+    }
+    .btn-group .btn:not(:last-child) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .btn-group .btn:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    @media (max-width: 576px) {
+        .admin-page-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .admin-page-header .btn-group {
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .admin-page-header .btn-group .btn {
+            flex: 1;
+            min-width: 60px;
+            font-size: 0.85rem;
+            padding: 6px 10px;
+        }
+        .property-thumbnail {
+            height: 60px;
+        }
+        .property-image-placeholder {
+            height: 200px;
+        }
+        .property-image-placeholder i {
+            font-size: 48px;
+        }
+    }
 </style>
 @endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image modal functionality
+        const imageModal = document.getElementById('imageModal');
+        if (imageModal) {
+            imageModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const imageUrl = button.getAttribute('data-image');
+                const modalImage = document.getElementById('modalImage');
+                if (modalImage && imageUrl) {
+                    modalImage.src = imageUrl;
+                }
+            });
+        }
+    });
+</script>
+@endpush
+@endsection
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/users/create.blade.php
@@ -9134,7 +9294,7 @@ class WebsiteSetting extends Model
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/layouts/website.blade.php
-📏 Size: 2512 bytes
+📏 Size: 2683 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/layouts/website.blade.php --}}
@@ -9193,6 +9353,9 @@ class WebsiteSetting extends Model
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs@1.4.0/dist/purecounter_vanilla.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Custom JS -->
     <script src="{{ asset('js/website.js') }}"></script>
@@ -10718,7 +10881,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/website/index.blade.php
-📏 Size: 11108 bytes
+📏 Size: 10792 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 @extends('layouts.website')
@@ -10850,25 +11013,25 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['total_properties'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['total_properties']) }}</div>
                     <div class="stat-label">Total Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['residential'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['residential']) }}</div>
                     <div class="stat-label">Residential Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['commercial'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['commercial']) }}</div>
                     <div class="stat-label">Commercial Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['warehouses'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['warehouses']) }}</div>
                     <div class="stat-label">Warehouses</div>
                 </div>
             </div>
@@ -16216,7 +16379,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/properties/index.blade.php
-📏 Size: 11044 bytes
+📏 Size: 11057 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/admin/properties/index.blade.php --}}
@@ -16293,6 +16456,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 <div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
+            
             <table class="table table-admin mb-0">
                 <thead>
                     <tr>
@@ -16444,7 +16608,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/properties/show.blade.php
-📏 Size: 11629 bytes
+📏 Size: 16410 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/admin/properties/show.blade.php --}}
@@ -16495,22 +16659,34 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <img src="{{ $property->main_image ? asset('storage/' . $property->main_image) : asset('images/property-placeholder.jpg') }}" 
-                     alt="{{ $property->name }}" class="img-fluid rounded">
+                @if($property->main_image)
+                    <img src="{{ asset('storage/' . $property->main_image) }}" 
+                         alt="{{ $property->name }}" 
+                         class="img-fluid rounded property-main-image">
+                @else
+                    <div class="property-image-placeholder">
+                        <i class="bi bi-building"></i>
+                        <p>No Image Available</p>
+                    </div>
+                @endif
             </div>
         </div>
         
         @if($property->images->count() > 0)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Additional Images</h5>
+                    <h5><i class="bi bi-images"></i> Additional Images</h5>
                 </div>
                 <div class="card-body">
                     <div class="row g-2">
                         @foreach($property->images as $image)
                             <div class="col-3">
                                 <img src="{{ asset('storage/' . $image->image_path) }}" 
-                                     alt="Property Image" class="img-fluid rounded">
+                                     alt="Property Image" 
+                                     class="img-fluid rounded property-thumbnail"
+                                     data-bs-toggle="modal" 
+                                     data-bs-target="#imageModal"
+                                     data-image="{{ asset('storage/' . $image->image_path) }}">
                             </div>
                         @endforeach
                     </div>
@@ -16523,7 +16699,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h5>Property Details</h5>
+                <h5><i class="bi bi-info-circle"></i> Property Details</h5>
             </div>
             <div class="card-body">
                 <div class="row g-3">
@@ -16558,27 +16734,27 @@ document.getElementById('contact-form').addEventListener('submit', async functio
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Bedrooms</label>
-                        <div>{{ $property->bedrooms ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->bedrooms ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Bathrooms</label>
-                        <div>{{ $property->bathrooms ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->bathrooms ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Floor Area</label>
-                        <div>{{ $property->floor_area ? number_format($property->floor_area) . ' sq ft' : 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->floor_area ? number_format($property->floor_area) . ' sq ft' : 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Car Parking</label>
-                        <div>{{ $property->car_parking ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->car_parking ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Land Area</label>
-                        <div>{{ $property->land_area ? number_format($property->land_area, 2) . ' Acres' : 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->land_area ? number_format($property->land_area, 2) . ' Acres' : 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Location</label>
-                        <div>{{ $property->location }}</div>
+                        <div class="fw-semibold">{{ $property->location }}</div>
                     </div>
                 </div>
             </div>
@@ -16588,10 +16764,10 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         @if($property->description)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Description</h5>
+                    <h5><i class="bi bi-file-text"></i> Description</h5>
                 </div>
                 <div class="card-body">
-                    <p>{{ $property->description }}</p>
+                    <p class="property-description-text">{{ $property->description }}</p>
                 </div>
             </div>
         @endif
@@ -16600,12 +16776,12 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         @if($property->features->count() > 0)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Features & Amenities</h5>
+                    <h5><i class="bi bi-list-check"></i> Features & Amenities</h5>
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-wrap gap-2">
                         @foreach($property->features as $feature)
-                            <span class="badge bg-light text-dark p-2">
+                            <span class="badge feature-badge">
                                 @if($feature->icon)
                                     <i class="{{ $feature->icon }}"></i>
                                 @endif
@@ -16619,11 +16795,14 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
         {{-- Meta --}}
         <div class="card mt-4">
+            <div class="card-header">
+                <h5><i class="bi bi-clock-history"></i> Property Meta</h5>
+            </div>
             <div class="card-body">
                 <div class="row g-2">
                     <div class="col-md-6">
                         <label class="text-muted small">Created By</label>
-                        <div>{{ $property->creator->name ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->creator->name ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Created At</label>
@@ -16632,7 +16811,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
                     @if($property->updated_by)
                         <div class="col-md-6">
                             <label class="text-muted small">Updated By</label>
-                            <div>{{ $property->updater->name ?? 'N/A' }}</div>
+                            <div class="fw-semibold">{{ $property->updater->name ?? 'N/A' }}</div>
                         </div>
                         <div class="col-md-6">
                             <label class="text-muted small">Updated At</label>
@@ -16701,6 +16880,21 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 </div>
 @endcan
 
+{{-- Image Modal --}}
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Property Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="Property Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
 @push('styles')
 <style>
     .text-gold {
@@ -16722,8 +16916,129 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         background: #f8d7da;
         color: #721c24;
     }
+    .property-main-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+    }
+    .property-image-placeholder {
+        width: 100%;
+        height: 300px;
+        background: #f8f6f2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 2px dashed #dee2e6;
+    }
+    .property-image-placeholder i {
+        font-size: 64px;
+        color: #adb5bd;
+    }
+    .property-image-placeholder p {
+        color: #6c757d;
+        margin-top: 12px;
+        font-size: 1rem;
+    }
+    .property-thumbnail {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 2px solid transparent;
+    }
+    .property-thumbnail:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-color: var(--gold-1);
+    }
+    .feature-badge {
+        background: var(--off-white);
+        color: var(--charcoal);
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-weight: 500;
+        border: 1px solid rgba(0,0,0,0.06);
+        font-size: 0.85rem;
+    }
+    .feature-badge i {
+        margin-right: 4px;
+        color: var(--gold-1);
+    }
+    .card-header h5 i {
+        color: var(--gold-1);
+        margin-right: 8px;
+    }
+    .property-description-text {
+        line-height: 1.8;
+        color: var(--text-muted);
+        white-space: pre-line;
+    }
+    .fw-semibold {
+        font-weight: 600;
+    }
+    .btn-group .btn {
+        border-radius: 6px;
+    }
+    .btn-group .btn:not(:last-child) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .btn-group .btn:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    @media (max-width: 576px) {
+        .admin-page-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .admin-page-header .btn-group {
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .admin-page-header .btn-group .btn {
+            flex: 1;
+            min-width: 60px;
+            font-size: 0.85rem;
+            padding: 6px 10px;
+        }
+        .property-thumbnail {
+            height: 60px;
+        }
+        .property-image-placeholder {
+            height: 200px;
+        }
+        .property-image-placeholder i {
+            font-size: 48px;
+        }
+    }
 </style>
 @endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image modal functionality
+        const imageModal = document.getElementById('imageModal');
+        if (imageModal) {
+            imageModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const imageUrl = button.getAttribute('data-image');
+                const modalImage = document.getElementById('modalImage');
+                if (modalImage && imageUrl) {
+                    modalImage.src = imageUrl;
+                }
+            });
+        }
+    });
+</script>
+@endpush
+@endsection
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/users/create.blade.php
@@ -21167,7 +21482,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/properties/index.blade.php
-📏 Size: 11044 bytes
+📏 Size: 11057 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/admin/properties/index.blade.php --}}
@@ -21244,6 +21559,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 <div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
+            
             <table class="table table-admin mb-0">
                 <thead>
                     <tr>
@@ -21395,7 +21711,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/properties/show.blade.php
-📏 Size: 11629 bytes
+📏 Size: 16410 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/admin/properties/show.blade.php --}}
@@ -21446,22 +21762,34 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <img src="{{ $property->main_image ? asset('storage/' . $property->main_image) : asset('images/property-placeholder.jpg') }}" 
-                     alt="{{ $property->name }}" class="img-fluid rounded">
+                @if($property->main_image)
+                    <img src="{{ asset('storage/' . $property->main_image) }}" 
+                         alt="{{ $property->name }}" 
+                         class="img-fluid rounded property-main-image">
+                @else
+                    <div class="property-image-placeholder">
+                        <i class="bi bi-building"></i>
+                        <p>No Image Available</p>
+                    </div>
+                @endif
             </div>
         </div>
         
         @if($property->images->count() > 0)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Additional Images</h5>
+                    <h5><i class="bi bi-images"></i> Additional Images</h5>
                 </div>
                 <div class="card-body">
                     <div class="row g-2">
                         @foreach($property->images as $image)
                             <div class="col-3">
                                 <img src="{{ asset('storage/' . $image->image_path) }}" 
-                                     alt="Property Image" class="img-fluid rounded">
+                                     alt="Property Image" 
+                                     class="img-fluid rounded property-thumbnail"
+                                     data-bs-toggle="modal" 
+                                     data-bs-target="#imageModal"
+                                     data-image="{{ asset('storage/' . $image->image_path) }}">
                             </div>
                         @endforeach
                     </div>
@@ -21474,7 +21802,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h5>Property Details</h5>
+                <h5><i class="bi bi-info-circle"></i> Property Details</h5>
             </div>
             <div class="card-body">
                 <div class="row g-3">
@@ -21509,27 +21837,27 @@ document.getElementById('contact-form').addEventListener('submit', async functio
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Bedrooms</label>
-                        <div>{{ $property->bedrooms ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->bedrooms ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Bathrooms</label>
-                        <div>{{ $property->bathrooms ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->bathrooms ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Floor Area</label>
-                        <div>{{ $property->floor_area ? number_format($property->floor_area) . ' sq ft' : 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->floor_area ? number_format($property->floor_area) . ' sq ft' : 'N/A' }}</div>
                     </div>
                     <div class="col-md-3">
                         <label class="text-muted small">Car Parking</label>
-                        <div>{{ $property->car_parking ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->car_parking ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Land Area</label>
-                        <div>{{ $property->land_area ? number_format($property->land_area, 2) . ' Acres' : 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->land_area ? number_format($property->land_area, 2) . ' Acres' : 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Location</label>
-                        <div>{{ $property->location }}</div>
+                        <div class="fw-semibold">{{ $property->location }}</div>
                     </div>
                 </div>
             </div>
@@ -21539,10 +21867,10 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         @if($property->description)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Description</h5>
+                    <h5><i class="bi bi-file-text"></i> Description</h5>
                 </div>
                 <div class="card-body">
-                    <p>{{ $property->description }}</p>
+                    <p class="property-description-text">{{ $property->description }}</p>
                 </div>
             </div>
         @endif
@@ -21551,12 +21879,12 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         @if($property->features->count() > 0)
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5>Features & Amenities</h5>
+                    <h5><i class="bi bi-list-check"></i> Features & Amenities</h5>
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-wrap gap-2">
                         @foreach($property->features as $feature)
-                            <span class="badge bg-light text-dark p-2">
+                            <span class="badge feature-badge">
                                 @if($feature->icon)
                                     <i class="{{ $feature->icon }}"></i>
                                 @endif
@@ -21570,11 +21898,14 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
         {{-- Meta --}}
         <div class="card mt-4">
+            <div class="card-header">
+                <h5><i class="bi bi-clock-history"></i> Property Meta</h5>
+            </div>
             <div class="card-body">
                 <div class="row g-2">
                     <div class="col-md-6">
                         <label class="text-muted small">Created By</label>
-                        <div>{{ $property->creator->name ?? 'N/A' }}</div>
+                        <div class="fw-semibold">{{ $property->creator->name ?? 'N/A' }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="text-muted small">Created At</label>
@@ -21583,7 +21914,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
                     @if($property->updated_by)
                         <div class="col-md-6">
                             <label class="text-muted small">Updated By</label>
-                            <div>{{ $property->updater->name ?? 'N/A' }}</div>
+                            <div class="fw-semibold">{{ $property->updater->name ?? 'N/A' }}</div>
                         </div>
                         <div class="col-md-6">
                             <label class="text-muted small">Updated At</label>
@@ -21652,6 +21983,21 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 </div>
 @endcan
 
+{{-- Image Modal --}}
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Property Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="Property Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
 @push('styles')
 <style>
     .text-gold {
@@ -21673,8 +22019,129 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         background: #f8d7da;
         color: #721c24;
     }
+    .property-main-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+    }
+    .property-image-placeholder {
+        width: 100%;
+        height: 300px;
+        background: #f8f6f2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 2px dashed #dee2e6;
+    }
+    .property-image-placeholder i {
+        font-size: 64px;
+        color: #adb5bd;
+    }
+    .property-image-placeholder p {
+        color: #6c757d;
+        margin-top: 12px;
+        font-size: 1rem;
+    }
+    .property-thumbnail {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 2px solid transparent;
+    }
+    .property-thumbnail:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-color: var(--gold-1);
+    }
+    .feature-badge {
+        background: var(--off-white);
+        color: var(--charcoal);
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-weight: 500;
+        border: 1px solid rgba(0,0,0,0.06);
+        font-size: 0.85rem;
+    }
+    .feature-badge i {
+        margin-right: 4px;
+        color: var(--gold-1);
+    }
+    .card-header h5 i {
+        color: var(--gold-1);
+        margin-right: 8px;
+    }
+    .property-description-text {
+        line-height: 1.8;
+        color: var(--text-muted);
+        white-space: pre-line;
+    }
+    .fw-semibold {
+        font-weight: 600;
+    }
+    .btn-group .btn {
+        border-radius: 6px;
+    }
+    .btn-group .btn:not(:last-child) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .btn-group .btn:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    @media (max-width: 576px) {
+        .admin-page-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .admin-page-header .btn-group {
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .admin-page-header .btn-group .btn {
+            flex: 1;
+            min-width: 60px;
+            font-size: 0.85rem;
+            padding: 6px 10px;
+        }
+        .property-thumbnail {
+            height: 60px;
+        }
+        .property-image-placeholder {
+            height: 200px;
+        }
+        .property-image-placeholder i {
+            font-size: 48px;
+        }
+    }
 </style>
 @endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image modal functionality
+        const imageModal = document.getElementById('imageModal');
+        if (imageModal) {
+            imageModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const imageUrl = button.getAttribute('data-image');
+                const modalImage = document.getElementById('modalImage');
+                if (modalImage && imageUrl) {
+                    modalImage.src = imageUrl;
+                }
+            });
+        }
+    });
+</script>
+@endpush
+@endsection
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/admin/users/create.blade.php
@@ -22672,7 +23139,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/layouts/website.blade.php
-📏 Size: 2512 bytes
+📏 Size: 2683 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {{-- resources/views/layouts/website.blade.php --}}
@@ -22731,6 +23198,9 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs@1.4.0/dist/purecounter_vanilla.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Custom JS -->
     <script src="{{ asset('js/website.js') }}"></script>
@@ -24655,7 +25125,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: resources/views/website/index.blade.php
-📏 Size: 11108 bytes
+📏 Size: 10792 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 @extends('layouts.website')
@@ -24787,25 +25257,25 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['total_properties'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['total_properties']) }}</div>
                     <div class="stat-label">Total Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['residential'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['residential']) }}</div>
                     <div class="stat-label">Residential Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['commercial'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['commercial']) }}</div>
                     <div class="stat-label">Commercial Properties</div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ $stats['warehouses'] }}" data-purecounter-duration="2">0</div>
+                    <div class="stat-number">{{ number_format($stats['warehouses']) }}</div>
                     <div class="stat-label">Warehouses</div>
                 </div>
             </div>
@@ -27702,7 +28172,7 @@ Artisan::command('inspire', function () {
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: routes/web.php
-📏 Size: 5732 bytes
+📏 Size: 5741 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 <?php
@@ -27797,6 +28267,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Properties
         Route::resource('properties', AdminPropertyController::class);
         Route::post('properties/{property}/change-status', [AdminPropertyController::class, 'changeStatus'])->name('properties.change-status');
+        
         
         // Categories
         Route::resource('categories', PropertyCategoryController::class);
@@ -46503,7 +46974,7 @@ class ExampleTest extends TestCase
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: package.json
-📏 Size: 699 bytes
+📏 Size: 741 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {
@@ -46528,6 +46999,7 @@ class ExampleTest extends TestCase
     },
     "dependencies": {
         "@popperjs/core": "^2.11.8",
+        "@srexi/purecounterjs": "^1.5.0",
         "aos": "^2.3.4",
         "bootstrap": "^5.3.0",
         "chart.js": "^4.5.1",
@@ -46538,7 +47010,7 @@ class ExampleTest extends TestCase
 
 ────────────────────────────────────────────────────────────────────────────────
 📄 File: package-lock.json
-📏 Size: 117252 bytes
+📏 Size: 117646 bytes
 ────────────────────────────────────────────────────────────────────────────────
 
 {
@@ -46549,6 +47021,7 @@ class ExampleTest extends TestCase
         "": {
             "dependencies": {
                 "@popperjs/core": "^2.11.8",
+                "@srexi/purecounterjs": "^1.5.0",
                 "aos": "^2.3.4",
                 "bootstrap": "^5.3.0",
                 "chart.js": "^4.5.1",
@@ -47226,6 +47699,12 @@ class ExampleTest extends TestCase
             "resolved": "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.1.tgz",
             "integrity": "sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==",
             "dev": true,
+            "license": "MIT"
+        },
+        "node_modules/@srexi/purecounterjs": {
+            "version": "1.5.0",
+            "resolved": "https://registry.npmjs.org/@srexi/purecounterjs/-/purecounterjs-1.5.0.tgz",
+            "integrity": "sha512-9ggIhaiR2O0MGq3l+rBsApanj0OM+lgY78+2Zx271Cy1QZSsMRwKyphy7NiBeVYimL8/mMvGhipR8yhAzylcXg==",
             "license": "MIT"
         },
         "node_modules/@tailwindcss/node": {

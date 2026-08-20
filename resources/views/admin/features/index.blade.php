@@ -85,12 +85,7 @@
             </table>
         </div>
     </div>
-    <div class="card-footer bg-transparent">
-        <div class="d-flex justify-content-between align-items-center">
-            <span class="text-muted small">Showing {{ $features->firstItem() ?? 0 }} to {{ $features->lastItem() ?? 0 }} of {{ $features->total() }} features</span>
-            {{ $features->links() }}
-        </div>
-    </div>
+    
 </div>
 
 {{-- Delete Modals --}}
