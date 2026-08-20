@@ -21,6 +21,13 @@ class UserController extends Controller
     {
         $query = User::with('role');
 
+        // Exclude Super Admin users for non-Super Admins
+        if (!auth()->user()->isSuperAdmin()) {
+            $query->whereHas('role', function ($q) {
+                $q->where('slug', '!=', 'super_admin');
+            });
+        }
+
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('name', 'LIKE', '%' . $request->search . '%')
@@ -41,6 +48,14 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
+        
+        // Admins can't create Super Admin users
+        if (!auth()->user()->isSuperAdmin()) {
+            $roles = $roles->filter(function ($role) {
+                return $role->slug !== 'super_admin';
+            });
+        }
+        
         return view('admin.users.create', compact('roles'));
     }
 
@@ -54,6 +69,14 @@ class UserController extends Controller
             'role_id' => 'required|exists:roles,id',
             'status' => 'boolean',
         ]);
+
+        // Prevent non-Super Admin from creating Super Admin users
+        if (!auth()->user()->isSuperAdmin()) {
+            $role = Role::find($validated['role_id']);
+            if ($role && $role->slug === 'super_admin') {
+                abort(403, 'You cannot create Super Admin accounts.');
+            }
+        }
 
         $validated['password'] = Hash::make($validated['password']);
         $validated['status'] = $request->has('status');
@@ -72,6 +95,14 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
+        
+        // Admins can't see Super Admin role
+        if (!auth()->user()->isSuperAdmin()) {
+            $roles = $roles->filter(function ($role) {
+                return $role->slug !== 'super_admin';
+            });
+        }
+        
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
@@ -89,6 +120,14 @@ class UserController extends Controller
         // Prevent Admin from modifying Super Admin
         if (auth()->user()->isAdmin() && $user->isSuperAdmin()) {
             abort(403, 'You cannot modify Super Admin accounts.');
+        }
+
+        // Prevent non-Super Admin from assigning Super Admin role
+        if (!auth()->user()->isSuperAdmin()) {
+            $role = Role::find($validated['role_id']);
+            if ($role && $role->slug === 'super_admin') {
+                abort(403, 'You cannot assign Super Admin role.');
+            }
         }
 
         if (!empty($validated['password'])) {

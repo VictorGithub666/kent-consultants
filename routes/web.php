@@ -68,8 +68,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
         // Reset Password
-        Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
-        Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
+        Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])
+    ->name('password.reset');
+         Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
     });
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
