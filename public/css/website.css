@@ -51,12 +51,12 @@ h1, h2, h3, h4, h5, h6 {
 #preloader {
     position: fixed;
     inset: 0;
-    background: var(--white);
+    background: black;
     z-index: 999999;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.8s ease;
+    transition: all 1.5s ease;
 }
 
 #preloader .preloader-content {
@@ -1574,4 +1574,85 @@ h1, h2, h3, h4, h5, h6 {
 .contact-form-wrapper .form-control:focus {
     border-color: var(--gold-1);
     box-shadow: none;
+}
+
+/* ============================================
+   LEGAL PAGES
+============================================ */
+.legal-content {
+    padding: 60px 0 80px;
+}
+
+.legal-card {
+    background: var(--white);
+    padding: 50px;
+    border-radius: 0;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+}
+
+.legal-card h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    color: var(--charcoal);
+}
+
+.legal-card h2:first-of-type {
+    margin-top: 0;
+}
+
+.legal-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 30px 0 15px;
+    color: var(--charcoal);
+}
+
+.legal-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.legal-card ul {
+    margin: 15px 0 20px 20px;
+    padding: 0;
+}
+
+.legal-card ul li {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    padding-left: 10px;
+}
+
+.legal-card ul li strong {
+    color: var(--charcoal);
+}
+
+.legal-card a {
+    color: var(--gold-1);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-card a:hover {
+    color: var(--gold-3);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .legal-card {
+        padding: 25px;
+    }
+    
+    .legal-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    .legal-card h3 {
+        font-size: 1.1rem;
+    }
 }

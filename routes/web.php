@@ -39,6 +39,21 @@ Route::prefix('careers')->name('careers.')->group(function () {
 });
 
 // ============================================
+// Legal Pages
+// ============================================
+Route::get('/privacy-policy', function () {
+    return view('website.privacy-policy');
+})->name('privacy.policy');
+
+Route::get('/terms-of-service', function () {
+    return view('website.terms-of-service');
+})->name('terms.service');
+
+Route::get('/cookie-policy', function () {
+    return view('website.cookie-policy');
+})->name('cookie.policy');
+
+// ============================================
 // Admin Routes
 // ============================================
 Route::prefix('admin')->name('admin.')->group(function () {

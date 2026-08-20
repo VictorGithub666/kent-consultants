@@ -9,10 +9,8 @@
 
             <div class="d-flex align-items-center">
                 <div class="social-links d-none d-md-flex">
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.facebook.com/KentConsultantsLtd/" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/kent_consultants_ltd/" class="instagram"><i class="bi bi-instagram"></i></a>
                 </div>
                 
                 <div class="header-cta d-none d-lg-block ms-3">

@@ -14,11 +14,12 @@
                     </p>
                     
                     <div class="social-links">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="https://www.facebook.com/KentConsultantsLtd/" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/kent_consultants_ltd/" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-instagram"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -39,10 +40,10 @@
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#"><i class="bi bi-chevron-right"></i> Property Management</a></li>
-                        <li><a href="#"><i class="bi bi-chevron-right"></i> Project Management</a></li>
-                        <li><a href="#"><i class="bi bi-chevron-right"></i> Property Valuation</a></li>
-                        <li><a href="#"><i class="bi bi-chevron-right"></i> Consultancy</a></li>
+                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Property Management</a></li>
+                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Project Management</a></li>
+                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Property Valuation</a></li>
+                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Consultancy</a></li>
                     </ul>
                 </div>
             </div>
@@ -95,9 +96,9 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Policy</a>
+                        <a href="{{ route('privacy.policy') }}">Privacy Policy</a>
+                        <a href="{{ route('terms.service') }}">Terms of Service</a>
+                        <a href="{{ route('cookie.policy') }}">Cookie Policy</a>
                     </div>
                 </div>
             </div>
