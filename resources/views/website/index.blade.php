@@ -1,4 +1,3 @@
-{{-- resources/views/website/index.blade.php --}}
 @extends('layouts.website')
 
 @section('title', 'Kent Consultants Ltd - Property Management & Real Estate Nairobi')
@@ -115,7 +114,6 @@
             </div>
         @else
             <div class="empty-state">
-                <i class="bi bi-building"></i>
                 <h4>No Properties Available</h4>
                 <p>Check back soon for new listings</p>
             </div>
@@ -162,7 +160,7 @@
             <div class="col-lg-6" data-aos="fade-right">
                 <div class="image-wrapper">
                     <img src="{{ asset('images/logo.png') }}" alt="Why Kent Consultants" class="img-fluid">
-                    <div class="gold-accent"></div>
+                    
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-left">

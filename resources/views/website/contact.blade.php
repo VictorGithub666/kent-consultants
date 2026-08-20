@@ -210,7 +210,7 @@
             <div class="col-lg-8">
                 <div class="faq-wrapper">
                     <div class="faq-item">
-                        <div class="faq-header">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
                             <h4>What areas do you serve?</h4>
                             <i class="bi bi-plus"></i>
                         </div>
@@ -219,7 +219,7 @@
                         </div>
                     </div>
                     <div class="faq-item">
-                        <div class="faq-header">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
                             <h4>What types of properties do you manage?</h4>
                             <i class="bi bi-plus"></i>
                         </div>
@@ -228,7 +228,7 @@
                         </div>
                     </div>
                     <div class="faq-item">
-                        <div class="faq-header">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
                             <h4>How do you handle tenant issues?</h4>
                             <i class="bi bi-plus"></i>
                         </div>
@@ -237,7 +237,7 @@
                         </div>
                     </div>
                     <div class="faq-item">
-                        <div class="faq-header">
+                        <div class="faq-header" onclick="toggleFAQ(this)">
                             <h4>How often do you provide property reports?</h4>
                             <i class="bi bi-plus"></i>
                         </div>

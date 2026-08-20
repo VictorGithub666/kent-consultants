@@ -5,20 +5,21 @@
 @section('description', Str::limit(strip_tags($career->description), 160))
 
 @section('content')
+
 {{-- Page Header --}}
 <section class="page-header career-detail-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <a href="{{ route('careers.index') }}" class="back-link">
-                    <i class="bi bi-arrow-left"></i> Back to Careers
+                    Back to Careers
                 </a>
                 <span class="badge-gold">{{ $career->department }}</span>
                 <h1>{{ $career->job_title }}</h1>
                 <div class="career-meta-detail">
-                    <span><i class="bi bi-geo-alt"></i> {{ $career->location }}</span>
-                    <span><i class="bi bi-clock"></i> {{ $career->employment_type }}</span>
-                    <span><i class="bi bi-calendar-event"></i> Deadline: {{ $career->application_deadline->format('M d, Y') }}</span>
+                    <span>{{ $career->location }}</span>
+                    <span>{{ $career->employment_type }}</span>
+                    <span>Deadline: {{ $career->application_deadline->format('M d, Y') }}</span>
                 </div>
             </div>
         </div>
@@ -64,11 +65,11 @@
             <div class="col-lg-4">
                 <div class="career-sidebar">
                     {{-- Apply Now --}}
-                    <div class="sidebar-card apply-card">
+                    <div class="sidebar-card apply-card golden">
                         <h4>Apply Now</h4>
                         <p>Ready to join our team? Submit your application today.</p>
-                        <button class="btn btn-gold w-100" data-bs-toggle="modal" data-bs-target="#applyModal">
-                            <i class="bi bi-send"></i> Apply for this Position
+                        <button class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#applyModal">
+                            Apply for this Position
                         </button>
                     </div>
 
@@ -193,7 +194,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" form="applyForm" class="btn btn-gold">
-                    <i class="bi bi-send"></i> Submit Application
+                    Submit Application
                 </button>
             </div>
         </div>

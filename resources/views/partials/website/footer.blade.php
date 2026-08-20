@@ -40,7 +40,6 @@
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Property Management</a></li>
                         <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Project Management</a></li>
                         <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Property Valuation</a></li>
                         <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Consultancy</a></li>

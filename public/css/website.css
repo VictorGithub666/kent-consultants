@@ -298,7 +298,7 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 28px;
         line-height: 0;
         margin-right: 10px;
-        cursor: pointer;
+        /* cursor: pointer; */
         transition: color 0.3s;
     }
 
@@ -1655,4 +1655,747 @@ h1, h2, h3, h4, h5, h6 {
     .legal-card h3 {
         font-size: 1.1rem;
     }
+}
+
+/* ============================================
+   DESIGN UPDATES - Golden Shadows & Cards
+============================================ */
+
+/* Mission Vision Values - Golden Shadow */
+.mission-vision .mv-card {
+    background: var(--white);
+    padding: 40px;
+    text-align: center;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(166, 124, 0, 0.08);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(166, 124, 0, 0.05);
+}
+
+.mission-vision .mv-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(166, 124, 0, 0.2);
+    border-color: rgba(166, 124, 0, 0.2);
+}
+
+.mission-vision .mv-card.gold {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    box-shadow: 0 5px 25px rgba(166, 124, 0, 0.2);
+}
+
+.mission-vision .mv-card.gold:hover {
+    box-shadow: 0 15px 50px rgba(166, 124, 0, 0.35);
+    transform: translateY(-8px);
+}
+
+/* Key Activities - No Icons, Golden Gradient Background */
+.activity-card {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    padding: 35px 30px;
+    border-radius: 8px;
+    height: 100%;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 25px rgba(166, 124, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+.activity-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(166, 124, 0, 0.3);
+}
+
+.activity-card:hover::before {
+    transform: rotate(45deg) scale(1.5);
+}
+
+.activity-card .activity-icon {
+    display: none;
+}
+
+.activity-card h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--charcoal);
+    position: relative;
+    z-index: 1;
+}
+
+.activity-card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(26, 23, 21, 0.8);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Departments - No Icons */
+.department-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    height: 100%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    border-top: 3px solid var(--gold-1);
+}
+
+.department-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+}
+
+.department-card .department-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.department-card .department-header i {
+    display: none;
+}
+
+.department-card .department-header h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--charcoal);
+}
+
+.department-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.department-card ul li {
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.department-card ul li:last-child {
+    border-bottom: none;
+}
+
+.department-card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold-1);
+    font-weight: 700;
+}
+
+/* Services - Floating Cards with Golden Gradient */
+.services-overview .service-card {
+    background: var(--gold-gradient);
+    padding: 40px 30px;
+    transition: all 0.4s ease;
+    height: 100%;
+    position: relative;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 8px 30px rgba(166, 124, 0, 0.12);
+    color: var(--charcoal);
+}
+
+.services-overview .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(166, 124, 0, 0.25);
+}
+
+.services-overview .service-card .service-icon {
+    display: none;
+}
+
+.services-overview .service-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--charcoal);
+}
+
+.services-overview .service-card p {
+    color: rgba(26, 23, 21, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.services-overview .service-card .service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.services-overview .service-card .service-features li {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    color: rgba(26, 23, 21, 0.75);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.services-overview .service-card .service-features li i {
+    color: var(--charcoal);
+    font-size: 0.9rem;
+}
+
+/* Careers - Remove All Icons Including Numbers */
+.career-card .career-meta span i {
+    display: none;
+}
+
+.career-card .career-deadline i {
+    display: none;
+}
+
+.career-card .career-footer .btn-gold i {
+    display: none;
+}
+
+.process-card .process-number {
+    display: none;
+}
+
+.process-card h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.process-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.benefit-card .benefit-icon {
+    display: none;
+}
+
+/* Career Detail - Remove Icons */
+.career-meta-detail span i {
+    display: none;
+}
+
+.career-sidebar .apply-card .btn-gold i {
+    display: none;
+}
+
+.share-links {
+    display: flex;
+    gap: 12px;
+}
+
+.share-links a {
+    width: 42px;
+    height: 42px;
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.share-links a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(166, 124, 0, 0.3);
+}
+
+/* Career Process Cards - No Numbers */
+.process-card {
+    background: var(--white);
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    height: 100%;
+}
+
+.process-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(166, 124, 0, 0.12);
+}
+
+/* Contact - FAQ Toggle Functionality */
+.faq-wrapper .faq-item {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 5px;
+}
+
+.faq-wrapper .faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-wrapper .faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-wrapper .faq-header h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--charcoal);
+    transition: color 0.3s ease;
+}
+
+.faq-wrapper .faq-header:hover h4 {
+    color: var(--gold-1);
+}
+
+.faq-wrapper .faq-header i {
+    font-size: 1.5rem;
+    color: var(--gold-1);
+    transition: transform 0.4s ease;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.faq-wrapper .faq-item.active .faq-header i {
+    transform: rotate(45deg);
+}
+
+.faq-wrapper .faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+    padding: 0 20px 0 0;
+}
+
+.faq-wrapper .faq-item.active .faq-body {
+    max-height: 300px;
+    padding: 0 20px 20px 0;
+}
+
+.faq-wrapper .faq-body p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+/* Career Cards - No Icons */
+.career-card .career-meta span {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.career-card .career-meta span:last-child {
+    margin-right: 0;
+}
+
+.career-card .career-deadline span {
+    font-size: 0.85rem;
+    color: var(--gold-1);
+}
+
+/* Benefit Cards - No Icons */
+.benefit-card {
+    background: var(--white);
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    height: 100%;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(166, 124, 0, 0.12);
+}
+
+.benefit-card h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Back link - No Icons */
+.back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--gold-2);
+}
+
+/* ============================================
+   Mobile Hamburger Menu - Desktop Hidden
+============================================ */
+
+/* Hide hamburger on desktop */
+.mobile-nav-toggle {
+    display: none !important;
+}
+
+/* Show hamburger on mobile/tablet */
+@media (max-width: 1199px) {
+    .mobile-nav-toggle {
+        display: block !important;
+        color: var(--nav-color, #ffffff);
+        font-size: 28px;
+        line-height: 0;
+        margin-right: 10px;
+        /* cursor: pointer; */
+        transition: color 0.3s;
+    }
+    
+    .scrolled .mobile-nav-toggle {
+        color: var(--white);
+    }
+}
+
+/* Mobile nav active state */
+.mobile-nav-active .mobile-nav-toggle {
+    color: #fff;
+    position: absolute;
+    font-size: 32px;
+    top: 15px;
+    right: 15px;
+    margin-right: 0;
+    z-index: 9999;
+}
+
+/* Ensure navmenu works on mobile */
+@media (max-width: 1199px) {
+    .navmenu {
+        padding: 0;
+        z-index: 9997;
+    }
+
+    .navmenu ul {
+        display: none;
+        list-style: none;
+        position: absolute;
+        inset: 60px 20px 20px 20px;
+        padding: 10px 0;
+        margin: 0;
+        border-radius: 6px;
+        background-color: var(--white);
+        overflow-y: auto;
+        transition: 0.3s;
+        z-index: 9998;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-nav-active .navmenu > ul {
+        display: block;
+    }
+
+    .mobile-nav-active {
+        overflow: hidden;
+    }
+
+    .mobile-nav-active .navmenu {
+        position: fixed;
+        overflow: hidden;
+        inset: 0;
+        background: rgba(33, 37, 41, 0.8);
+        transition: 0.3s;
+    }
+}
+
+/* ============================================
+   GOLDEN GRADIENT CARDS
+============================================ */
+
+/* Career Cards - Golden Gradient */
+.career-card.golden {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    padding: 30px;
+    border-radius: 12px;
+    height: 100%;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 30px rgba(166, 124, 0, 0.15);
+    border: none;
+}
+
+.career-card.golden:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(166, 124, 0, 0.25);
+}
+
+.career-card.golden .career-title h3 {
+    color: var(--charcoal);
+}
+
+.career-card.golden .career-meta span {
+    color: rgba(26, 23, 21, 0.7);
+}
+
+.career-card.golden .career-excerpt p {
+    color: rgba(26, 23, 21, 0.8);
+}
+
+.career-card.golden .career-deadline span {
+    color: var(--charcoal);
+    font-weight: 600;
+}
+
+.career-card.golden .btn-dark {
+    background: var(--charcoal);
+    color: var(--white);
+    border: none;
+    padding: 10px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.career-card.golden .btn-dark:hover {
+    background: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Process Cards - Golden */
+.process-card.golden {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 12px;
+    height: 100%;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 30px rgba(166, 124, 0, 0.12);
+    border: none;
+}
+
+.process-card.golden:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(166, 124, 0, 0.2);
+}
+
+.process-card.golden h4 {
+    color: var(--charcoal);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.process-card.golden p {
+    color: rgba(26, 23, 21, 0.75);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Benefit Cards - Golden */
+.benefit-card.golden {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 12px;
+    height: 100%;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 30px rgba(166, 124, 0, 0.12);
+    border: none;
+}
+
+.benefit-card.golden:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(166, 124, 0, 0.2);
+}
+
+.benefit-card.golden h4 {
+    color: var(--charcoal);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.benefit-card.golden p {
+    color: rgba(26, 23, 21, 0.75);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Apply Card - Golden */
+.sidebar-card.apply-card.golden {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(166, 124, 0, 0.15);
+    border: none;
+}
+
+.sidebar-card.apply-card.golden h4 {
+    color: var(--charcoal);
+}
+
+.sidebar-card.apply-card.golden p {
+    color: rgba(26, 23, 21, 0.75);
+}
+
+.sidebar-card.apply-card.golden .btn-dark {
+    background: var(--charcoal);
+    color: var(--white);
+    border: none;
+    padding: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.sidebar-card.apply-card.golden .btn-dark:hover {
+    background: #000;
+    transform: translateY(-2px);
+}
+
+/* Process Steps - Golden (Services Page) */
+.process-step.golden {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 12px;
+    height: 100%;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 30px rgba(166, 124, 0, 0.12);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.process-step.golden:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(166, 124, 0, 0.2);
+}
+
+.process-step.golden .step-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(26, 23, 21, 0.15);
+    margin-bottom: 10px;
+    font-family: var(--heading-font);
+}
+
+.process-step.golden h4 {
+    color: var(--charcoal);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.process-step.golden p {
+    color: rgba(26, 23, 21, 0.75);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* ============================================
+   FAQ FIX - Improved Functionality
+============================================ */
+
+.faq-wrapper .faq-item {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 0;
+}
+
+.faq-wrapper .faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-wrapper .faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.faq-wrapper .faq-header h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--charcoal);
+    transition: color 0.3s ease;
+    flex: 1;
+}
+
+.faq-wrapper .faq-header:hover h4 {
+    color: var(--gold-1);
+}
+
+.faq-wrapper .faq-header i {
+    font-size: 1.5rem;
+    color: var(--gold-1);
+    transition: transform 0.4s ease;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.faq-wrapper .faq-item.active .faq-header i {
+    transform: rotate(45deg);
+}
+
+.faq-wrapper .faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+    padding: 0 20px 0 0;
+}
+
+.faq-wrapper .faq-item.active .faq-body {
+    max-height: 300px;
+    padding: 0 20px 20px 0;
+}
+
+.faq-wrapper .faq-body p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
 }

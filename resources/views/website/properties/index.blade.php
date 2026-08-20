@@ -153,7 +153,6 @@
             </div>
         @else
             <div class="empty-state">
-                <i class="bi bi-building"></i>
                 <h4>No Properties Found</h4>
                 <p>We couldn't find any properties matching your criteria. Try adjusting your filters.</p>
                 <a href="{{ route('properties.index') }}" class="btn btn-gold">View All Properties</a>

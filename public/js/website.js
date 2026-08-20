@@ -96,6 +96,35 @@
     window.addEventListener('load', toggleScrollTop);
     document.addEventListener('scroll', toggleScrollTop);
 
+/**
+ * FAQ Toggle Function - Fixed
+ */
+function toggleFAQ(element) {
+    const faqItem = element.closest('.faq-item');
+    if (!faqItem) return;
+    
+    const isActive = faqItem.classList.contains('active');
+    
+    // Close all other FAQ items
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+        item.classList.remove('active');
+    });
+    
+    // Toggle the clicked one (open if it was closed)
+    if (!isActive) {
+        faqItem.classList.add('active');
+    }
+}
+
+// Also add click listeners for all FAQ headers for redundancy
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.faq-header').forEach(function(header) {
+        header.addEventListener('click', function(e) {
+            toggleFAQ(this);
+        });
+    });
+});
+
     /**
      * Animation on scroll function and init
      */

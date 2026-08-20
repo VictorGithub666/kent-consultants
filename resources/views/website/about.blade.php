@@ -54,7 +54,6 @@
                 <div class="image-wrapper">
                     <img src="{{ asset('images/about/office-building.jpg') }}" alt="Kent Consultants Office" class="img-fluid">
                     <div class="floating-card">
-                        <i class="bi bi-building"></i>
                         <div>
                             <span>Established</span>
                             <strong>2008</strong>
@@ -195,7 +194,6 @@
             <div class="col-md-6 col-lg-4">
                 <div class="department-card" data-aos="fade-up">
                     <div class="department-header">
-                        <i class="bi bi-calculator-fill"></i>
                         <h4>Accounting</h4>
                     </div>
                     <ul>
@@ -215,7 +213,6 @@
             <div class="col-md-6 col-lg-4">
                 <div class="department-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="department-header">
-                        <i class="bi bi-clipboard-fill"></i>
                         <h4>Administration</h4>
                     </div>
                     <ul>
@@ -232,7 +229,6 @@
             <div class="col-md-6 col-lg-4">
                 <div class="department-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="department-header">
-                        <i class="bi bi-gear-fill"></i>
                         <h4>Operations</h4>
                     </div>
                     <ul>

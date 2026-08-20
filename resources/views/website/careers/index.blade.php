@@ -25,7 +25,7 @@
             <div class="row g-4">
                 @foreach($careers as $career)
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-                        <div class="career-card">
+                        <div class="career-card golden">
                             <div class="career-header">
                                 <div class="career-title">
                                     <h3>{{ $career->job_title }}</h3>
@@ -34,9 +34,9 @@
                                     </span>
                                 </div>
                                 <div class="career-meta">
-                                    <span><i class="bi bi-building"></i> {{ $career->department }}</span>
-                                    <span><i class="bi bi-geo-alt"></i> {{ $career->location }}</span>
-                                    <span><i class="bi bi-clock"></i> {{ $career->employment_type }}</span>
+                                    <span>{{ $career->department }}</span>
+                                    <span>{{ $career->location }}</span>
+                                    <span>{{ $career->employment_type }}</span>
                                 </div>
                             </div>
                             <div class="career-body">
@@ -44,13 +44,12 @@
                                     <p>{{ Str::limit(strip_tags($career->description), 150) }}</p>
                                 </div>
                                 <div class="career-deadline">
-                                    <i class="bi bi-calendar-event"></i>
                                     <span>Application Deadline: {{ $career->application_deadline->format('M d, Y') }}</span>
                                 </div>
                             </div>
                             <div class="career-footer">
-                                <a href="{{ route('careers.show', $career) }}" class="btn btn-gold">
-                                    View Details <i class="bi bi-arrow-right"></i>
+                                <a href="{{ route('careers.show', $career) }}" class="btn btn-dark">
+                                    View Details
                                 </a>
                             </div>
                         </div>
@@ -62,7 +61,6 @@
             </div>
         @else
             <div class="empty-state">
-                <i class="bi bi-briefcase"></i>
                 <h4>No Current Openings</h4>
                 <p>We don't have any active job openings at the moment. Please check back later.</p>
             </div>
@@ -81,28 +79,19 @@
     <div class="container" data-aos="fade-up">
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="benefit-card" data-aos="zoom-in">
-                    <div class="benefit-icon">
-                        <i class="bi bi-trophy"></i>
-                    </div>
+                <div class="benefit-card golden" data-aos="zoom-in">
                     <h4>Professional Growth</h4>
                     <p>Opportunities for continuous learning and career advancement in the property management industry.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="benefit-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="benefit-icon">
-                        <i class="bi bi-people"></i>
-                    </div>
+                <div class="benefit-card golden" data-aos="zoom-in" data-aos-delay="100">
                     <h4>Great Team Culture</h4>
                     <p>Join a supportive team of property management professionals who value collaboration and excellence.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="benefit-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="benefit-icon">
-                        <i class="bi bi-graph-up"></i>
-                    </div>
+                <div class="benefit-card golden" data-aos="zoom-in" data-aos-delay="200">
                     <h4>Industry Leadership</h4>
                     <p>Work with a leading property management company with over 15 years of experience in Kenya.</p>
                 </div>
@@ -122,29 +111,25 @@
     <div class="container" data-aos="fade-up">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
-                <div class="process-card" data-aos="zoom-in">
-                    <div class="process-number">1</div>
+                <div class="process-card golden" data-aos="zoom-in">
                     <h4>Browse Positions</h4>
                     <p>Explore our current job openings and find the right role for you</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="process-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="process-number">2</div>
+                <div class="process-card golden" data-aos="zoom-in" data-aos-delay="100">
                     <h4>Submit Application</h4>
                     <p>Complete the online application form with your details and CV</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="process-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="process-number">3</div>
+                <div class="process-card golden" data-aos="zoom-in" data-aos-delay="200">
                     <h4>Review &amp; Interview</h4>
                     <p>Our team will review your application and contact you for an interview</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="process-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="process-number">4</div>
+                <div class="process-card golden" data-aos="zoom-in" data-aos-delay="300">
                     <h4>Join Our Team</h4>
                     <p>Welcome aboard! Start your career journey with Kent Consultants Ltd</p>
                 </div>

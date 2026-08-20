@@ -16,6 +16,9 @@
                 <div class="header-cta d-none d-lg-block ms-3">
                     <a href="{{ route('properties.index') }}" class="btn btn-gold btn-sm">View Properties</a>
                 </div>
+                
+                {{-- Mobile nav toggle - visible only on mobile --}}
+                <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
             </div>
         </div>
     </div>
@@ -49,7 +52,6 @@
                     <li><a href="{{ route('careers.index') }}" class="{{ request()->routeIs('careers.*') ? 'active' : '' }}">Careers</a></li>
                     <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a></li>
                 </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
         </div>
     </div>
