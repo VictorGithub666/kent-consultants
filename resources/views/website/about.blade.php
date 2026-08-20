@@ -51,14 +51,11 @@
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-left">
-                <div class="image-wrapper">
-                    <img src="{{ asset('images/about/office-building.jpg') }}" alt="Kent Consultants Office" class="img-fluid">
-                    <div class="floating-card">
-                        <div>
-                            <span>Established</span>
-                            <strong>2008</strong>
-                        </div>
-                    </div>
+                <div class="ratio ratio-1x1">
+                    <video autoplay muted loop playsinline>
+                        <source src="{{ asset('videos/kent-video.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>

@@ -47,15 +47,14 @@
                         Kent Consultants Ltd is a professional Property Management Company dealing in Project Management, 
                         Property Valuations, Consultancy and Management of both Residential and Commercial Properties since 2008.
                     </p>
-                    <a href="{{ route('about') }}" class="btn-link">
-                        Discover Kent Consultants
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-left">
-                <div class="image-wrapper">
-                    <img src="{{ asset('images/logo.png') }}" alt="Kent Consultants Office" class="img-fluid">
+                <div class="ratio ratio-1x1">
+                    <video autoplay muted loop playsinline>
+                        <source src="{{ asset('videos/kent-video.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>
