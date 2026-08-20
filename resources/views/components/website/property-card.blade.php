@@ -3,9 +3,9 @@
     <div class="card-image">
         <img src="{{ $property->main_image ? asset('storage/' . $property->main_image) : asset('images/property-placeholder.jpg') }}" 
              alt="{{ $property->name }}" loading="lazy">
-        <span class="badge-status badge-{{ $property->status }}">
+        <!-- <span class="badge-status badge-{{ $property->status }}">
             {{ ucfirst($property->status) }}
-        </span>
+        </span> -->
         <span class="badge-type">
             {{ $property->acquisition_type === 'buying' ? 'For Sale' : 'For Rent' }}
         </span>

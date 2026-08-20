@@ -583,6 +583,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 991px) {
+
+       a {
+  text-decoration: none;
+}
     .footer .footer-bottom .copyright p {
         text-align: center;
         margin-bottom: 15px;
@@ -2398,4 +2402,343 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.95rem;
     color: var(--text-muted);
     line-height: 1.8;
+}
+
+/* ============================================
+   PROPERTY DETAILS PAGE
+============================================ */
+
+.property-gallery {
+    margin-top: 200px;
+    padding-top: 30px;
+    background: var(--off-white);
+}
+
+.property-gallery .carousel {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.property-gallery .carousel-item img {
+    height: 450px;
+    object-fit: cover;
+}
+
+.property-gallery .gallery-badges {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.property-gallery .badge-status,
+.property-gallery .badge-type {
+    padding: 6px 18px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+}
+
+.property-gallery .badge-status.badge-vacant {
+    background: #28a745;
+    color: #fff;
+}
+
+.property-gallery .badge-status.badge-occupied {
+    background: #dc3545;
+    color: #fff;
+}
+
+.property-gallery .badge-type {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+}
+
+/* Property Details */
+.property-details {
+    padding: 60px 0;
+}
+
+.property-details .property-info {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.property-details .property-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.property-details .property-location {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.property-details .property-location i {
+    color: var(--gold-1);
+    margin-right: 8px;
+}
+
+.property-details .property-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-1);
+    margin-bottom: 15px;
+}
+
+.property-details .property-price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.property-details .property-category {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.property-details .property-category .category-tag,
+.property-details .property-category .type-tag {
+    padding: 4px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+}
+
+.property-details .property-category .category-tag {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+}
+
+.property-details .property-category .type-tag {
+    background: var(--charcoal);
+    color: var(--white);
+}
+
+/* Specs */
+.property-specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.property-specs .spec-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+}
+
+.property-specs .spec-item i {
+    color: var(--gold-1);
+    font-size: 1.2rem;
+}
+
+/* Description & Features */
+.property-description h3,
+.property-features h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--charcoal);
+}
+
+.property-description p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.property-features .features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.property-features .features-grid .feature-tag {
+    background: var(--off-white);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--charcoal);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.property-features .features-grid .feature-tag i {
+    margin-right: 6px;
+    color: var(--gold-1);
+}
+
+/* Sidebar */
+.property-sidebar .sidebar-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+.property-sidebar .sidebar-card:last-child {
+    margin-bottom: 0;
+}
+
+.property-sidebar .sidebar-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--charcoal);
+}
+
+.property-sidebar .contact-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.property-sidebar .contact-actions .btn {
+    border-radius: 4px;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.property-sidebar .contact-actions .btn-gold {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    border: none;
+}
+
+.property-sidebar .contact-actions .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(166, 124, 0, 0.25);
+}
+
+.property-sidebar .contact-actions .btn-outline-gold {
+    background: transparent;
+    border: 2px solid var(--gold-1);
+    color: var(--gold-1);
+}
+
+.property-sidebar .contact-actions .btn-outline-gold:hover {
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    border-color: transparent;
+}
+
+.property-sidebar .info-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.property-sidebar .info-card ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.property-sidebar .info-card ul li:last-child {
+    border-bottom: none;
+}
+
+.property-sidebar .info-card ul li .label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.property-sidebar .info-card ul li .value {
+    font-weight: 600;
+    color: var(--charcoal);
+    text-align: right;
+}
+
+.property-sidebar .share-card .share-links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.property-sidebar .share-card .share-links a {
+    width: 42px;
+    height: 42px;
+    background: var(--gold-gradient);
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.property-sidebar .share-card .share-links a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(166, 124, 0, 0.3);
+}
+
+/* Similar Properties */
+.similar-properties {
+    padding: 60px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .property-gallery .carousel-item img {
+        height: 300px;
+    }
+    
+    .property-details .property-info {
+        padding: 20px;
+    }
+    
+    .property-details .property-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .property-details .property-price {
+        font-size: 1.6rem;
+    }
+    
+    .property-specs {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+}
+
+/* ============================================
+   DARK NAVBAR FOR PROPERTY DETAIL PAGE
+============================================ */
+body.page-dark-nav .header {
+    --background-color: #1a1715 !important;
+    background-color: var(--background-color) !important;
+}
+
+/* Ensure the nav-wrap also has a dark background if needed */
+body.page-dark-nav .header .nav-wrap {
+    background-color: rgba(26, 23, 21, 0.95) !important;
+}
+
+/* On scroll, keep it dark */
+body.page-dark-nav.scrolled .header {
+    --background-color: #1a1715 !important;
 }

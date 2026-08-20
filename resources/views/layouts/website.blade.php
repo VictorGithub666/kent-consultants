@@ -27,7 +27,7 @@
     
     @stack('styles')
 </head>
-<body>
+<body class="@yield('body_class')">
     {{-- Preloader --}}
     <div id="preloader">
         <div class="preloader-content">

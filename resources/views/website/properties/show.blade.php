@@ -1,37 +1,50 @@
 {{-- resources/views/website/properties/show.blade.php --}}
 @extends('layouts.website')
 
+@section('body_class', 'page-dark-nav')
+
 @section('title', $property->name . ' - Kent Consultants Ltd')
 @section('description', Str::limit($property->description ?? 'View this ' . $property->category->name . ' property in ' . $property->location, 160))
 
 @section('content')
 {{-- Property Gallery --}}
 <section class="property-gallery section">
-    <div class="container-fluid px-0" data-aos="fade-up">
-        <div class="gallery-wrapper">
-            <div class="main-image">
-                <img src="{{ $property->main_image ? asset('storage/' . $property->main_image) : asset('images/property-placeholder.jpg') }}" 
-                     alt="{{ $property->name }}" id="mainGalleryImage">
-            </div>
-            @if($property->images->count() > 0)
-                <div class="thumbnail-strip">
-                    <div class="thumbnails">
-                        @if($property->main_image)
-                            <div class="thumbnail active" data-image="{{ asset('storage/' . $property->main_image) }}">
-                                <img src="{{ asset('storage/' . $property->main_image) }}" alt="Main Image">
-                            </div>
-                        @endif
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div id="propertyCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {{-- Main Image --}}
+                        <div class="carousel-item active">
+                            <img src="{{ $property->main_image ? asset('storage/' . $property->main_image) : asset('images/property-placeholder.jpg') }}" 
+                                 class="d-block w-100" alt="{{ $property->name }}">
+                        </div>
+
+                        {{-- Additional Images --}}
                         @foreach($property->images as $image)
-                            <div class="thumbnail" data-image="{{ asset('storage/' . $image->image_path) }}">
-                                <img src="{{ asset('storage/' . $image->image_path) }}" alt="Property Image {{ $loop->iteration }}">
+                            <div class="carousel-item">
+                                <img src="{{ asset('storage/' . $image->image_path) }}" 
+                                     class="d-block w-100" alt="Property Image {{ $loop->iteration }}">
                             </div>
                         @endforeach
                     </div>
+
+                    {{-- Carousel Controls --}}
+                    @if($property->images->count() > 0 || $property->main_image)
+                        <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#propertyCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    @endif
                 </div>
-            @endif
-            <div class="gallery-badges">
-                <span class="badge-status badge-{{ $property->status }}">{{ ucfirst($property->status) }}</span>
-                <span class="badge-type">{{ $property->acquisition_type === 'buying' ? 'For Sale' : 'For Rent' }}</span>
+                <div class="gallery-badges">
+                    <span class="badge-status badge-{{ $property->status }}">{{ ucfirst($property->status) }}</span>
+                    <span class="badge-type">{{ $property->acquisition_type === 'buying' ? 'For Sale' : 'For Rent' }}</span>
+                </div>
             </div>
         </div>
     </div>
@@ -119,12 +132,6 @@
                             </div>
                         </div>
                     @endif
-
-                    {{-- Created By --}}
-                    <div class="property-meta">
-                        <p><i class="bi bi-person"></i> Listed by {{ $property->creator->name ?? 'Admin' }}</p>
-                        <p><i class="bi bi-calendar3"></i> Listed on {{ $property->created_at->format('M d, Y') }}</p>
-                    </div>
                 </div>
             </div>
 
@@ -222,21 +229,3 @@
     </section>
 @endif
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Gallery thumbnail click
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const mainImage = document.getElementById('mainGalleryImage');
-        
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', function() {
-                thumbnails.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                mainImage.src = this.dataset.image;
-            });
-        });
-    });
-</script>
-@endpush
