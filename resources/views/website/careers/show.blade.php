@@ -108,15 +108,6 @@
                     <div class="sidebar-card share-card">
                         <h4>Share This Position</h4>
                         <div class="share-links">
-                            <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(window.location.href), '_blank', 'width=600,height=600'); return false;">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                            <a href="#" onclick="window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent('{{ $career->job_title }} at Kent Consultants Ltd')+'&url='+encodeURIComponent(window.location.href), '_blank', 'width=600,height=600'); return false;">
-                                <i class="bi bi-twitter-x"></i>
-                            </a>
-                            <a href="#" onclick="window.open('https://wa.me/?text='+encodeURIComponent('{{ $career->job_title }} at Kent Consultants Ltd - ' + window.location.href), '_blank'); return false;">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
                             <a href="#" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!'); return false;">
                                 <i class="bi bi-link"></i>
                             </a>
@@ -189,14 +180,15 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
+                    <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" form="applyForm" class="btn btn-gold">
                     Submit Application
                 </button>
             </div>
+                </form>
+            </div>
+            
         </div>
     </div>
 </div>

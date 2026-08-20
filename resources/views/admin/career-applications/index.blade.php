@@ -133,12 +133,12 @@
             </table>
         </div>
     </div>
-    <div class="card-footer bg-transparent">
-        <div class="d-flex justify-content-between align-items-center">
-            <span class="text-muted small">
-                Showing {{ $applications->firstItem() ?? 0 }} to {{ $applications->lastItem() ?? 0 }} of {{ $applications->total() }} applications
-            </span>
-            {{ $applications->appends(request()->query())->links() }}
+    <div class="card-footer bg-transparent d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="text-muted small">
+            Showing {{ $applications->firstItem() ?? 0 }} to {{ $applications->lastItem() ?? 0 }} of {{ $applications->total() }} applications
+        </span>
+        <div>
+            {{ $applications->appends(request()->query())->links('pagination::bootstrap-5') }}
         </div>
     </div>
 </div>

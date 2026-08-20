@@ -29,6 +29,8 @@ class CareerController extends Controller
         return view('website.careers.show', compact('career'));
     }
 
+    // app/Http/Controllers/Website/CareerController.php
+
     public function apply(Request $request, Career $career)
     {
         $validated = $request->validate([
@@ -39,8 +41,8 @@ class CareerController extends Controller
             'cv' => 'required|file|mimes:pdf,doc,docx|max:5120',
         ]);
 
-        // Store CV
-        $cvPath = $request->file('cv')->store('cvs', 'private');
+        // Store CV using 'local' disk
+        $cvPath = $request->file('cv')->store('cvs', 'local');
 
         CareerApplication::create([
             'career_id' => $career->id,

@@ -54,22 +54,28 @@ class CareerApplicationController extends Controller
             ->with('success', "Application status updated to {$validated['status']}.");
     }
 
-    public function downloadCV(CareerApplication $application)
-    {
-        $path = storage_path('app/private/' . $application->cv_path);
+    // app/Http/Controllers/Admin/CareerApplicationController.php
 
-        if (!file_exists($path)) {
-            abort(404, 'CV file not found.');
-        }
+public function downloadCV(CareerApplication $application)
+{
+    // Using 'local' disk - files are stored in storage/app/private/
+    $path = storage_path('app/private/' . $application->cv_path);
+    
+    // Alternative using Storage facade:
+    // $path = Storage::disk('local')->path($application->cv_path);
 
-        return response()->download($path, $application->applicant_name . '-CV.pdf');
+    if (!file_exists($path)) {
+        abort(404, 'CV file not found.');
     }
+
+    return response()->download($path, $application->applicant_name . '-CV.pdf');
+}
 
     public function destroy(CareerApplication $application)
     {
         // Delete CV file
-        if ($application->cv_path && Storage::exists($application->cv_path)) {
-            Storage::delete($application->cv_path);
+        if ($application->cv_path && Storage::disk('local')->exists($application->cv_path)) {
+            Storage::disk('local')->delete($application->cv_path);
         }
 
         $application->delete();
