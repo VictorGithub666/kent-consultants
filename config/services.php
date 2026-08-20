@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'web3forms' => [
+        'key' => env('WEB3FORMS_ACCESS_KEY', ''),
+    ],
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],

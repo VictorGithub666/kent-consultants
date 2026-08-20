@@ -20,7 +20,8 @@ class LaravelCompleteCollector:
             'node_modules', 'vendor', 'storage', 'cache', 'bootstrap/cache',
             '.git', '.idea', '.vscode', 'debugbar', 'sessions',
             'framework', 'logs', 'pail', 'build', 'hot',
-            'node_modules', '.vite', 'coverage', '.phpunit.cache'
+            'node_modules', '.vite', 'coverage', '.phpunit.cache',
+            'seeders', 'migrations'  # These are collected separately
         }
         
     def should_skip_dir(self, path):
@@ -51,16 +52,36 @@ class LaravelCompleteCollector:
                 'patterns': ['*.php'],
                 'description': 'All Eloquent models (User, Property, Career, ContactMessage, etc.)'
             },
+            '📁 SERVICES': {
+                'paths': ['app/Services'],
+                'patterns': ['*.php'],
+                'description': 'Service classes (business logic, helpers, utilities)'
+            },
             '📁 VIEWS (Blade Templates)': {
                 'paths': [
                     'resources/views',
                     'resources/views/admin',
+                    'resources/views/admin/auth',
+                    'resources/views/admin/career-applications',
+                    'resources/views/admin/careers',
+                    'resources/views/admin/categories',
+                    'resources/views/admin/contact-messages',
+                    'resources/views/admin/features',
+                    'resources/views/admin/profile',
+                    'resources/views/admin/properties',
+                    'resources/views/admin/users',
+                    'resources/views/admin/website-settings',
                     'resources/views/auth',
                     'resources/views/auth/passwords',
                     'resources/views/components',
+                    'resources/views/components/website',
                     'resources/views/layouts',
                     'resources/views/partials',
+                    'resources/views/partials/admin',
+                    'resources/views/partials/website',
                     'resources/views/website',
+                    'resources/views/website/careers',
+                    'resources/views/website/properties',
                     'resources/views/emails'
                 ],
                 'patterns': ['*.blade.php', '*.php'],
@@ -82,7 +103,11 @@ class LaravelCompleteCollector:
                 'description': 'HTTP middleware (AdminMiddleware, RoleMiddleware)'
             },
             '📁 REQUESTS (Form Requests)': {
-                'paths': ['app/Http/Requests', 'app/Http/Requests/Auth'],
+                'paths': [
+                    'app/Http/Requests',
+                    'app/Http/Requests/Admin',
+                    'app/Http/Requests/Auth'
+                ],
                 'patterns': ['*.php'],
                 'description': 'Form request validation'
             },
@@ -106,6 +131,16 @@ class LaravelCompleteCollector:
                 'patterns': ['*.php'],
                 'description': 'Authorization policies'
             },
+            '📁 JOBS (Queue Jobs)': {
+                'paths': ['app/Jobs'],
+                'patterns': ['*.php'],
+                'description': 'Queue jobs'
+            },
+            '📁 NOTIFICATIONS': {
+                'paths': ['app/Notifications'],
+                'patterns': ['*.php'],
+                'description': 'Notification classes'
+            },
             '📁 ROUTES': {
                 'paths': ['routes'],
                 'patterns': ['*.php'],
@@ -116,10 +151,22 @@ class LaravelCompleteCollector:
                 'patterns': ['*.php'],
                 'description': 'Laravel config files'
             },
+            '📁 DATABASE': {
+                'paths': ['database'],
+                'patterns': ['*.sqlite', '*.sql'],
+                'description': 'Database files'
+            },
             '📁 JAVASCRIPT': {
-                'paths': ['resources/js'],
+                'paths': [
+                    'resources/js',
+                    'resources/js/Pages',
+                    'resources/js/Pages/Admin',
+                    'resources/js/Pages/Website',
+                    'resources/js/Components',
+                    'resources/js/Layouts'
+                ],
                 'patterns': ['*.js', '*.jsx', '*.ts', '*.tsx', '*.vue'],
-                'description': 'JavaScript files'
+                'description': 'JavaScript/TypeScript files'
             },
             '📁 CSS/SCSS': {
                 'paths': ['resources/css', 'resources/sass', 'resources/scss'],
@@ -127,9 +174,19 @@ class LaravelCompleteCollector:
                 'description': 'Stylesheet files'
             },
             '📁 PUBLIC ASSETS': {
-                'paths': ['public'],
-                'patterns': ['*.js', '*.css', '*.png', '*.jpg', '*.jpeg', '*.svg', '*.ico', '*.mp4'],
-                'description': 'Public assets (CSS, JS, images, videos)'
+                'paths': [
+                    'public',
+                    'public/build',
+                    'public/build/assets',
+                    'public/css',
+                    'public/images',
+                    'public/images/about',
+                    'public/images/categories',
+                    'public/js',
+                    'public/videos'
+                ],
+                'patterns': ['*.js', '*.css', '*.png', '*.jpg', '*.jpeg', '*.svg', '*.ico', '*.mp4', '*.woff', '*.woff2', '*.json'],
+                'description': 'Public assets (CSS, JS, images, videos, fonts)'
             },
             '📁 TESTS': {
                 'paths': ['tests/Feature', 'tests/Feature/Auth', 'tests/Unit'],
@@ -235,7 +292,8 @@ class LaravelCompleteCollector:
             '.env.example',
             'artisan',
             'README.md',
-            '.gitignore'
+            '.gitignore',
+            'export_laravel_complete.py'
         ]
         
         self.output.append(f"\n\n{'='*80}")
@@ -291,6 +349,10 @@ class LaravelCompleteCollector:
  * • User                          - Users
  * • WebsiteSetting                - Website settings
  * 
+ * ─── SERVICES ───
+ * • CustomService                 - Custom business logic
+ * • Other service classes         - Helpers and utilities
+ * 
  * ─── OTHER FILES ───
  * • Middleware (AdminMiddleware, RoleMiddleware)
  * • Policies (CareerPolicy, PropertyCategoryPolicy, PropertyPolicy, UserPolicy)
@@ -335,10 +397,12 @@ class LaravelCompleteCollector:
         print(f"📁 Categories collected: 15+")
         print(f"   • Controllers (Admin & Website)")
         print(f"   • Models (10+ models)")
+        print(f"   • Services (NEW - Business logic layer)")
         print(f"   • Views (Admin dashboard, Website pages)")
         print(f"   • Migrations (14+ migrations)")
         print(f"   • Seeders & Factories")
         print(f"   • Middleware & Policies")
+        print(f"   • Jobs & Notifications")
         print(f"   • Routes, Config")
         print(f"   • JS, CSS, Assets")
         print(f"💾 Output file created with all content")

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use App\Models\Career;
-use App\Models\ContactMessage;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,7 +29,6 @@ class DashboardController extends Controller
             })->count(),
             'active_careers' => Career::where('status', 'published')->count(),
             'new_applications' => \App\Models\CareerApplication::where('status', 'new')->count(),
-            'new_messages' => ContactMessage::where('status', 'new')->count(),
             'total_users' => User::count(),
         ];
 

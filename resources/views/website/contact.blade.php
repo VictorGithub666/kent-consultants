@@ -101,69 +101,71 @@
                         <p>We'll get back to you within 24 hours</p>
                     </div>
 
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            <i class="bi bi-check-circle-fill"></i>
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    {{-- Success message (shown after submission) --}}
+                    <div id="contact-success" style="display:none;" class="alert alert-success">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong>Message sent!</strong> Thank you for reaching out. We'll get back to you within 24 hours.
+                    </div>
 
-                    <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
-                        @csrf
+                    {{-- Error message --}}
+                    <div id="contact-error" style="display:none;" class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <span id="contact-error-text">Something went wrong. Please try again or contact us directly.</span>
+                    </div>
+
+                    {{-- Web3Forms: posts directly to their API — no server-side handling needed --}}
+                    <form id="contact-form" class="contact-form" novalidate>
+                        {{-- Web3Forms access key — replace YOUR_ACCESS_KEY with the key from web3forms.com --}}
+                        <input type="hidden" name="access_key" value="{{ config('services.web3forms.key', 'YOUR_ACCESS_KEY') }}">
+                        {{-- Customise the email subject line seen in your inbox --}}
+                        <input type="hidden" name="subject" value="New Contact Enquiry — Kent Consultants Ltd">
+                        {{-- Return JSON so we can handle it in JS --}}
+                        <input type="hidden" name="botcheck" style="display:none;">
+
                         <div class="row g-4">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Your Name <span class="required">*</span></label>
-                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" 
-                                           value="{{ old('name') }}" placeholder="John Doe" required>
-                                    @error('name')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
+                                    <input type="text" name="name" id="name" class="form-control"
+                                           placeholder="John Doe" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">Email Address <span class="required">*</span></label>
-                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" 
-                                           value="{{ old('email') }}" placeholder="john@example.com" required>
-                                    @error('email')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
+                                    <input type="email" name="email" id="email" class="form-control"
+                                           placeholder="john@example.com" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="phone">Phone Number</label>
-                                    <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" 
-                                           value="{{ old('phone') }}" placeholder="+254 700 000 000">
-                                    @error('phone')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
+                                    <input type="tel" name="phone" id="phone" class="form-control"
+                                           placeholder="+254 700 000 000">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="subject">Subject <span class="required">*</span></label>
-                                    <input type="text" name="subject" id="subject" class="form-control @error('subject') is-invalid @enderror" 
-                                           value="{{ old('subject') }}" placeholder="Property Management Inquiry" required>
-                                    @error('subject')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
+                                    <label for="enquiry_subject">Subject <span class="required">*</span></label>
+                                    <input type="text" name="enquiry_subject" id="enquiry_subject" class="form-control"
+                                           placeholder="Property Management Inquiry" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="message">Your Message <span class="required">*</span></label>
-                                    <textarea name="message" id="message" rows="6" class="form-control @error('message') is-invalid @enderror" 
-                                              placeholder="Tell us about your property management needs..." required>{{ old('message') }}</textarea>
-                                    @error('message')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
+                                    <textarea name="message" id="message" rows="6" class="form-control"
+                                              placeholder="Tell us about your property management needs..." required></textarea>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-gold btn-lg">
-                                    <i class="bi bi-send"></i> Send Message
+                                <button type="submit" id="contact-submit-btn" class="btn btn-gold btn-lg">
+                                    <i class="bi bi-send"></i>
+                                    <span id="btn-text">Send Message</span>
+                                    <span id="btn-loading" style="display:none;">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status"></span>
+                                        Sending…
+                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -251,3 +253,65 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form       = this;
+    const btnText    = document.getElementById('btn-text');
+    const btnLoading = document.getElementById('btn-loading');
+    const submitBtn  = document.getElementById('contact-submit-btn');
+    const successBox = document.getElementById('contact-success');
+    const errorBox   = document.getElementById('contact-error');
+    const errorText  = document.getElementById('contact-error-text');
+
+    // Simple client-side required field check
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(function (field) {
+        field.classList.remove('is-invalid');
+        if (!field.value.trim()) {
+            field.classList.add('is-invalid');
+            valid = false;
+        }
+    });
+    if (!valid) return;
+
+    // Show loading state
+    btnText.style.display    = 'none';
+    btnLoading.style.display = 'inline';
+    submitBtn.disabled       = true;
+    successBox.style.display = 'none';
+    errorBox.style.display   = 'none';
+
+    try {
+        const data = new FormData(form);
+        data.append('from_name', 'Kent Consultants Website');
+
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: data,
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            successBox.style.display = 'block';
+            form.reset();
+        } else {
+            errorText.textContent = result.message || 'Something went wrong. Please try again.';
+            errorBox.style.display = 'block';
+        }
+    } catch (err) {
+        errorText.textContent = 'Network error. Please check your connection and try again.';
+        errorBox.style.display = 'block';
+    } finally {
+        btnText.style.display    = 'inline';
+        btnLoading.style.display = 'none';
+        submitBtn.disabled       = false;
+    }
+});
+</script>
+@endpush

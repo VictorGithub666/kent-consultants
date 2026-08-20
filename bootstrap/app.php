@@ -11,8 +11,18 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+    ->withProviders([
+        App\Providers\AuthServiceProvider::class,
+    ])
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Register the 'admin' middleware alias
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'role'  => \App\Http\Middleware\RoleMiddleware::class,
+        ]);
+
+        // Redirect unauthenticated users to the admin login page
+        $middleware->redirectGuestsTo(fn (Request $request) => route('admin.login'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
