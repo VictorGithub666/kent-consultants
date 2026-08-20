@@ -136,7 +136,12 @@
 
     <div class="sidebar-footer">
         <a href="{{ route('admin.profile.edit') }}" class="user-info text-decoration-none" title="My Profile">
-            <img src="{{ auth()->user()->profile_photo ? asset('storage/' . auth()->user()->profile_photo) : asset('images/default-avatar.png') }}"
+            @php
+                $avatar = auth()->user()->profile_photo 
+                    ? asset('storage/' . auth()->user()->profile_photo) 
+                    : asset('images/default-avatar.png');
+            @endphp
+            <img src="{{ $avatar }}"
                  alt="{{ auth()->user()->name }}" class="user-avatar">
             <div class="user-details">
                 <span class="user-name">{{ auth()->user()->name }}</span>

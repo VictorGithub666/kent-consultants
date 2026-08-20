@@ -25,7 +25,7 @@ class ProfileController extends Controller
             'name' => 'required|string|max:255',
             'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
             'phone' => 'nullable|string|max:20',
-            'profile_photo' => 'nullable|image|max:5120',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'current_password' => 'nullable|required_with:password|string',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
@@ -46,8 +46,8 @@ class ProfileController extends Controller
         // Handle profile photo
         if ($request->hasFile('profile_photo')) {
             // Delete old photo
-            if ($user->profile_photo) {
-                Storage::delete($user->profile_photo);
+            if ($user->profile_photo && Storage::disk('public')->exists($user->profile_photo)) {
+                Storage::disk('public')->delete($user->profile_photo);
             }
             $path = $request->file('profile_photo')->store('profile-photos', 'public');
             $validated['profile_photo'] = $path;

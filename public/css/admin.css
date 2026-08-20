@@ -262,10 +262,11 @@ body {
 ============================================ */
 .admin-main {
     flex: 1;
-    margin-left: var(--sidebar-width);
+    margin-left: var(--sidebar-width); /* Already there - ensure this is applied */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-left: 0; /* Remove any extra padding */
 }
 
 /* ============================================
@@ -544,15 +545,17 @@ body {
     
     /* Sidebar overlay */
     .sidebar-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.4);
-        z-index: 999;
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+    pointer-events: none; /* Allow clicks through when not active */
     }
-    
+
     .sidebar-overlay.active {
         display: block;
+        pointer-events: auto;
     }
 }
 

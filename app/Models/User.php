@@ -1,4 +1,5 @@
 <?php
+// app/Models/User.php
 
 namespace App\Models;
 
@@ -86,5 +87,14 @@ class User extends Authenticatable
     public function canManageAdmins(): bool
     {
         return $this->isSuperAdmin() || $this->isAdmin();
+    }
+
+    // Add this accessor for default avatar URL
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->profile_photo) {
+            return asset('storage/' . $this->profile_photo);
+        }
+        return asset('images/default-avatar.png');
     }
 }

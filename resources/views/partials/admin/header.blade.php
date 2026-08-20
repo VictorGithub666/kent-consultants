@@ -39,7 +39,12 @@
             </div>
         </div>
         <a href="{{ route('admin.profile.edit') }}" class="header-user text-decoration-none" title="My Profile">
-            <img src="{{ auth()->user()->profile_photo ? asset('storage/' . auth()->user()->profile_photo) : asset('images/default-avatar.png') }}"
+            @php
+                $avatar = auth()->user()->profile_photo 
+                    ? asset('storage/' . auth()->user()->profile_photo) 
+                    : asset('images/default-avatar.png');
+            @endphp
+            <img src="{{ $avatar }}"
                  alt="{{ auth()->user()->name }}" class="user-avatar-sm">
             <span class="user-name-sm">{{ auth()->user()->name }}</span>
         </a>

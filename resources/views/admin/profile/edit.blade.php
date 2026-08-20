@@ -25,8 +25,15 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body text-center">
-                <img src="{{ $user->profile_photo ? asset('storage/' . $user->profile_photo) : asset('images/default-avatar.png') }}" 
-                     alt="{{ $user->name }}" class="profile-avatar">
+                @if($user->profile_photo)
+                    <img src="{{ asset('storage/' . $user->profile_photo) }}" 
+                         alt="{{ $user->name }}" 
+                         class="profile-avatar">
+                @else
+                    <div class="profile-avatar-default">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                @endif
                 <h5 class="mt-3 mb-1">{{ $user->name }}</h5>
                 <p class="text-muted small">{{ $user->role->name ?? 'User' }}</p>
                 <div class="d-flex justify-content-center gap-3">
@@ -93,9 +100,18 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="profile_photo" class="form-label">Profile Photo</label>
-                                <input type="file" name="profile_photo" id="profile_photo" class="form-control @error('profile_photo') is-invalid @enderror" 
+                                @if($user->profile_photo)
+                                    <div class="mb-2">
+                                        <img src="{{ asset('storage/' . $user->profile_photo) }}" 
+                                             alt="Current Profile Photo" 
+                                             style="max-height:100px; border-radius:8px; border:2px solid #ddd;">
+                                        <p class="text-muted small mt-1">Current photo — upload a new one to replace it.</p>
+                                    </div>
+                                @endif
+                                <input type="file" name="profile_photo" id="profile_photo" 
+                                       class="form-control @error('profile_photo') is-invalid @enderror" 
                                        accept="image/*" data-preview="photoPreview">
-                                <small class="text-muted">Recommended: 300 x 300px, Max 5MB</small>
+                                <small class="text-muted">Recommended: 300 x 300px, Max 5MB (JPG, PNG, GIF)</small>
                                 <div class="mt-2">
                                     <img id="photoPreview" src="#" alt="Preview" style="display:none; max-height:150px; border-radius:8px;">
                                 </div>
@@ -163,5 +179,39 @@
         border: 4px solid var(--gold-1);
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
+    .profile-avatar-default {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid var(--gold-1);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        background: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .profile-avatar-default i {
+        font-size: 60px;
+        color: #adb5bd;
+    }
 </style>
 @endpush
+
+@push('scripts')
+<script>
+    // Image preview for file input
+    document.getElementById('profile_photo').addEventListener('change', function(e) {
+        const preview = document.getElementById('photoPreview');
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                preview.src = ev.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+</script>
+@endpush
+@endsection
