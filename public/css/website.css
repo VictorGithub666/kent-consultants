@@ -1433,6 +1433,18 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 10px;
 }
 
+/* Category Header - Golden Gradient Text */
+.category-header h1,
+.category-header .lead,
+.category-header .category-stats,
+.category-header .category-stats i {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* fallback if background-clip: text isn't supported */
+}
+
 /* ============================================
    PROPERTIES LISTING PAGE & FILTERS
 ============================================ */
