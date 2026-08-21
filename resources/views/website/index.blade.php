@@ -405,76 +405,122 @@ document.addEventListener('DOMContentLoaded', function() {
     carousels.forEach(function(carousel) {
         const carouselId = carousel.id;
         const inner = document.getElementById(carouselId + 'Inner');
+        if (!inner) return;
+        
         const items = inner.querySelectorAll('.property-carousel-item');
         const totalItems = items.length;
-        const visibleItems = 3; // Number of visible cards
-        let currentIndex = 0;
-        let maxIndex = Math.max(0, totalItems - visibleItems);
-        
-        // Get navigation buttons
-        const prevBtn = document.getElementById(carouselId.replace('Carousel', 'Prev'));
-        const nextBtn = document.getElementById(carouselId.replace('Carousel', 'Next'));
-        const dotsContainer = document.getElementById(carouselId.replace('Carousel', 'Dots'));
         
         // Only proceed if there are items
         if (totalItems === 0) return;
         
-        // Create dots
-        const totalDots = Math.ceil(totalItems / 1); // 1 item per slide
-        for (let i = 0; i < totalDots; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.setAttribute('data-index', i);
-            dot.addEventListener('click', function() {
-                goToSlide(i);
-            });
-            dotsContainer.appendChild(dot);
+        // Get visible items count based on screen width
+        function getVisibleItemsCount() {
+            const width = window.innerWidth;
+            if (width < 576) return 1;
+            if (width < 992) return 2;
+            return 3;
         }
         
-        // Function to go to a specific slide
+        let visibleItems = getVisibleItemsCount();
+        let currentIndex = 0;
+        let maxIndex = Math.max(0, totalItems - visibleItems);
+        
+        // Get navigation buttons and dots container
+        const prevBtn = document.getElementById(carouselId.replace('Carousel', 'Prev'));
+        const nextBtn = document.getElementById(carouselId.replace('Carousel', 'Next'));
+        const dotsContainer = document.getElementById(carouselId.replace('Carousel', 'Dots'));
+        
+        // Clear existing dots
+        if (dotsContainer) dotsContainer.innerHTML = '';
+        
+        // Create dots - only if we need them (more items than visible)
+        if (totalItems > visibleItems && dotsContainer) {
+            const totalDots = Math.ceil(totalItems / 1);
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('data-index', i);
+                dot.addEventListener('click', function() {
+                    goToSlide(parseInt(this.getAttribute('data-index')));
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        // Get the pixel distance between cards
+        function getStepSize() {
+            if (items.length < 2) {
+                return items.length ? items[0].getBoundingClientRect().width : 0;
+            }
+            // Distance between the start of card 0 and the start of card 1
+            // automatically includes the flex `gap`, at any screen width.
+            const first = items[0].getBoundingClientRect();
+            const second = items[1].getBoundingClientRect();
+            return second.left - first.left;
+        }
+        
         function goToSlide(index) {
             // Ensure index is within bounds
             index = Math.max(0, Math.min(index, maxIndex));
             currentIndex = index;
             
-            // Calculate translate value
-            const translateValue = -index * (100 / visibleItems);
-            inner.style.transform = `translateX(${translateValue}%)`;
+            // Calculate translate value in pixels
+            const step = getStepSize();
+            inner.style.transform = `translateX(${-index * step}px)`;
             
             // Update dots
-            const dots = dotsContainer.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
             
             // Update button states
             if (prevBtn) prevBtn.disabled = index === 0;
             if (nextBtn) nextBtn.disabled = index >= maxIndex;
         }
         
-        // Next slide function
         function nextSlide() {
             if (currentIndex < maxIndex) {
                 goToSlide(currentIndex + 1);
+            } else {
+                // Loop back to start if at the end
+                goToSlide(0);
             }
         }
         
-        // Previous slide function
         function prevSlide() {
             if (currentIndex > 0) {
                 goToSlide(currentIndex - 1);
+            } else {
+                // Loop to end if at the start
+                goToSlide(maxIndex);
             }
         }
         
         // Add event listeners to buttons
-        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                prevSlide();
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                nextSlide();
+            });
+        }
         
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
+            // Only respond if carousel is visible
+            if (carousel.offsetParent !== null) {
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight') nextSlide();
+            }
         });
         
         // Touch/swipe support
@@ -483,14 +529,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         carousel.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
-        });
+        }, { passive: true });
         
         carousel.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
             const swipeThreshold = 50;
             const diff = touchStartX - touchEndX;
             
@@ -501,23 +543,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     prevSlide();
                 }
             }
-        }
+        }, { passive: true });
         
-        // Auto-play functionality (optional)
+        // Auto-play functionality
         let autoPlayInterval = null;
         let isHovered = false;
         
         function startAutoPlay() {
-            if (autoPlayInterval) clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(() => {
-                if (!isHovered) {
-                    if (currentIndex >= maxIndex) {
-                        goToSlide(0);
-                    } else {
+            stopAutoPlay();
+            if (totalItems > visibleItems) {
+                autoPlayInterval = setInterval(() => {
+                    if (!isHovered) {
                         nextSlide();
                     }
-                }
-            }, 5000); // Change slide every 5 seconds
+                }, 5000);
+            }
         }
         
         function stopAutoPlay() {
@@ -528,12 +568,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Pause autoplay on hover
-        carousel.addEventListener('mouseenter', () => {
+        carousel.addEventListener('mouseenter', function() {
             isHovered = true;
             stopAutoPlay();
         });
         
-        carousel.addEventListener('mouseleave', () => {
+        carousel.addEventListener('mouseleave', function() {
             isHovered = false;
             startAutoPlay();
         });
@@ -546,29 +586,51 @@ document.addEventListener('DOMContentLoaded', function() {
             startAutoPlay();
         }
         
-        // Handle window resize
+        // Handle window resize with debounce
         let resizeTimeout;
+        let lastWidth = window.innerWidth;
+        
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                // Recalculate maxIndex based on new visible items count
-                const newVisibleItems = getVisibleItemsCount();
-                maxIndex = Math.max(0, totalItems - newVisibleItems);
-                if (currentIndex > maxIndex) {
-                    goToSlide(maxIndex);
-                } else {
-                    goToSlide(currentIndex);
+                const newWidth = window.innerWidth;
+                // Only recalculate if width changed significantly
+                if (Math.abs(newWidth - lastWidth) > 50) {
+                    lastWidth = newWidth;
+                    // Update visibleItems and recalculate
+                    visibleItems = getVisibleItemsCount();
+                    maxIndex = Math.max(0, totalItems - visibleItems);
+                    
+                    // Recreate dots if needed
+                    if (dotsContainer) {
+                        dotsContainer.innerHTML = '';
+                        if (totalItems > visibleItems) {
+                            const totalDots = Math.ceil(totalItems / 1);
+                            for (let i = 0; i < totalDots; i++) {
+                                const dot = document.createElement('button');
+                                dot.classList.add('carousel-dot');
+                                if (i === 0) dot.classList.add('active');
+                                dot.setAttribute('data-index', i);
+                                dot.addEventListener('click', function() {
+                                    goToSlide(parseInt(this.getAttribute('data-index')));
+                                });
+                                dotsContainer.appendChild(dot);
+                            }
+                        }
+                    }
+                    
+                    // Re-render with fresh step size
+                    goToSlide(Math.min(currentIndex, maxIndex));
+                    
+                    // Restart autoplay
+                    if (totalItems > visibleItems) {
+                        startAutoPlay();
+                    } else {
+                        stopAutoPlay();
+                    }
                 }
             }, 250);
         });
-        
-        // Helper function to get visible items count based on screen width
-        function getVisibleItemsCount() {
-            const width = window.innerWidth;
-            if (width < 576) return 1;
-            if (width < 992) return 2;
-            return 3;
-        }
     });
 });
 </script>

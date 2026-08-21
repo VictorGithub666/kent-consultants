@@ -318,6 +318,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const gridView = document.getElementById('gridView');
     const carouselView = document.getElementById('carouselView');
     const toggleBtns = document.querySelectorAll('.btn-toggle');
+    let categoryCarouselInitialized = false;
+    let categoryCarouselInstance = null;
+    
+    // Get visible items count based on screen width
+    function getVisibleItemsCount() {
+        const width = window.innerWidth;
+        if (width < 576) return 1;
+        if (width < 992) return 2;
+        return 3;
+    }
     
     toggleBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -329,12 +339,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (view === 'grid') {
                 gridView.style.display = 'flex';
                 carouselView.style.display = 'none';
+                if (categoryCarouselInstance) {
+                    categoryCarouselInstance.stopAutoPlay();
+                }
             } else {
                 gridView.style.display = 'none';
                 carouselView.style.display = 'block';
-                if (!window.categoryCarouselInitialized) {
-                    initCategoryCarousel();
-                    window.categoryCarouselInitialized = true;
+                if (!categoryCarouselInitialized) {
+                    categoryCarouselInstance = initCategoryCarousel();
+                    categoryCarouselInitialized = true;
+                } else if (categoryCarouselInstance) {
+                    categoryCarouselInstance.startAutoPlay();
+                    categoryCarouselInstance.goToSlide(0);
                 }
             }
         });
@@ -343,9 +359,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function initCategoryCarousel() {
         const carousel = document.getElementById('categoryCarousel');
         const inner = document.getElementById('categoryCarouselInner');
+        if (!inner) return null;
+        
         const items = inner.querySelectorAll('.property-carousel-item');
         const totalItems = items.length;
-        const visibleItems = 3;
+        if (totalItems === 0) return null;
+        
+        let visibleItems = getVisibleItemsCount();
         let currentIndex = 0;
         let maxIndex = Math.max(0, totalItems - visibleItems);
         
@@ -353,31 +373,47 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = document.getElementById('categoryNext');
         const dotsContainer = document.getElementById('categoryDots');
         
-        if (totalItems === 0) return;
+        if (dotsContainer) dotsContainer.innerHTML = '';
         
-        const totalDots = Math.ceil(totalItems / 1);
-        for (let i = 0; i < totalDots; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.setAttribute('data-index', i);
-            dot.addEventListener('click', function() {
-                goToSlide(i);
-            });
-            dotsContainer.appendChild(dot);
+        if (totalItems > visibleItems && dotsContainer) {
+            const totalDots = Math.ceil(totalItems / 1);
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('data-index', i);
+                dot.addEventListener('click', function() {
+                    goToSlide(parseInt(this.getAttribute('data-index')));
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        // Get the pixel distance between cards
+        function getStepSize() {
+            if (items.length < 2) {
+                return items.length ? items[0].getBoundingClientRect().width : 0;
+            }
+            // Distance between the start of card 0 and the start of card 1
+            // automatically includes the flex `gap`, at any screen width.
+            const first = items[0].getBoundingClientRect();
+            const second = items[1].getBoundingClientRect();
+            return second.left - first.left;
         }
         
         function goToSlide(index) {
             index = Math.max(0, Math.min(index, maxIndex));
             currentIndex = index;
             
-            const translateValue = -index * (100 / visibleItems);
-            inner.style.transform = `translateX(${translateValue}%)`;
+            const step = getStepSize();
+            inner.style.transform = `translateX(${-index * step}px)`;
             
-            const dots = dotsContainer.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
             
             if (prevBtn) prevBtn.disabled = index === 0;
             if (nextBtn) nextBtn.disabled = index >= maxIndex;
@@ -386,18 +422,30 @@ document.addEventListener('DOMContentLoaded', function() {
         function nextSlide() {
             if (currentIndex < maxIndex) {
                 goToSlide(currentIndex + 1);
+            } else {
+                goToSlide(0);
             }
         }
         
         function prevSlide() {
             if (currentIndex > 0) {
                 goToSlide(currentIndex - 1);
+            } else {
+                goToSlide(maxIndex);
             }
         }
         
-        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) prevBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            prevSlide();
+        });
         
+        if (nextBtn) nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            nextSlide();
+        });
+        
+        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (carouselView.style.display !== 'none') {
                 if (e.key === 'ArrowLeft') prevSlide();
@@ -405,12 +453,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        // Touch support
         let touchStartX = 0;
         let touchEndX = 0;
         
         carousel.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
-        });
+        }, { passive: true });
         
         carousel.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
@@ -424,21 +473,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     prevSlide();
                 }
             }
-        });
+        }, { passive: true });
         
+        // Autoplay
         let autoPlayInterval = null;
         let isHovered = false;
         
         function startAutoPlay() {
-            if (autoPlayInterval) clearInterval(autoPlayInterval);
+            stopAutoPlay();
             if (totalItems > visibleItems) {
                 autoPlayInterval = setInterval(() => {
                     if (!isHovered) {
-                        if (currentIndex >= maxIndex) {
-                            goToSlide(0);
-                        } else {
-                            nextSlide();
-                        }
+                        nextSlide();
                     }
                 }, 5000);
             }
@@ -451,12 +497,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        carousel.addEventListener('mouseenter', () => {
+        carousel.addEventListener('mouseenter', function() {
             isHovered = true;
             stopAutoPlay();
         });
         
-        carousel.addEventListener('mouseleave', () => {
+        carousel.addEventListener('mouseleave', function() {
             isHovered = false;
             startAutoPlay();
         });
@@ -464,24 +510,60 @@ document.addEventListener('DOMContentLoaded', function() {
         goToSlide(0);
         startAutoPlay();
         
+        // Handle resize
         let resizeTimeout;
+        let lastWidth = window.innerWidth;
+        
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                const newVisibleItems = window.innerWidth < 576 ? 1 : window.innerWidth < 992 ? 2 : 3;
-                maxIndex = Math.max(0, totalItems - newVisibleItems);
-                if (currentIndex > maxIndex) {
-                    goToSlide(maxIndex);
-                } else {
-                    goToSlide(currentIndex);
+                const newWidth = window.innerWidth;
+                if (Math.abs(newWidth - lastWidth) > 50) {
+                    lastWidth = newWidth;
+                    visibleItems = getVisibleItemsCount();
+                    maxIndex = Math.max(0, totalItems - visibleItems);
+                    
+                    if (dotsContainer) {
+                        dotsContainer.innerHTML = '';
+                        if (totalItems > visibleItems) {
+                            const totalDots = Math.ceil(totalItems / 1);
+                            for (let i = 0; i < totalDots; i++) {
+                                const dot = document.createElement('button');
+                                dot.classList.add('carousel-dot');
+                                if (i === 0) dot.classList.add('active');
+                                dot.setAttribute('data-index', i);
+                                dot.addEventListener('click', function() {
+                                    goToSlide(parseInt(this.getAttribute('data-index')));
+                                });
+                                dotsContainer.appendChild(dot);
+                            }
+                        }
+                    }
+                    
+                    // Re-render with fresh step size
+                    goToSlide(Math.min(currentIndex, maxIndex));
+                    
+                    if (totalItems > visibleItems) {
+                        startAutoPlay();
+                    } else {
+                        stopAutoPlay();
+                    }
                 }
             }, 250);
         });
+        
+        return {
+            goToSlide: goToSlide,
+            startAutoPlay: startAutoPlay,
+            stopAutoPlay: stopAutoPlay,
+            nextSlide: nextSlide,
+            prevSlide: prevSlide
+        };
     }
     
     if (carouselView.style.display !== 'none') {
-        initCategoryCarousel();
-        window.categoryCarouselInitialized = true;
+        categoryCarouselInstance = initCategoryCarousel();
+        categoryCarouselInitialized = true;
     }
 });
 </script>
