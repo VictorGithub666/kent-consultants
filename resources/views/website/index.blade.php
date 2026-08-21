@@ -162,8 +162,8 @@
                         Professional property management, consultancy and real estate solutions designed to protect and maximize the value of your investment.
                     </p>
                     <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
-                        <a href="{{ route('properties.index') }}" class="btn btn-primary">Explore Properties</a>
-                        <a href="{{ route('contact') }}" class="btn btn-outline">Talk to Us</a>
+                        <a href="{{ route('properties.index') }}" class="btn btn-primary my-4">Explore Properties</a>
+                        <a href="{{ route('contact') }}" class="btn btn-outline ">Talk to Us</a>
                     </div>
                 </div>
             </div>
