@@ -3,6 +3,146 @@
 @section('title', 'Kent Consultants Ltd - Property Management & Real Estate Nairobi')
 
 @section('content')
+<style>
+    /* Carousel Styles */
+    .property-carousel-wrapper {
+        position: relative;
+        padding: 0 50px;
+    }
+    
+    .property-carousel {
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .property-carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        gap: 20px;
+    }
+    
+    .property-carousel-item {
+        flex: 0 0 calc(33.333% - 14px);
+        min-width: calc(33.333% - 14px);
+    }
+    
+    /* Carousel Navigation Buttons */
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid #C9A94E;
+        color: #C9A94E;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .carousel-btn:hover {
+        background: #C9A94E;
+        color: #ffffff;
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 4px 15px rgba(201, 169, 78, 0.4);
+    }
+    
+    .carousel-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        transform: translateY(-50%) scale(0.95);
+    }
+    
+    .carousel-btn:disabled:hover {
+        background: rgba(255, 255, 255, 0.95);
+        color: #C9A94E;
+        transform: translateY(-50%) scale(0.95);
+    }
+    
+    .carousel-btn.prev {
+        left: -10px;
+    }
+    
+    .carousel-btn.next {
+        right: -10px;
+    }
+    
+    /* Carousel Dots */
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    
+    .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid #C9A94E;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+    }
+    
+    .carousel-dot.active {
+        background: #C9A94E;
+        transform: scale(1.1);
+    }
+    
+    .carousel-dot:hover {
+        background: #C9A94E;
+        opacity: 0.7;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .property-carousel-item {
+            flex: 0 0 calc(50% - 10px);
+            min-width: calc(50% - 10px);
+        }
+        
+        .carousel-btn {
+            width: 38px;
+            height: 38px;
+            font-size: 16px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .property-carousel-item {
+            flex: 0 0 100%;
+            min-width: 100%;
+        }
+        
+        .property-carousel-wrapper {
+            padding: 0 20px;
+        }
+        
+        .carousel-btn {
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+        }
+        
+        .carousel-btn.prev {
+            left: -5px;
+        }
+        
+        .carousel-btn.next {
+            right: -5px;
+        }
+    }
+</style>
+
 {{-- Hero Section --}}
 <section id="hero" class="hero section dark-background">
     <div class="video-background">
@@ -101,14 +241,29 @@
 
     <div class="container" data-aos="fade-up">
         @if($featuredProperties->count() > 0)
-            <div class="row g-4">
-                @foreach($featuredProperties as $property)
-                    <div class="col-lg-4 col-md-6">
-                        @include('components.website.property-card', ['property' => $property])
+            <div class="property-carousel-wrapper">
+                <button class="carousel-btn prev" id="featuredPrev" aria-label="Previous properties">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                
+                <div class="property-carousel" id="featuredCarousel">
+                    <div class="property-carousel-inner" id="featuredCarouselInner">
+                        @foreach($featuredProperties as $property)
+                            <div class="property-carousel-item">
+                                @include('components.website.property-card', ['property' => $property])
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
+                
+                <button class="carousel-btn next" id="featuredNext" aria-label="Next properties">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                
+                <div class="carousel-dots" id="featuredDots"></div>
             </div>
-            <div class="text-center mt-5">
+            
+            <div class="text-center mt-4">
                 <a href="{{ route('properties.index') }}" class="btn btn-gold">View All Properties</a>
             </div>
         @else
@@ -159,7 +314,6 @@
             <div class="col-lg-6" data-aos="fade-right">
                 <div class="image-wrapper">
                     <img src="{{ asset('images/logo.png') }}" alt="Why Kent Consultants" class="img-fluid">
-                    
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-left">
@@ -242,4 +396,180 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all carousels
+    const carousels = document.querySelectorAll('.property-carousel');
+    
+    carousels.forEach(function(carousel) {
+        const carouselId = carousel.id;
+        const inner = document.getElementById(carouselId + 'Inner');
+        const items = inner.querySelectorAll('.property-carousel-item');
+        const totalItems = items.length;
+        const visibleItems = 3; // Number of visible cards
+        let currentIndex = 0;
+        let maxIndex = Math.max(0, totalItems - visibleItems);
+        
+        // Get navigation buttons
+        const prevBtn = document.getElementById(carouselId.replace('Carousel', 'Prev'));
+        const nextBtn = document.getElementById(carouselId.replace('Carousel', 'Next'));
+        const dotsContainer = document.getElementById(carouselId.replace('Carousel', 'Dots'));
+        
+        // Only proceed if there are items
+        if (totalItems === 0) return;
+        
+        // Create dots
+        const totalDots = Math.ceil(totalItems / 1); // 1 item per slide
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('data-index', i);
+            dot.addEventListener('click', function() {
+                goToSlide(i);
+            });
+            dotsContainer.appendChild(dot);
+        }
+        
+        // Function to go to a specific slide
+        function goToSlide(index) {
+            // Ensure index is within bounds
+            index = Math.max(0, Math.min(index, maxIndex));
+            currentIndex = index;
+            
+            // Calculate translate value
+            const translateValue = -index * (100 / visibleItems);
+            inner.style.transform = `translateX(${translateValue}%)`;
+            
+            // Update dots
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            // Update button states
+            if (prevBtn) prevBtn.disabled = index === 0;
+            if (nextBtn) nextBtn.disabled = index >= maxIndex;
+        }
+        
+        // Next slide function
+        function nextSlide() {
+            if (currentIndex < maxIndex) {
+                goToSlide(currentIndex + 1);
+            }
+        }
+        
+        // Previous slide function
+        function prevSlide() {
+            if (currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            }
+        }
+        
+        // Add event listeners to buttons
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+        
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carousel.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        carousel.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+        
+        // Auto-play functionality (optional)
+        let autoPlayInterval = null;
+        let isHovered = false;
+        
+        function startAutoPlay() {
+            if (autoPlayInterval) clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(() => {
+                if (!isHovered) {
+                    if (currentIndex >= maxIndex) {
+                        goToSlide(0);
+                    } else {
+                        nextSlide();
+                    }
+                }
+            }, 5000); // Change slide every 5 seconds
+        }
+        
+        function stopAutoPlay() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+            }
+        }
+        
+        // Pause autoplay on hover
+        carousel.addEventListener('mouseenter', () => {
+            isHovered = true;
+            stopAutoPlay();
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            isHovered = false;
+            startAutoPlay();
+        });
+        
+        // Initialize carousel
+        goToSlide(0);
+        
+        // Start autoplay
+        if (totalItems > visibleItems) {
+            startAutoPlay();
+        }
+        
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Recalculate maxIndex based on new visible items count
+                const newVisibleItems = getVisibleItemsCount();
+                maxIndex = Math.max(0, totalItems - newVisibleItems);
+                if (currentIndex > maxIndex) {
+                    goToSlide(maxIndex);
+                } else {
+                    goToSlide(currentIndex);
+                }
+            }, 250);
+        });
+        
+        // Helper function to get visible items count based on screen width
+        function getVisibleItemsCount() {
+            const width = window.innerWidth;
+            if (width < 576) return 1;
+            if (width < 992) return 2;
+            return 3;
+        }
+    });
+});
+</script>
 @endsection
