@@ -2,17 +2,222 @@
 @extends('layouts.website')
 
 @section('title', 'Our Services - Kent Consultants Ltd')
-@section('description', 'Comprehensive property management, project management, valuation, and consultancy services in Nairobi, Kenya.')
+@section('description', 'Comprehensive property management, sales and leasing, valuation, and consultancy services in Nairobi, Kenya.')
 
 @section('content')
-{{-- Page Header --}}
-<section class="page-header">
+
+<style>
+/* ====================================================
+   Services Page — Hero, Animated Background & Sections
+==================================================== */
+
+/* ---- Hero (background image, replaces old page-header) ---- */
+.services-hero {
+    position: relative;
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+}
+.services-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('{{ asset('images/services/hero.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    animation: heroKenBurns 22s ease-in-out infinite alternate;
+    will-change: transform;
+}
+.services-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(10,9,8,0.78) 0%, rgba(14,12,10,0.55) 45%, rgba(10,9,8,0.9) 100%),
+        linear-gradient(120deg, rgba(166,124,0,0.18), transparent 55%);
+    z-index: -1;
+}
+.services-hero .container { position: relative; z-index: 1; }
+.services-hero h1 { color: var(--white); }
+.services-hero .lead { color: rgba(255,255,255,0.85); }
+@keyframes heroKenBurns {
+    0%   { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.14) translate(-1%, -1%); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .services-hero-bg { animation: none; }
+}
+
+/* ---- Fixed page-wide animated background (was flat & dark, now layered) ---- */
+.services-page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #1c1611 0%, #2b2117 32%, #201a14 64%, #120e0a 100%);
+    overflow: hidden;
+}
+
+/* drifting grid texture for depth */
+.services-page-bg .grid-overlay {
+    position: absolute;
+    inset: -20%;
+    background-image:
+        linear-gradient(rgba(255, 215, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    animation: svcGridDrift 46s linear infinite;
+}
+@keyframes svcGridDrift {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(56px, 56px); }
+}
+
+/* diagonal light sweep for movement/intrigue */
+.services-page-bg .sweep {
+    position: absolute;
+    top: -60%;
+    left: -30%;
+    width: 55%;
+    height: 220%;
+    background: linear-gradient(100deg,
+        transparent 0%,
+        rgba(255, 215, 0, 0.07) 45%,
+        rgba(255, 215, 0, 0.12) 50%,
+        rgba(255, 215, 0, 0.07) 55%,
+        transparent 100%);
+    animation: svcSweep 11s ease-in-out infinite;
+}
+@keyframes svcSweep {
+    0%, 100% { transform: translateX(0%) rotate(10deg); }
+    50%      { transform: translateX(220%) rotate(10deg); }
+}
+
+/* glowing colour orbs — varied warm tones instead of one flat blur */
+.services-page-bg span {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(75px);
+    animation: svcBgFloat 18s ease-in-out infinite;
+}
+.services-page-bg span:nth-child(3) {
+    width: 480px; height: 480px; top: -140px; left: -110px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.20), transparent 70%);
+    animation-duration: 20s;
+}
+.services-page-bg span:nth-child(4) {
+    width: 330px; height: 330px; top: 38%; right: -100px;
+    background: radial-gradient(circle, rgba(212, 160, 23, 0.18), transparent 70%);
+    animation-duration: 15s; animation-delay: 3s;
+}
+.services-page-bg span:nth-child(5) {
+    width: 260px; height: 260px; bottom: 6%; left: 14%;
+    background: radial-gradient(circle, rgba(166, 124, 0, 0.16), transparent 70%);
+    animation-duration: 17s; animation-delay: 6s;
+}
+.services-page-bg span:nth-child(6) {
+    width: 220px; height: 220px; top: 55%; left: 48%;
+    background: radial-gradient(circle, rgba(255, 235, 180, 0.12), transparent 70%);
+    animation-duration: 23s; animation-delay: 1s;
+}
+.services-page-bg span:nth-child(7) {
+    width: 300px; height: 300px; top: 8%; left: 58%;
+    background: radial-gradient(circle, rgba(255, 178, 60, 0.14), transparent 70%);
+    animation-duration: 26s; animation-delay: 4s;
+}
+@keyframes svcBgFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(45px, -55px) scale(1.15); }
+    66%      { transform: translate(-35px, 40px) scale(0.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .services-page-bg .grid-overlay,
+    .services-page-bg .sweep,
+    .services-page-bg span { animation: none; }
+}
+
+/* Services overview section */
+.services-page .services-overview {
+    background: transparent;
+    position: relative;
+}
+.services-page .services-overview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 23, 21, 0.85);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+.services-page .services-overview .container { position: relative; z-index: 1; }
+.services-page .services-overview .section-title .subtitle { color: var(--gold-2); }
+.services-page .services-overview .section-title h2 { color: var(--white); }
+.services-page .services-overview .section-title p { color: rgba(255,255,255,0.65); }
+
+/* Why Kent Services section */
+.services-page .why-kent-services {
+    background: transparent;
+    position: relative;
+}
+.services-page .why-kent-services::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 14, 12, 0.92);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+.services-page .why-kent-services .container { position: relative; z-index: 1; }
+.services-page .why-kent-services h2,
+.services-page .why-kent-services p { color: var(--white); }
+.services-page .why-kent-services .feature-item span { color: rgba(255,255,255,0.8); }
+.services-page .why-kent-services .feature-item i { color: var(--gold-2); }
+
+/* Service process section */
+.services-page .service-process {
+    background: transparent;
+    position: relative;
+}
+.services-page .service-process::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26,23,21,0.9) 0%, rgba(10,9,8,0.95) 100%);
+}
+.services-page .service-process .container { position: relative; z-index: 1; }
+.services-page .service-process .section-title .subtitle { color: var(--gold-2); }
+.services-page .service-process .section-title h2 { color: var(--white); }
+.services-page .service-process .section-title p { color: rgba(255,255,255,0.65); }
+
+/* Animated entry for service cards */
+.services-overview .service-card {
+    animation: svcCardEntry 0.6s ease both;
+}
+@keyframes svcCardEntry {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+{{-- Fixed animated background --}}
+<div class="services-page-bg" aria-hidden="true">
+    <div class="grid-overlay"></div>
+    <div class="sweep"></div>
+    <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="services-page">
+
+{{-- Hero Section (background image) --}}
+<section class="services-hero" data-aos="fade-down">
+    <div class="services-hero-bg" style="background-image: url('{{ asset('images/about/nairobi-city.jpg') }}');"></div>
+    <div class="services-hero-overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
-                <span class="badge-gold">Our Services</span>
-                <h1>Property Management Solutions</h1>
-                <p class="lead">Comprehensive services designed to protect and maximize the value of your property investment.</p>
+                <span class="badge-gold" data-aos="fade-up">Our Services</span>
+                <h1 data-aos="fade-up" data-aos-delay="100">Property Management Solutions</h1>
+                <p class="lead" data-aos="fade-up" data-aos-delay="200">Comprehensive services designed to protect and maximize the value of your property investment.</p>
             </div>
         </div>
     </div>
@@ -42,16 +247,16 @@
                 </div>
             </div>
 
-            {{-- Project Management --}}
+            {{-- Sales & Leasing --}}
             <div class="col-lg-4 col-md-6">
                 <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
-                    <h3>Project Management</h3>
-                    <p>Professional project management for property development, renovations, and construction projects from start to finish.</p>
+                    <h3>Sales &amp; Leasing</h3>
+                    <p>Professional facilitation of property sales and lease agreements, connecting buyers, sellers, landlords and tenants with ease.</p>
                     <ul class="service-features">
-                        <li>✓ Planning and budgeting</li>
-                        <li>✓ Contractor coordination</li>
-                        <li>✓ Quality control</li>
-                        <li>✓ Timeline management</li>
+                        <li>✓ Property marketing</li>
+                        <li>✓ Buyer &amp; tenant sourcing</li>
+                        <li>✓ Lease negotiation</li>
+                        <li>✓ Sales documentation</li>
                     </ul>
                 </div>
             </div>
@@ -172,7 +377,7 @@
 </section>
 
 {{-- Why Kent for Services --}}
-<section class="why-kent-services section light-background">
+<section class="why-kent-services section">
     <div class="container" data-aos="fade-up">
         <div class="row align-items-center g-5">
             <div class="col-lg-6" data-aos="fade-right">
@@ -180,7 +385,7 @@
                     <span class="badge-gold">Why Kent Consultants</span>
                     <h2>Your Trusted Property Management Partner</h2>
                     <p>
-                        With over 15 years of experience, we provide comprehensive property management services 
+                        With over 15 years of experience, we provide comprehensive property management services
                         that protect and maximize the value of your investment.
                     </p>
                     <div class="feature-list">
@@ -205,9 +410,8 @@
             </div>
             <div class="col-lg-6" data-aos="fade-left">
                 <div class="image-wrapper">
-                    <img src="{{ asset('images/services/team.jpg') }}" alt="Kent Consultants Team" class="img-fluid">
+                    <img src="{{ asset('images/about/nairobi-city-2.png') }}" alt="Kent Consultants Team" class="img-fluid">
                     <div class="floating-card">
-                        
                         <div>
                             <span>Since</span>
                             <strong>2008</strong>
@@ -260,4 +464,6 @@
         </div>
     </div>
 </section>
+
+</div>{{-- .services-page --}}
 @endsection

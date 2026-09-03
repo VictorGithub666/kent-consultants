@@ -51,6 +51,11 @@
         <i class="bi bi-arrow-up-short"></i>
     </a>
 
+    {{-- WhatsApp Floating Button --}}
+    <a href="https://wa.me/254734476303" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

@@ -66,7 +66,7 @@
 <section class="mission-vision section light-background">
     <div class="container section-title" data-aos="fade-up">
         <span class="subtitle">Our Foundation</span>
-        <h2>Mission, Vision &amp; Values</h2>
+        <h2 style="color:white">Mission, Vision &amp; Values</h2>
         <p>Guiding principles that drive our commitment to excellence in property management</p>
     </div>
 
@@ -249,7 +249,7 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-6" data-aos="fade-right">
                 <div class="image-wrapper">
-                    <img src="{{ asset('images/about/nairobi.jpg') }}" alt="Nairobi City" class="img-fluid">
+                    <img src="{{ asset('images/about/nairobi-city-2.png') }}" alt="Nairobi City" class="img-fluid">
                     <div class="gold-accent"></div>
                 </div>
             </div>
@@ -263,21 +263,18 @@
                     </p>
                     <div class="features-list">
                         <div class="feature-item">
-                            <i class="bi bi-check-circle-fill"></i>
                             <div>
                                 <h4>Local Expertise</h4>
                                 <p>Deep understanding of the Nairobi property market</p>
                             </div>
                         </div>
                         <div class="feature-item">
-                            <i class="bi bi-check-circle-fill"></i>
                             <div>
                                 <h4>Comprehensive Services</h4>
                                 <p>End-to-end property management solutions</p>
                             </div>
                         </div>
                         <div class="feature-item">
-                            <i class="bi bi-check-circle-fill"></i>
                             <div>
                                 <h4>Trusted Partner</h4>
                                 <p>Building lasting relationships with property owners and tenants</p>
@@ -296,20 +293,10 @@
         <div class="row align-items-center">
             <div class="col-lg-12 text-center">
                 <span class="badge-gold">Where We Operate</span>
-                <h2>Nairobi &amp; Its Environs</h2>
+                <h2>Kenya</h2>
                 <p class="location-text">
-                    We provide professional property management services across Nairobi and its surrounding areas.
+                    We provide professional property management services across Kenya.
                 </p>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <div class="location-map">
-                    <div class="map-placeholder">
-                        <i class="bi bi-geo-alt"></i>
-                        <span>Nairobi, Kenya</span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

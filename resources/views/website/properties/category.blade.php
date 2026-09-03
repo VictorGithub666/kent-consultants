@@ -138,6 +138,54 @@
     .view-toggle .btn-toggle.active:hover {
         color: #ffffff;
     }
+
+    /* ---- Category Hero (matches Services page hero) ---- */
+    .category-hero {
+        position: relative;
+        min-height: 55vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        isolation: isolate;
+    }
+    .category-hero-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        z-index: -2;
+        animation: categoryHeroKenBurns 22s ease-in-out infinite alternate;
+        will-change: transform;
+    }
+    .category-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(180deg, rgba(10,9,8,0.78) 0%, rgba(14,12,10,0.55) 45%, rgba(10,9,8,0.9) 100%),
+            linear-gradient(120deg, rgba(166,124,0,0.18), transparent 55%);
+        z-index: -1;
+    }
+    .category-hero .container { position: relative; z-index: 1; }
+    .category-hero h1,
+    .category-hero .lead,
+    .category-hero .category-stats,
+    .category-hero .category-stats i {
+        background: none;
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: initial;
+        background-clip: initial;
+        color: var(--white);
+    }
+    .category-hero .lead { color: rgba(255,255,255,0.85); }
+    .category-hero .category-stats { margin-top: 20px; font-size: 1rem; }
+    .category-hero .category-stats i { color: var(--gold-2); margin-right: 6px; }
+    @keyframes categoryHeroKenBurns {
+        0%   { transform: scale(1) translate(0, 0); }
+        100% { transform: scale(1.14) translate(-1%, -1%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .category-hero-bg { animation: none; }
+    }
     
     @media (max-width: 992px) {
         .property-carousel-item {
@@ -179,14 +227,17 @@
 </style>
 
 {{-- Category Header --}}
-<section class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed;">
+{{-- Category Hero --}}
+<section class="category-hero" data-aos="fade-down">
+    <div class="category-hero-bg" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}');"></div>
+    <div class="category-hero-overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mx-auto text-center" >
-                <span class="badge-gold">{{ $category->name }}</span>
-                <h1>{{ $category->name }}</h1>
-                <p class="lead">{{ $category->description ?? 'Explore our selection of ' . $category->name . ' properties' }}</p>
-                <div class="category-stats">
+            <div class="col-lg-8 mx-auto text-center">
+                <span class="badge-gold" data-aos="fade-up">{{ $category->name }}</span>
+                <h1 data-aos="fade-up" data-aos-delay="100">{{ $category->name }}</h1>
+                <p class="lead" data-aos="fade-up" data-aos-delay="200">{{ $category->description ?? 'Explore our selection of ' . $category->name . ' properties' }}</p>
+                <div class="category-stats" data-aos="fade-up" data-aos-delay="300">
                     <span><i class="bi bi-building"></i> {{ $category->properties_count }} Available Properties</span>
                 </div>
             </div>
