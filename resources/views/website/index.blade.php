@@ -184,8 +184,7 @@
                     <span class="badge-gold">Since 2008</span>
                     <h2>Kent Consultants Ltd</h2>
                     <p class="lead">
-                        Kent Consultants Ltd is a professional Property Management Company dealing in Project Management, 
-                        Property Valuations, Consultancy and Management of both Residential and Commercial Properties since 2008.
+                        Kent Consultants Ltd is a professional Property Management Company dealing in Management of both Residential and Commercial Properties, Property Valuations and Related Consultancies.
                     </p>
                 </div>
             </div>
@@ -220,8 +219,8 @@
                             <div class="category-overlay">
                                 <h3>{{ $category->name }}</h3>
                                 <p>{{ $category->description ?? 'Premium properties available' }}</p>
-                                <span class="property-count">{{ $category->properties_count }} Properties</span>
-                                <a href="{{ route('properties.category', $category->slug) }}" class="btn btn-gold">View Properties</a>
+                                <!-- <span class="property-count">{{ $category->properties_count }} Properties</span> -->
+                                <!-- <a href="{{ route('properties.category', $category->slug) }}" class="btn btn-gold">View Properties</a> -->
                             </div>
                         </div>
                     </div>
@@ -276,7 +275,7 @@
 </section>
 
 {{-- Statistics --}}
-<section id="stats" class="stats section dark-background">
+<!-- <section id="stats" class="stats section dark-background">
     <div class="container" data-aos="fade-up">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
@@ -305,7 +304,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 {{-- Why Kent Consultants --}}
 <section id="why-us" class="why-us section">

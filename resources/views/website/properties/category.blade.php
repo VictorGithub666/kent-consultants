@@ -179,10 +179,10 @@
 </style>
 
 {{-- Category Header --}}
-<section class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}');">
+<section class="page-header category-header" style="background-image: url('{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/header-bg.jpg') }}'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed;">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
+            <div class="col-lg-8 mx-auto text-center" >
                 <span class="badge-gold">{{ $category->name }}</span>
                 <h1>{{ $category->name }}</h1>
                 <p class="lead">{{ $category->description ?? 'Explore our selection of ' . $category->name . ' properties' }}</p>
@@ -199,7 +199,7 @@
     <div class="container" data-aos="fade-up">
         <div class="row align-items-center mb-4">
             <div class="col-md-6">
-                <p class="results-count">{{ $properties->total() }} properties in {{ $category->name }}</p>
+                <!-- <p class="results-count">{{ $properties->total() }} properties in {{ $category->name }}</p> -->
             </div>
             <div class="col-md-6 text-md-end">
                 <div class="d-flex justify-content-end align-items-center gap-3">
