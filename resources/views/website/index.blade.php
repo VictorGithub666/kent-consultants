@@ -147,7 +147,7 @@
 <section id="hero" class="hero section dark-background">
     <div class="video-background">
         <video autoplay muted loop playsinline>
-            <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
+            <source src="{{ asset('videos/hero-2.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="video-overlay"></div>
@@ -162,7 +162,7 @@
                         Professional property management, consultancy and real estate solutions designed to protect and maximize the value of your investment.
                     </p>
                     <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
-                        <a href="{{ route('properties.index') }}" class="btn btn-primary my-4">Explore Properties</a>
+                        <!-- <a href="{{ route('properties.index') }}" class="btn btn-primary my-4">Explore Properties</a> -->
                         <a href="{{ route('contact') }}" class="btn btn-outline ">Talk to Us</a>
                     </div>
                 </div>
