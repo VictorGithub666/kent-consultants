@@ -234,7 +234,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
-                <span class="badge-gold" data-aos="fade-up">{{ $category->name }}</span>
+                <span class="badge-gold" data-aos="fade-up" style="margin-top: 120px">{{ $category->name }}</span>
                 <h1 data-aos="fade-up" data-aos-delay="100">{{ $category->name }}</h1>
                 <p class="lead" data-aos="fade-up" data-aos-delay="200">{{ $category->description ?? 'Explore our selection of ' . $category->name . ' properties' }}</p>
                 <div class="category-stats" data-aos="fade-up" data-aos-delay="300">
