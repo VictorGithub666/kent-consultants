@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\V2\HomeController as V2HomeController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\PropertyController;
 use App\Http\Controllers\Website\CareerController;
@@ -39,9 +40,28 @@ Route::prefix('careers')->name('careers.')->group(function () {
     Route::post('/{career}/apply', [CareerController::class, 'apply'])->name('apply');
 });
 
-// ============================================
+// ============================================================
+// Design 2 (v2) Routes  — /v2/...
+// ============================================================
+Route::prefix('v2')->name('v2.')->group(function () {
+    Route::get('/',                      [V2HomeController::class, 'index'])->name('home');
+    Route::get('/about',                 [V2HomeController::class, 'about'])->name('about');
+    Route::get('/services',              [V2HomeController::class, 'services'])->name('services');
+    Route::get('/contact',               [V2HomeController::class, 'contact'])->name('contact');
+    Route::get('/careers',               [V2HomeController::class, 'careers'])->name('careers');
+    Route::get('/careers/{career:slug}', [V2HomeController::class, 'careerShow'])->name('careers.show');
+    Route::get('/property-management',   [V2HomeController::class, 'propertyManagement'])->name('property-management');
+
+    // Properties
+    Route::prefix('properties')->name('properties.')->group(function () {
+        Route::get('/',             [V2HomeController::class, 'propertiesIndex'])->name('index');
+        Route::get('/{slug}',       [V2HomeController::class, 'propertiesCategory'])->name('category');
+    });
+});
+
+// ============================================================
 // Legal Pages
-// ============================================
+// ============================================================
 Route::get('/privacy-policy', function () {
     return view('website.privacy-policy');
 })->name('privacy.policy');
