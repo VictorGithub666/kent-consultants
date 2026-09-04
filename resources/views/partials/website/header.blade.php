@@ -28,6 +28,7 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
+                    <li><a href="{{ route('property-management') }}" class="{{ request()->routeIs('property-management') ? 'active' : '' }}">Property Management</a></li>
                     <li><a href="{{ route('services') }}" class="{{ request()->routeIs('services') ? 'active' : '' }}">Services</a></li>
                     <li class="dropdown">
                         <a href="#">

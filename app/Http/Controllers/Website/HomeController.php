@@ -12,38 +12,43 @@ class HomeController extends Controller
 {
     // In app/Http/Controllers/Website/HomeController.php
 
-public function index()
-{
-    $featuredProperties = Property::with(['category', 'images'])
-        ->vacant()
-        ->latest()
-        ->take(6)
-        ->get();
+    public function index()
+    {
+        $featuredProperties = Property::with(['category', 'images'])
+            ->vacant()
+            ->latest()
+            ->take(6)
+            ->get();
 
-    $categories = PropertyCategory::where('status', true)
-        ->withCount(['properties' => function ($query) {
-            $query->vacant();
-        }])
-        ->get();
+        $categories = PropertyCategory::where('status', true)
+            ->withCount(['properties' => function ($query) {
+                $query->vacant();
+            }])
+            ->get();
 
-    $stats = [
-        'total_properties' => Property::count(),  // ← FIX: Count ALL properties
-        'residential' => Property::vacant()
-            ->whereHas('category', function ($q) {
-                $q->whereIn('slug', ['residential-estates', 'low-cost-housing', 'residential-towers']);
-            })->count(),
-        'commercial' => Property::vacant()
-            ->whereHas('category', function ($q) {
-                $q->where('slug', 'commercial-buildings');
-            })->count(),
-        'warehouses' => Property::vacant()
-            ->whereHas('category', function ($q) {
-                $q->where('slug', 'warehouses');
-            })->count(),
-    ];
+        $stats = [
+            'total_properties' => Property::count(),  // ← FIX: Count ALL properties
+            'residential' => Property::vacant()
+                ->whereHas('category', function ($q) {
+                    $q->whereIn('slug', ['residential-estates', 'low-cost-housing', 'residential-towers']);
+                })->count(),
+            'commercial' => Property::vacant()
+                ->whereHas('category', function ($q) {
+                    $q->where('slug', 'commercial-buildings');
+                })->count(),
+            'warehouses' => Property::vacant()
+                ->whereHas('category', function ($q) {
+                    $q->where('slug', 'warehouses');
+                })->count(),
+        ];
 
-    return view('website.index', compact('featuredProperties', 'categories', 'stats'));
-}
+        return view('website.index', compact('featuredProperties', 'categories', 'stats'));
+    }
+
+    public function propertyManagement()
+    {
+        return view('website.property-management');
+    }
 
     public function about()
     {
