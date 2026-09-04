@@ -189,14 +189,7 @@
 .services-page .service-process .section-title h2 { color: var(--white); }
 .services-page .service-process .section-title p { color: rgba(255,255,255,0.65); }
 
-/* Animated entry for service cards */
-.services-overview .service-card {
-    animation: svcCardEntry 0.6s ease both;
-}
-@keyframes svcCardEntry {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+/* Service card entries are handled by AOS (fade-up) — no duplicate CSS animation needed */
 </style>
 
 {{-- Fixed animated background --}}
@@ -231,11 +224,11 @@
         <p>Expert property management services tailored to your specific needs</p>
     </div>
 
-    <div class="container" data-aos="fade-up">
+    <div class="container">
         <div class="row g-4">
             {{-- Property Management --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
                     <h3>Property Management</h3>
                     <p>Comprehensive management of residential and commercial properties including tenant relations, maintenance, and financial reporting.</p>
                     <ul class="service-features">
@@ -249,7 +242,7 @@
 
             {{-- Sales & Leasing --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <h3>Sales &amp; Leasing</h3>
                     <p>Professional facilitation of property sales and lease agreements, connecting buyers, sellers, landlords and tenants with ease.</p>
                     <ul class="service-features">
@@ -263,7 +256,7 @@
 
             {{-- Property Valuation --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <h3>Property Valuation</h3>
                     <p>Accurate and professional property valuations for sales, purchases, insurance, and investment purposes.</p>
                     <ul class="service-features">
@@ -277,7 +270,7 @@
 
             {{-- Property Consultancy --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
                     <h3>Property Consultancy</h3>
                     <p>Expert advice and guidance on property investments, market trends, and strategic property decisions.</p>
                     <ul class="service-features">
@@ -291,7 +284,7 @@
 
             {{-- Rent Collection --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <h3>Rent Collection</h3>
                     <p>Efficient and transparent rent collection services with detailed reporting and timely remittance to property owners.</p>
                     <ul class="service-features">
@@ -305,7 +298,7 @@
 
             {{-- Service Charge Collection --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="500">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <h3>Service Charge Collection</h3>
                     <p>Professional management and collection of service charges for common areas and shared amenities.</p>
                     <ul class="service-features">
@@ -319,7 +312,7 @@
 
             {{-- Repair & Maintenance --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="600">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
                     <h3>Repair &amp; Maintenance</h3>
                     <p>Prompt and reliable maintenance services to keep your property in optimal condition for tenants and owners.</p>
                     <ul class="service-features">
@@ -333,7 +326,7 @@
 
             {{-- Accounting & Financial Management --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="700">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <h3>Accounting &amp; Financial Management</h3>
                     <p>Comprehensive financial management including budgeting, cost analysis, audits, and management accounts.</p>
                     <ul class="service-features">
@@ -347,7 +340,7 @@
 
             {{-- Legal/Compliance Support --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="800">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <h3>Legal/Compliance Support</h3>
                     <p>Expert legal support and compliance management for all property-related matters and regulatory requirements.</p>
                     <ul class="service-features">
@@ -361,7 +354,7 @@
 
             {{-- Property Operations --}}
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="900">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
                     <h3>Property Operations</h3>
                     <p>Day-to-day property operations management including quality control, inspections, and service provider coordination.</p>
                     <ul class="service-features">
@@ -431,31 +424,31 @@
         <p>A structured approach to delivering exceptional property management services</p>
     </div>
 
-    <div class="container" data-aos="fade-up">
+    <div class="container">
         <div class="row g-4">
             <div class="col-md-3">
-                <div class="process-step golden" data-aos="zoom-in">
+                <div class="process-step golden" data-aos="fade-up" data-aos-delay="0">
                     <div class="step-number">01</div>
                     <h4>Consultation</h4>
                     <p>Understanding your property needs and objectives</p>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="process-step golden" data-aos="zoom-in" data-aos-delay="100">
+                <div class="process-step golden" data-aos="fade-up" data-aos-delay="100">
                     <div class="step-number">02</div>
                     <h4>Assessment</h4>
                     <p>Evaluating your property and developing a management plan</p>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="process-step golden" data-aos="zoom-in" data-aos-delay="200">
+                <div class="process-step golden" data-aos="fade-up" data-aos-delay="200">
                     <div class="step-number">03</div>
                     <h4>Implementation</h4>
                     <p>Executing the management plan with professionalism</p>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="process-step golden" data-aos="zoom-in" data-aos-delay="300">
+                <div class="process-step golden" data-aos="fade-up" data-aos-delay="300">
                     <div class="step-number">04</div>
                     <h4>Reporting</h4>
                     <p>Transparent reporting and continuous improvement</p>

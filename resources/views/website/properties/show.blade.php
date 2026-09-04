@@ -562,10 +562,10 @@
             <p>Explore similar properties in {{ $property->category->name }}</p>
         </div>
 
-        <div class="container" data-aos="fade-up">
+        <div class="container">
             <div class="row g-4">
                 @foreach($similarProperties as $similar)
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 3) * 100 }}">
                         @include('components.website.property-card', ['property' => $similar])
                     </div>
                 @endforeach

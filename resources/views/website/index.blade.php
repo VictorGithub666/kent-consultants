@@ -280,6 +280,7 @@
 <section id="hero" class="hero section dark-background">
     <div class="video-background">
         <video autoplay muted loop playsinline>
+            <source src="{{ asset('videos/hero-mobile.mp4') }}" type="video/mp4" media="(max-width: 768px)">
             <source src="{{ asset('videos/hero-2.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -349,11 +350,11 @@
         <p>Explore our diverse range of property options across Nairobi and its environs</p>
     </div>
 
-    <div class="container" data-aos="fade-up">
+    <div class="container">
         <div class="row g-4">
             @foreach($categories as $category)
                 <div class="col-lg-4 col-md-6">
-                    <div class="category-card" data-aos="zoom-in">
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 3) * 100 }}">
                         <div class="category-image">
                             <img src="{{ $category->image ? asset('storage/' . $category->image) : asset('images/categories/placeholder.jpg') }}" 
                                  alt="{{ $category->name }}">
@@ -381,45 +382,45 @@
         <p>Expert property management services tailored to your specific needs</p>
     </div>
 
-    <div class="container" data-aos="fade-up">
+    <div class="container">
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
                     <div class="service-icon"><i class="bi bi-house-check"></i></div>
                     <h3>Property Management</h3>
                     <p>Comprehensive management of residential and commercial properties, from tenant relations to maintenance and reporting.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon"><i class="bi bi-tags"></i></div>
                     <h3>Sales &amp; Leasing</h3>
                     <p>Professional facilitation of property sales and lease agreements, connecting buyers, sellers, landlords and tenants seamlessly.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon"><i class="bi bi-graph-up-arrow"></i></div>
                     <h3>Property Valuation</h3>
                     <p>Accurate, professional valuations for sales, purchases, insurance and investment purposes.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
                     <div class="service-icon"><i class="bi bi-lightbulb"></i></div>
                     <h3>Property Consultancy</h3>
                     <p>Expert advice on investments, market trends and strategic property decisions.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon"><i class="bi bi-cash-coin"></i></div>
                     <h3>Rent Collection</h3>
                     <p>Efficient, transparent rent collection with detailed reporting and timely remittance.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="500">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon"><i class="bi bi-tools"></i></div>
                     <h3>Repair &amp; Maintenance</h3>
                     <p>Prompt, reliable maintenance services keeping every property in optimal condition.</p>
@@ -447,7 +448,7 @@
                 <div class="content">
                     <span class="badge-gold">Why Us</span>
                     <h2 class="typing-heading">
-                        <span class="typing-text" data-full-text="Why Kent Consultants"></span><span class="typing-cursor">|</span>
+                        <span class="typing-text" data-full-text="Why Kent Consultants?"></span><span class="typing-cursor">|</span>
                     </h2>
                     <div class="features-list" id="why-us-features">
                         <div class="feature-item slide-in-right">

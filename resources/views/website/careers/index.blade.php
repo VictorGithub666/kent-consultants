@@ -24,7 +24,7 @@
         @if($careers->count() > 0)
             <div class="row g-4">
                 @foreach($careers as $career)
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 2) * 100 }}">
                         <div class="career-card golden">
                             <div class="career-header">
                                 <div class="career-title">
@@ -76,22 +76,22 @@
         <p>Build a rewarding career in property management</p>
     </div>
 
-    <div class="container" data-aos="fade-up">
+    <div class="container">
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="benefit-card golden" data-aos="zoom-in">
+                <div class="benefit-card golden" data-aos="fade-up" data-aos-delay="0">
                     <h4>Professional Growth</h4>
                     <p>Opportunities for continuous learning and career advancement in the property management industry.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="benefit-card golden" data-aos="zoom-in" data-aos-delay="100">
+                <div class="benefit-card golden" data-aos="fade-up" data-aos-delay="100">
                     <h4>Great Team Culture</h4>
                     <p>Join a supportive team of property management professionals who value collaboration and excellence.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="benefit-card golden" data-aos="zoom-in" data-aos-delay="200">
+                <div class="benefit-card golden" data-aos="fade-up" data-aos-delay="200">
                     <h4>Industry Leadership</h4>
                     <p>Work with a leading property management company with over 15 years of experience in Kenya.</p>
                 </div>
@@ -108,28 +108,28 @@
         <p>Simple and transparent steps to join our team</p>
     </div>
 
-    <div class="container" data-aos="fade-up">
+    <div class="container">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
-                <div class="process-card golden" data-aos="zoom-in">
+                <div class="process-card golden" data-aos="fade-up" data-aos-delay="0">
                     <h4>Browse Positions</h4>
                     <p>Explore our current job openings and find the right role for you</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="process-card golden" data-aos="zoom-in" data-aos-delay="100">
+                <div class="process-card golden" data-aos="fade-up" data-aos-delay="100">
                     <h4>Submit Application</h4>
                     <p>Complete the online application form with your details and CV</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="process-card golden" data-aos="zoom-in" data-aos-delay="200">
+                <div class="process-card golden" data-aos="fade-up" data-aos-delay="200">
                     <h4>Review &amp; Interview</h4>
                     <p>Our team will review your application and contact you for an interview</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="process-card golden" data-aos="zoom-in" data-aos-delay="300">
+                <div class="process-card golden" data-aos="fade-up" data-aos-delay="300">
                     <h4>Join Our Team</h4>
                     <p>Welcome aboard! Start your career journey with Kent Consultants Ltd</p>
                 </div>

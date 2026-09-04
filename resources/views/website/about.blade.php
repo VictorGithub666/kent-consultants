@@ -581,7 +581,7 @@
 {{-- ============================================================
      SECTION 4: MISSION VISION — Light Background
 ============================================================ --}}
-<section class="about-mv section">
+<section id="mission-vision" class="mission-vision section mission-vision-styled" style="background: white">
     <div class="container section-title" data-aos="fade-up">
         <span class="subtitle">Our Foundation</span>
         <h2>Mission, Vision &amp; Values</h2>
@@ -609,8 +609,8 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="mv-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="mv-icon">
+                <div class="mv-card mv-card-animated" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mv-icon mv-icon-spin">
                         <i class="bi bi-heart"></i>
                     </div>
                     <h3>Core Values</h3>
@@ -637,40 +637,40 @@
         <p>Comprehensive property management services tailored to your needs</p>
     </div>
 
-    <div class="container" data-aos="fade-up">
+    <div class="container">
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
-                <div class="activity-card" data-aos="zoom-in">
+                <div class="activity-card" data-aos="fade-up" data-aos-delay="0">
                     <h4>Rent Collection</h4>
                     <p>Efficient and transparent rent collection with detailed reporting and timely remittance.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="activity-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="activity-card" data-aos="fade-up" data-aos-delay="100">
                     <h4>Service Charge Collection</h4>
                     <p>Professional management of service charges with clear communication and accountability.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="activity-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="activity-card" data-aos="fade-up" data-aos-delay="200">
                     <h4>Repair &amp; Maintenance</h4>
                     <p>Prompt and reliable maintenance services to keep your property in optimal condition.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="activity-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="activity-card" data-aos="fade-up" data-aos-delay="0">
                     <h4>Accounting</h4>
                     <p>Comprehensive financial management including budgeting, cost analysis, and audits.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="activity-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="activity-card" data-aos="fade-up" data-aos-delay="100">
                     <h4>Legal/Compliance</h4>
                     <p>Expert legal support and compliance management for all property-related matters.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="activity-card" data-aos="zoom-in" data-aos-delay="500">
+                <div class="activity-card" data-aos="fade-up" data-aos-delay="200">
                     <h4>Property Management</h4>
                     <p>End-to-end property management services for residential and commercial properties.</p>
                 </div>
@@ -759,7 +759,7 @@
             <div class="col-lg-6" data-aos="fade-left">
                 <div class="content">
                     <span class="badge-gold">Why Choose Us</span>
-                    <h2>Professional Property Management in Nairobi</h2>
+                    <h2>Professional Property Management in Kenya</h2>
                     <p>
                         With over 15 years of experience in the Kenyan property market, we understand the unique 
                         challenges and opportunities that come with managing properties in Nairobi and its environs.
@@ -819,44 +819,44 @@
 
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // ============================================================
-    // SLIDE-IN FEATURES FOR "WHY CHOOSE US"
-    // ============================================================
-    const whySection = document.getElementById('about-why');
-    if (whySection) {
-        const featureItems = whySection.querySelectorAll('#why-us-features .feature-item');
-        let hasAnimated = false;
+    document.addEventListener('DOMContentLoaded', function () {
+        // ============================================================
+        // SLIDE-IN FEATURES FOR "WHY CHOOSE US"
+        // ============================================================
+        const whySection = document.getElementById('about-why');
+        if (whySection) {
+            const featureItems = whySection.querySelectorAll('#why-us-features .feature-item');
+            let hasAnimated = false;
 
-        function slideInFeatures() {
-            if (hasAnimated) return;
-            hasAnimated = true;
-            featureItems.forEach(function (item, index) {
-                setTimeout(function () {
-                    item.classList.add('show');
-                }, index * 250);
-            });
+            function slideInFeatures() {
+                if (hasAnimated) return;
+                hasAnimated = true;
+                featureItems.forEach(function (item, index) {
+                    setTimeout(function () {
+                        item.classList.add('show');
+                    }, index * 250);
+                });
+            }
+
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        slideInFeatures();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(whySection);
         }
 
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    slideInFeatures();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        observer.observe(whySection);
-    }
-
-    // ============================================================
-    // STATS ANIMATION WITH PURE COUNTER
-    // ============================================================
-    if (typeof PureCounter !== 'undefined') {
-        new PureCounter();
-    }
-});
+        // ============================================================
+        // STATS ANIMATION WITH PURE COUNTER
+        // ============================================================
+        if (typeof PureCounter !== 'undefined') {
+            new PureCounter();
+        }
+    });
 </script>
 @endpush
 

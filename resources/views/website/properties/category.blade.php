@@ -273,7 +273,7 @@
             {{-- Grid View --}}
             <div id="gridView" class="row g-4">
                 @foreach($properties as $property)
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 3) * 100 }}">
                         @include('components.website.property-card', ['property' => $property])
                     </div>
                 @endforeach

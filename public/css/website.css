@@ -3291,3 +3291,32 @@ body.page-dark-nav.scrolled .header {
 .mission-vision .mv-card:hover {
     box-shadow: 0 22px 55px rgba(255, 215, 0, 0.3) !important;
 }
+
+/* ============================================================
+   CARD SCROLL ANIMATIONS — slide up from below
+   Overrides the default AOS fade-up translate distance so cards
+   rise a more noticeable 40 px instead of the library default.
+   Applies site-wide; respects prefers-reduced-motion.
+============================================================ */
+
+/* Increase the vertical travel for fade-up so cards visibly
+   lift into view rather than barely moving */
+[data-aos="fade-up"] {
+    transform: translateY(40px) !important;
+    opacity: 0;
+    transition-property: transform, opacity !important;
+}
+
+[data-aos="fade-up"].aos-animate {
+    transform: translateY(0) !important;
+    opacity: 1;
+}
+
+/* Honour the OS-level reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    [data-aos] {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
