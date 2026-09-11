@@ -29,7 +29,6 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="{{ route('about') }}"><i class="bi bi-chevron-right"></i> About Us</a></li>
-                        <li><a href="{{ route('properties.index') }}"><i class="bi bi-chevron-right"></i> Properties</a></li>
                         <li><a href="{{ route('careers.index') }}"><i class="bi bi-chevron-right"></i> Careers</a></li>
                         <li><a href="{{ route('contact') }}"><i class="bi bi-chevron-right"></i> Contact</a></li>
                     </ul>
@@ -40,8 +39,8 @@
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Project Management</a></li>
-                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Property Valuation</a></li>
+                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Property Management</a></li>
+                        <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Sales &amp; Leasing</a></li>
                         <li><a href="{{ route('services') }}"><i class="bi bi-chevron-right"></i> Consultancy</a></li>
                     </ul>
                 </div>

@@ -400,13 +400,6 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                    <h3>Property Valuation</h3>
-                    <p>Accurate, professional valuations for sales, purchases, insurance and investment purposes.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
                     <div class="service-icon"><i class="bi bi-lightbulb"></i></div>
                     <h3>Property Consultancy</h3>
                     <p>Expert advice on investments, market trends and strategic property decisions.</p>

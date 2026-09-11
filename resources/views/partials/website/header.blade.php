@@ -13,10 +13,6 @@
                     <a href="https://www.instagram.com/kent_consultants_ltd/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
                 </div>
                 
-                <div class="header-cta d-none d-lg-block ms-3">
-                    <a href="{{ route('properties.index') }}" class="btn btn-gold btn-sm">View Properties</a>
-                </div>
-                
                 {{-- Mobile nav toggle - visible only on mobile --}}
                 <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
             </div>
@@ -30,26 +26,6 @@
                     <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
                     <li><a href="{{ route('property-management') }}" class="{{ request()->routeIs('property-management') ? 'active' : '' }}">Property Management</a></li>
                     <li><a href="{{ route('services') }}" class="{{ request()->routeIs('services') ? 'active' : '' }}">Services</a></li>
-                    <li class="dropdown">
-                        <a href="#">
-                            <span>Properties</span> 
-                            <i class="bi bi-chevron-down toggle-dropdown"></i>
-                        </a>
-                        <ul>
-                            @php
-                                $categories = App\Models\PropertyCategory::where('status', true)->get();
-                            @endphp
-                            @foreach($categories as $category)
-                                <li>
-                                    <a href="{{ route('properties.category', $category->slug) }}">
-                                        {{ $category->name }}
-                                    </a>
-                                </li>
-                            @endforeach
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a href="{{ route('properties.index') }}">All Properties</a></li>
-                        </ul>
-                    </li>
                     <li><a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">About Us</a></li>
                     <li><a href="{{ route('careers.index') }}" class="{{ request()->routeIs('careers.*') ? 'active' : '' }}">Careers</a></li>
                     <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a></li>

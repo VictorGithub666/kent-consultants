@@ -53,19 +53,6 @@
                 <ul>
                     <li><a href="{{ route('v2.home') }}" class="@yield('nav_home')">Home</a></li>
                     <li><a href="{{ route('v2.property-management') }}" class="@yield('nav_pm')">Property Management</a></li>
-                    <li class="dropdown">
-                        <a href="{{ route('v2.properties.index') }}" class="@yield('nav_properties')">
-                            Properties <i class="bi bi-chevron-down toggle-dropdown"></i>
-                        </a>
-                        <ul>
-                            <li><a href="{{ route('v2.properties.category', 'residential-estates') }}">Residential Estates</a></li>
-                            <li><a href="{{ route('v2.properties.category', 'low-cost-housing') }}">Low Cost Housing</a></li>
-                            <li><a href="{{ route('v2.properties.category', 'residential-towers') }}">Residential Towers</a></li>
-                            <li><a href="{{ route('v2.properties.category', 'commercial-buildings') }}">Commercial Buildings</a></li>
-                            <li><a href="{{ route('v2.properties.category', 'warehouses') }}">Warehouses</a></li>
-                            <li><a href="{{ route('v2.properties.index') }}">All Properties</a></li>
-                        </ul>
-                    </li>
                     <li><a href="{{ route('v2.about') }}" class="@yield('nav_about')">About</a></li>
                     <li><a href="{{ route('v2.services') }}" class="@yield('nav_services')">Services</a></li>
                     <li><a href="{{ route('v2.careers') }}" class="@yield('nav_careers')">Careers</a></li>

@@ -2,7 +2,7 @@
 @extends('layouts.website2')
 
 @section('title', 'Our Services - Kent Consultants Ltd')
-@section('description', 'Comprehensive property management, sales, leasing, valuation and consultancy services in Nairobi, Kenya.')
+@section('description', 'Comprehensive property management, sales, leasing and consultancy services in Nairobi, Kenya.')
 @section('body_class', 'services-page')
 @section('nav_services', 'active')
 
@@ -44,14 +44,6 @@
             </div>
 
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="service-item kc2-service-card position-relative">
-                    <div class="kc2-svc-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                    <h3>Property Valuation</h3>
-                    <p>Accurate, professional valuations for sales, purchases, insurance and investment purposes by qualified valuers.</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-lightbulb"></i></div>
                     <h3>Property Consultancy</h3>

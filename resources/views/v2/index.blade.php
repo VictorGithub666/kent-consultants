@@ -122,8 +122,8 @@
             </li>
             <li class="nav-item col-6 col-md-3">
                 <a class="nav-link" data-bs-toggle="tab" data-bs-target="#feat-2">
-                    <i class="bi bi-graph-up-arrow"></i>
-                    <h4 class="d-none d-lg-block">Valuation &amp; Consultancy</h4>
+                    <i class="bi bi-lightbulb"></i>
+                    <h4 class="d-none d-lg-block">Consultancy</h4>
                 </a>
             </li>
             <li class="nav-item col-6 col-md-3">
@@ -167,13 +167,12 @@
             <div class="tab-pane fade" id="feat-2">
                 <div class="row">
                     <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                        <h3>Property Valuation &amp; Consultancy</h3>
+                        <h3>Property Consultancy</h3>
                         <p>
-                            Accurate, professional valuations and expert investment advice to help you make
-                            informed property decisions in Kenya's dynamic market.
+                            Expert investment advice and strategic guidance to help you make informed property
+                            decisions in Kenya's dynamic market.
                         </p>
                         <ul>
-                            <li><i class="bi bi-check2-all"></i> <span>Sales, purchase &amp; insurance valuations</span></li>
                             <li><i class="bi bi-check2-all"></i> <span>Investment analysis and market research</span></li>
                             <li><i class="bi bi-check2-all"></i> <span>Strategic property planning and advisory</span></li>
                             <li><i class="bi bi-check2-all"></i> <span>Risk assessment for property portfolios</span></li>
@@ -181,7 +180,7 @@
                         <a href="{{ route('v2.services') }}" class="read-more">Learn More <i class="bi bi-arrow-right"></i></a>
                     </div>
                     <div class="col-lg-6 order-1 order-lg-2 text-center">
-                        <img src="{{ asset('images/about/consultancy.jpg') }}" alt="Valuation" class="img-fluid rounded">
+                        <img src="{{ asset('images/about/consultancy.jpg') }}" alt="Consultancy" class="img-fluid rounded">
                     </div>
                 </div>
             </div>
@@ -289,16 +288,6 @@
             </div>
 
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                <div class="service-item kc2-service-card position-relative">
-                    <div class="kc2-svc-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                    <a href="{{ route('v2.services') }}" class="stretched-link">
-                        <h3>Property Valuation</h3>
-                    </a>
-                    <p>Accurate, professional valuations for sales, purchases, insurance and investment purposes across Kenya.</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="50">
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-lightbulb"></i></div>
                     <a href="{{ route('v2.services') }}" class="stretched-link">
