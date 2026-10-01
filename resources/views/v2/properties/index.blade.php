@@ -2,7 +2,7 @@
 @extends('layouts.website2')
 
 @section('title', 'Properties - Kent Consultants Ltd')
-@section('description', 'Browse all properties managed by Kent Consultants Ltd — residential estates, commercial buildings, towers and warehouses across Nairobi, Kenya.')
+@section('description', 'Browse all properties managed by Kent Consultants Ltd: residential estates, commercial buildings, towers and warehouses across Nairobi, Kenya.')
 @section('body_class', 'properties-page')
 @section('nav_properties', 'active')
 

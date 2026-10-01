@@ -27,7 +27,13 @@ class HomeController extends Controller
                 ->count(),
         ];
 
-        return view('v2.index', compact('categories', 'stats'));
+        $developments = Property::with('category')
+            ->whereNotNull('main_image')
+            ->latest()
+            ->take(12)
+            ->get();
+
+        return view('v2.index', compact('categories', 'stats', 'developments'));
     }
 
     public function about()

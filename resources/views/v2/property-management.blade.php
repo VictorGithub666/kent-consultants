@@ -2,7 +2,7 @@
 @extends('layouts.website2')
 
 @section('title', 'Property Management in Kenya - Kent Consultants Ltd')
-@section('description', "Kenya's most trusted property management company. Full-service residential, commercial and warehouse property management since 2008 — transparent, accountable, and results-driven.")
+@section('description', "Kenya's most trusted property management company. Full-service residential, commercial and warehouse property management since 2008. Transparent, accountable, and results-driven.")
 @section('body_class', 'pm-page')
 @section('nav_pm', 'active')
 
@@ -28,7 +28,7 @@
                 <p>
                     Kent Consultants Ltd has been Kenya's benchmark for professional property management
                     since 2008. We combine deep local market expertise with transparent, technology-enabled
-                    operations to protect your asset and maximise your returns — all through one dedicated team.
+                    operations to protect your asset and maximise your returns, all through one dedicated team.
                 </p>
                 <div class="mt-4">
                     <a href="{{ route('v2.contact') }}" class="btn-get-started me-2">Book a Consultation</a>
@@ -54,10 +54,10 @@
         <div class="row gy-4">
             @php
                 $usps = [
-                    ['bi-geo-alt-fill',        'Deep Local Market Mastery',        'Since 2008 we\'ve managed properties across Kenya — we know the neighbourhoods, tenants and rates better than anyone.'],
+                    ['bi-geo-alt-fill',        'Deep Local Market Mastery',        'Since 2008 we\'ve managed properties across Kenya. We know the neighbourhoods, tenants and rates better than anyone.'],
                     ['bi-patch-check-fill',    'Fully Licensed &amp; Compliant',   'Every engagement follows Kenyan property law and regulatory best practice, so your asset stays fully protected.'],
                     ['bi-bar-chart-line-fill', 'Radically Transparent Reporting',  'Detailed, timely financial statements with no hidden fees. You always know what\'s collected, spent, and remitted.'],
-                    ['bi-person-badge-fill',   'Dedicated Relationship Manager',   'One point of contact who knows your property inside out — no call centre, no getting passed around.'],
+                    ['bi-person-badge-fill',   'Dedicated Relationship Manager',   'One point of contact who knows your property inside out. No call centre, no getting passed around.'],
                     ['bi-tools',               'Rapid Maintenance Response',       'A vetted contractor network means repairs are handled fast, at fair rates, with quality guaranteed.'],
                     ['bi-cpu-fill',            'Technology-Enabled Operations',    'Digital rent collection, online statements and systemised inspections keep your property running smoothly, 24/7.'],
                 ];
@@ -85,7 +85,7 @@
         <div class="row gy-4">
             @php
                 $services = [
-                    ['bi-people-fill',                   'Tenant Sourcing &amp; Screening',        'Thorough vetting and fast placement to keep vacancy periods — and your losses — to a minimum.'],
+                    ['bi-people-fill',                   'Tenant Sourcing &amp; Screening',        'Thorough vetting and fast placement to keep vacancy periods and your losses to a minimum.'],
                     ['bi-cash-coin',                     'Rent &amp; Service Charge Collection',   'Prompt, digitally-tracked collection with automatic arrears follow-up and remittance.'],
                     ['bi-wrench-adjustable-circle-fill', 'Maintenance &amp; Repairs',              'Preventative and emergency maintenance handled by a vetted vendor network, quality-checked every time.'],
                     ['bi-file-earmark-bar-graph-fill',   'Financial Reporting &amp; Accounting',   'Monthly statements, budgeting, and audit-ready books that give you complete financial visibility.'],
@@ -152,7 +152,7 @@
         <div class="row g-4">
             @php
                 $steps = [
-                    ['01', 'Consultation',       'We understand your property, goals and challenges — at no cost to you.'],
+                    ['01', 'Consultation',       'We understand your property, goals and challenges, at no cost to you.'],
                     ['02', 'Property Assessment','A full inspection and market analysis to set the right strategy and pricing.'],
                     ['03', 'Onboarding',         'We digitise records, set up reporting and take over day-to-day operations.'],
                     ['04', 'Ongoing Management', 'Proactive management with monthly reporting and continuous optimisation.'],

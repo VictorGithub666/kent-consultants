@@ -2,7 +2,7 @@
 @extends('layouts.website2')
 
 @section('title', 'Careers - Kent Consultants Ltd')
-@section('description', 'Career opportunities at Kent Consultants Ltd — professional property management company in Nairobi, Kenya.')
+@section('description', 'Career opportunities at Kent Consultants Ltd, a professional property management company in Nairobi, Kenya.')
 @section('body_class', 'careers-page')
 @section('nav_careers', 'active')
 

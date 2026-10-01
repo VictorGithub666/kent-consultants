@@ -40,7 +40,7 @@
                     <li><i class="bi bi-check2-circle"></i> <span>Licensed and experienced property management professionals</span></li>
                     <li><i class="bi bi-check2-circle"></i> <span>Transparent, accountable management with monthly reporting</span></li>
                     <li><i class="bi bi-check2-circle"></i> <span>Customised, one-stop-shop solutions for every property need</span></li>
-                    <li><i class="bi bi-check2-circle"></i> <span>Deep knowledge of Nairobi's residential and commercial markets</span></li>
+                    <li><i class="bi bi-check2-circle"></i> <span>Deep knowledge of Kenya's residential and commercial markets</span></li>
                 </ul>
             </div>
 
@@ -189,6 +189,97 @@
                 <a href="{{ route('v2.contact') }}" class="read-more mt-3">
                     <span>Get in Touch</span><i class="bi bi-arrow-right"></i>
                 </a>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+{{-- Team --}}
+<section class="section kc2-section-odd">
+
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Our Team</h2>
+        <p>The People Behind Kent Consultants</p>
+    </div>
+
+    <div class="container">
+
+        {{-- Directors --}}
+        <h4 class="text-center mb-4 fw-semibold" style="color:var(--kc2-emerald)" data-aos="fade-up">Directors</h4>
+        <div class="row gy-4 justify-content-center mb-5">
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="card border-0 shadow-sm h-100 text-center kc2-team-card">
+                    <div class="card-body p-4">
+                        <div class="kc2-team-avatar mx-auto mb-3">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <h5 class="card-title mb-1 fw-bold">John Doe</h5>
+                        <p class="text-muted small mb-3">Director</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://www.linkedin.com/in/placeholder" target="_blank" rel="noopener"
+                               class="btn btn-sm kc2-team-btn-linkedin">
+                                <i class="bi bi-linkedin me-1"></i>LinkedIn
+                            </a>
+                            <a href="mailto:j.doe@kentconsultantsltd.co.ke"
+                               class="btn btn-sm kc2-team-btn-email">
+                                <i class="bi bi-envelope me-1"></i>Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card border-0 shadow-sm h-100 text-center kc2-team-card">
+                    <div class="card-body p-4">
+                        <div class="kc2-team-avatar mx-auto mb-3">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <h5 class="card-title mb-1 fw-bold">Jane Smith</h5>
+                        <p class="text-muted small mb-3">Director</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://www.linkedin.com/in/placeholder" target="_blank" rel="noopener"
+                               class="btn btn-sm kc2-team-btn-linkedin">
+                                <i class="bi bi-linkedin me-1"></i>LinkedIn
+                            </a>
+                            <a href="mailto:j.smith@kentconsultantsltd.co.ke"
+                               class="btn btn-sm kc2-team-btn-email">
+                                <i class="bi bi-envelope me-1"></i>Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {{-- General Manager --}}
+        <h4 class="text-center mb-4 fw-semibold" style="color:var(--kc2-emerald)" data-aos="fade-up">Management</h4>
+        <div class="row gy-4 justify-content-center">
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="card border-0 shadow-sm h-100 text-center kc2-team-card">
+                    <div class="card-body p-4">
+                        <div class="kc2-team-avatar mx-auto mb-3">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <h5 class="card-title mb-1 fw-bold">Michael Otieno</h5>
+                        <p class="text-muted small mb-3">General Manager</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://www.linkedin.com/in/placeholder" target="_blank" rel="noopener"
+                               class="btn btn-sm kc2-team-btn-linkedin">
+                                <i class="bi bi-linkedin me-1"></i>LinkedIn
+                            </a>
+                            <a href="mailto:m.otieno@kentconsultantsltd.co.ke"
+                               class="btn btn-sm kc2-team-btn-email">
+                                <i class="bi bi-envelope me-1"></i>Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

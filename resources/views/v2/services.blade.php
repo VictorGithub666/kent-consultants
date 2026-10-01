@@ -31,7 +31,7 @@
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-house-check"></i></div>
                     <h3>Property Management</h3>
-                    <p>Comprehensive management of residential and commercial properties — tenant relations, maintenance coordination and detailed financial reporting.</p>
+                    <p>Comprehensive management of residential and commercial properties: tenant relations, maintenance coordination and detailed financial reporting.</p>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-tools"></i></div>
                     <h3>Repair &amp; Maintenance</h3>
-                    <p>Prompt and reliable maintenance services keeping your property in optimal condition — from emergency repairs to preventative scheduling.</p>
+                    <p>Prompt and reliable maintenance services keeping your property in optimal condition, from emergency repairs to preventative scheduling.</p>
                 </div>
             </div>
 

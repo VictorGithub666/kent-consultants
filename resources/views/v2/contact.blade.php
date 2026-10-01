@@ -77,6 +77,10 @@
 
             {{-- Form --}}
             <div class="col-lg-8">
+                {{-- Google Maps --}}
+                <div class="ratio ratio-16x9 mb-4 rounded overflow-hidden" data-aos="fade-up" data-aos-delay="150">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8478599767177!2d36.80631877669542!3d-1.2637430356054846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f171609da3ef9%3A0x196264e481507de9!2sKent%20Consultants%20Ltd!5e0!3m2!1sen!2ske!4v1790588228645!5m2!1sen!2ske" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
                 <form id="kc2-contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="200" novalidate>
                     <input type="hidden" name="access_key" value="{{ config('services.web3forms.key', '') }}">
                     <input type="hidden" name="subject" value="New Contact Enquiry — Kent Consultants Ltd">
@@ -134,7 +138,7 @@
                         </h2>
                         <div id="cfaq-1" class="collapse show" data-parent="#contact-faq">
                             <div class="accordion-body">
-                                We provide property management services across Nairobi and its environs, covering all major residential and commercial areas.
+                                We provide property management services across Kenya, covering all major residential and commercial areas.
                             </div>
                         </div>
                     </div>

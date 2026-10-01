@@ -68,7 +68,7 @@
                 </p>
                 <ul>
                     <li><i class="bi bi-check2-circle"></i>
-                        <span>Licensed property managers with deep knowledge of the Nairobi market.</span>
+                        <span>Licensed property managers with deep knowledge of the Kenyan market.</span>
                     </li>
                     <li><i class="bi bi-check2-circle"></i>
                         <span>Transparent, accountable management with monthly reporting to all owners.</span>
@@ -212,7 +212,7 @@
                         <h3>Repair &amp; Maintenance</h3>
                         <p>
                             Prompt, reliable maintenance keeps your property in optimal condition and your tenants
-                            satisfied — protecting your investment's long-term value.
+                            satisfied, protecting your investment's long-term value.
                         </p>
                         <ul>
                             <li><i class="bi bi-check2-all"></i> <span>24/7 emergency repair response</span></li>
@@ -243,7 +243,7 @@
                 <h3>Ready to Maximise Your Property's Value?</h3>
                 <p>
                     Let Kent Consultants Ltd take the complexity out of property management. With over 15 years of
-                    experience in Nairobi's market, we deliver professional, transparent and customised solutions
+                    experience in Kenya's market, we deliver professional, transparent and customised solutions
                     for every property owner.
                 </p>
             </div>
@@ -273,7 +273,7 @@
                     <a href="{{ route('v2.services') }}" class="stretched-link">
                         <h3>Property Management</h3>
                     </a>
-                    <p>Comprehensive management of residential and commercial properties — tenant relations, maintenance, reporting and more.</p>
+                    <p>Comprehensive management of residential and commercial properties: tenant relations, maintenance, reporting and more.</p>
                 </div>
             </div>
 
@@ -321,6 +321,66 @@
     </div>
 
 </section>
+
+{{-- ============================================================
+     DEVELOPMENTS UNDER MANAGEMENT
+============================================================ --}}
+@if(isset($developments) && $developments->count())
+<section id="developments" class="section kc2-section-even">
+
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Our Portfolio</h2>
+        <p>Developments Under Our Management</p>
+    </div>
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="kc2-dev-swiper-outer">
+            <button class="kc2-dev-nav kc2-dev-nav--prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
+            <div class="swiper init-swiper kc2-dev-swiper">
+                <script type="application/json" class="swiper-config">
+                    {
+                      "loop": true,
+                      "speed": 600,
+                      "slidesPerView": "auto",
+                      "pagination": { "el": ".swiper-pagination", "type": "bullets", "clickable": true },
+                      "navigation": { "nextEl": ".kc2-dev-nav--next", "prevEl": ".kc2-dev-nav--prev" },
+                      "breakpoints": {
+                        "320":  { "slidesPerView": 1, "spaceBetween": 20 },
+                        "768":  { "slidesPerView": 2, "spaceBetween": 24 },
+                        "1200": { "slidesPerView": 3, "spaceBetween": 28 }
+                      }
+                    }
+                </script>
+                <div class="swiper-wrapper">
+                    @foreach($developments as $dev)
+                    <div class="swiper-slide">
+                        <div class="kc2-dev-card">
+                            @if($dev->main_image)
+                                <div class="kc2-dev-img-wrap">
+                                    <img src="{{ asset('storage/' . $dev->main_image) }}" alt="{{ $dev->name }}" loading="lazy">
+                                </div>
+                            @else
+                                <div class="kc2-dev-img-wrap kc2-dev-img-placeholder">
+                                    <i class="bi bi-building"></i>
+                                </div>
+                            @endif
+                            <div class="kc2-dev-body">
+                                <span class="kc2-dev-category">{{ optional($dev->category)->name }}</span>
+                                <h4 class="kc2-dev-name">{{ $dev->name }}</h4>
+                                <p class="kc2-dev-location"><i class="bi bi-geo-alt me-1"></i>{{ $dev->location }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="swiper-pagination mt-4"></div>
+            </div>
+            <button class="kc2-dev-nav kc2-dev-nav--next" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
+        </div>
+    </div>
+
+</section>
+@endif
 
 {{-- ============================================================
      TESTIMONIALS
@@ -392,8 +452,8 @@
                     <div class="testimonial-item">
                         <div class="d-flex align-items-center mb-2">
                             <div class="ms-0">
-                                <h3>Investor, Karen</h3>
-                                <h4>Property Portfolio</h4>
+                                <h3>Property Investor, Karen</h3>
+                                <h4>Mixed-Use Development</h4>
                                 <div class="stars">
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
@@ -401,7 +461,7 @@
                         </div>
                         <p>
                             <i class="bi bi-quote quote-icon-left"></i>
-                            <span>Their valuation services gave us the confidence to make smart investment decisions. Detailed, accurate and delivered on time. I recommend Kent Consultants without reservation.</span>
+                            <span>Handing over our Karen development to Kent Consultants was the best decision we made. Collections are up, maintenance issues are resolved swiftly, and our tenants are happier than ever.</span>
                             <i class="bi bi-quote quote-icon-right"></i>
                         </p>
                     </div>
@@ -437,7 +497,7 @@
                         </h2>
                         <div id="faq-1" class="collapse show" data-parent="#accordion-faq">
                             <div class="accordion-body">
-                                We provide property management services across Nairobi and its environs, covering all major residential and commercial areas including Westlands, Karen, Kilimani, CBD and surrounding suburbs.
+                                We provide property management services across Kenya, covering all major residential and commercial areas including Westlands, Karen, Kilimani, CBD and surrounding suburbs.
                             </div>
                         </div>
                     </div>

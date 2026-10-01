@@ -155,7 +155,7 @@
                             <label class="form-label fw-semibold">Upload CV <span class="text-danger">*</span></label>
                             <input type="file" name="cv" class="form-control @error('cv') is-invalid @enderror"
                                    accept=".pdf,.doc,.docx" required>
-                            <small class="text-muted">PDF, DOC or DOCX — max 5 MB</small>
+                            <small class="text-muted">PDF, DOC or DOCX (max 5 MB)</small>
                             @error('cv')<span class="invalid-feedback">{{ $message }}</span>@enderror
                         </div>
                     </div>
