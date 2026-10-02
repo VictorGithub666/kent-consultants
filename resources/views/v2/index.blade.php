@@ -14,7 +14,7 @@
 <section id="hero" class="hero section dark-background kc2-hero-video">
 
     {{-- Static Background --}}
-    <div class="kc2-hero-video-wrap">
+    <div class="kc2-hero-video-wrap" style="background-image: url('{{ asset('images/about/nairobi-city.jpg') }}');">
         <div class="kc2-hero-overlay"></div>
     </div>
 

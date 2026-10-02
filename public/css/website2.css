@@ -695,7 +695,9 @@ section, .section {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: url('/images/about/nairobi-city.jpg') center center / cover no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .kc2-hero-overlay {
