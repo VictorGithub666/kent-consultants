@@ -159,7 +159,7 @@
                 ];
             @endphp
             @foreach($steps as $i => $step)
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
+            <div class="col-md-3 d-flex" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
                 <div class="kc2-process-step">
                     <div class="kc2-process-num">{{ $step[0] }}</div>
                     <h4>{{ $step[1] }}</h4>

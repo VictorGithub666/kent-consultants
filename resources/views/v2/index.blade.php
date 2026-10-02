@@ -9,16 +9,12 @@
 @section('content')
 
 {{-- ============================================================
-     HERO — Full-screen video background with animated text
+     HERO — Static image background
 ============================================================ --}}
 <section id="hero" class="hero section dark-background kc2-hero-video">
 
-    {{-- Video Background --}}
+    {{-- Static Background --}}
     <div class="kc2-hero-video-wrap">
-        <video class="kc2-hero-vid" autoplay muted loop playsinline poster="{{ asset('images/about/nairobi-city.jpg') }}">
-            <source src="{{ asset('videos/hero-2.mp4') }}" type="video/mp4" media="(min-width: 769px)">
-            <source src="{{ asset('videos/hero-mobile.mp4') }}" type="video/mp4">
-        </video>
         <div class="kc2-hero-overlay"></div>
     </div>
 
