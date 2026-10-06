@@ -6,6 +6,16 @@
 @section('body_class', 'index-page')
 @section('nav_home', 'active')
 
+@push('styles')
+<style>
+#trust-bar .tb-divider { border-left: 1px solid rgba(255,255,255,0.12); }
+@media (max-width: 767px) {
+    #trust-bar .tb-divider { border-left: none; }
+    #trust-bar .col-6:nth-child(even) { border-left: 1px solid rgba(255,255,255,0.12); }
+}
+</style>
+@endpush
+
 @section('content')
 
 {{-- ============================================================
@@ -46,43 +56,43 @@
 {{-- ============================================================
      TRUST BAR
 ============================================================ --}}
-<section id="trust-bar" class="kc2-trust-bar section">
+<section id="trust-bar" class="section" style="background:#2C3539;padding:48px 0;position:relative;z-index:2;">
     <div class="container">
         <div class="row gy-4 justify-content-center text-center">
 
             <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0">
-                <div class="kc2-trust-item">
-                    <div class="kc2-trust-number">
+                <div style="padding:8px 0;">
+                    <div style="font-family:'Open Sans',sans-serif;font-size:2.6rem;font-weight:800;color:#D4AF37;line-height:1.1;min-height:3.2rem;display:flex;align-items:center;justify-content:center;">
                         <span class="kc2-counter" data-target="3000" data-prefix="Over " data-suffix="">0</span>
                     </div>
-                    <div class="kc2-trust-label">Units Managed</div>
+                    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.65);margin-top:6px;">Units Managed</div>
                 </div>
             </div>
 
-            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
-                <div class="kc2-trust-item">
-                    <div class="kc2-trust-number">
+            <div class="col-6 col-md-3 tb-divider" data-aos="fade-up" data-aos-delay="100">
+                <div style="padding:8px 0;">
+                    <div style="font-family:'Open Sans',sans-serif;font-size:2.6rem;font-weight:800;color:#D4AF37;line-height:1.1;min-height:3.2rem;display:flex;align-items:center;justify-content:center;">
                         <span class="kc2-counter" data-target="18" data-prefix="Over " data-suffix=" years">0</span>
                     </div>
-                    <div class="kc2-trust-label">Years Active</div>
+                    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.65);margin-top:6px;">Years Active</div>
                 </div>
             </div>
 
-            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
-                <div class="kc2-trust-item">
-                    <div class="kc2-trust-number">
+            <div class="col-6 col-md-3 tb-divider" data-aos="fade-up" data-aos-delay="200">
+                <div style="padding:8px 0;">
+                    <div style="font-family:'Open Sans',sans-serif;font-size:2.6rem;font-weight:800;color:#D4AF37;line-height:1.1;min-height:3.2rem;display:flex;align-items:center;justify-content:center;">
                         <span class="kc2-counter" data-target="95" data-prefix="" data-suffix="%">0</span>
                     </div>
-                    <div class="kc2-trust-label">Occupancy Rate</div>
+                    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.65);margin-top:6px;">Occupancy Rate</div>
                 </div>
             </div>
 
-            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
-                <div class="kc2-trust-item">
-                    <div class="kc2-trust-number">
-                        <span class="kc2-trust-static">Within 24 hrs</span>
+            <div class="col-6 col-md-3 tb-divider" data-aos="fade-up" data-aos-delay="300">
+                <div style="padding:8px 0;">
+                    <div style="font-family:'Open Sans',sans-serif;font-size:2rem;font-weight:800;color:#D4AF37;line-height:1.1;min-height:3.2rem;display:flex;align-items:center;justify-content:center;">
+                        Within 24 hrs
                     </div>
-                    <div class="kc2-trust-label">Response Time</div>
+                    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.65);margin-top:6px;">Response Time</div>
                 </div>
             </div>
 
