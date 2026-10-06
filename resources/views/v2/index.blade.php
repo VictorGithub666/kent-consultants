@@ -44,6 +44,53 @@
 </section>
 
 {{-- ============================================================
+     TRUST BAR
+============================================================ --}}
+<section id="trust-bar" class="kc2-trust-bar section">
+    <div class="container">
+        <div class="row gy-4 justify-content-center text-center">
+
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0">
+                <div class="kc2-trust-item">
+                    <div class="kc2-trust-number">
+                        <span class="kc2-counter" data-target="3000" data-prefix="Over " data-suffix="">0</span>
+                    </div>
+                    <div class="kc2-trust-label">Units Managed</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="kc2-trust-item">
+                    <div class="kc2-trust-number">
+                        <span class="kc2-counter" data-target="18" data-prefix="Over " data-suffix=" years">0</span>
+                    </div>
+                    <div class="kc2-trust-label">Years Active</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="kc2-trust-item">
+                    <div class="kc2-trust-number">
+                        <span class="kc2-counter" data-target="95" data-prefix="" data-suffix="%">0</span>
+                    </div>
+                    <div class="kc2-trust-label">Occupancy Rate</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="kc2-trust-item">
+                    <div class="kc2-trust-number">
+                        <span class="kc2-trust-static">Within 24 hrs</span>
+                    </div>
+                    <div class="kc2-trust-label">Response Time</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{{-- ============================================================
      ABOUT
 ============================================================ --}}
 <section id="about" class="about section kc2-section-odd">
@@ -98,138 +145,6 @@
 </section>
 
 {{-- ============================================================
-     FEATURES (Tabbed — Our Approach)
-============================================================ --}}
-<section id="features" class="features section light-background">
-
-    <div class="container">
-
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Our Approach</h2>
-            <p>How We Work For You</p>
-        </div>
-
-        <ul class="nav nav-tabs row d-flex" data-aos="fade-up" data-aos-delay="100">
-            <li class="nav-item col-6 col-md-3">
-                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#feat-1">
-                    <i class="bi bi-house-check"></i>
-                    <h4 class="d-none d-lg-block">Property Management</h4>
-                </a>
-            </li>
-            <li class="nav-item col-6 col-md-3">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#feat-2">
-                    <i class="bi bi-lightbulb"></i>
-                    <h4 class="d-none d-lg-block">Consultancy</h4>
-                </a>
-            </li>
-            <li class="nav-item col-6 col-md-3">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#feat-3">
-                    <i class="bi bi-cash-coin"></i>
-                    <h4 class="d-none d-lg-block">Financial Management</h4>
-                </a>
-            </li>
-            <li class="nav-item col-6 col-md-3">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#feat-4">
-                    <i class="bi bi-tools"></i>
-                    <h4 class="d-none d-lg-block">Repair &amp; Maintenance</h4>
-                </a>
-            </li>
-        </ul>
-
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="tab-pane fade active show" id="feat-1">
-                <div class="row">
-                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                        <h3>Comprehensive Property Management</h3>
-                        <p class="fst-italic">
-                            End-to-end management of residential and commercial properties, letting you focus on
-                            your investment while we handle the day-to-day.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check2-all"></i> <span>Tenant sourcing, vetting and relations</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Rent and service charge collection with transparent reporting</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Regular property inspections and status updates</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Legal compliance and dispute resolution support</span></li>
-                        </ul>
-                        <a href="{{ route('v2.services') }}" class="read-more">Learn More <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2 text-center">
-                        <img src="{{ asset('images/about/property-management.jpg') }}" alt="Property Management" class="img-fluid rounded">
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="feat-2">
-                <div class="row">
-                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                        <h3>Property Consultancy</h3>
-                        <p>
-                            Expert investment advice and strategic guidance to help you make informed property
-                            decisions in Kenya's dynamic market.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check2-all"></i> <span>Investment analysis and market research</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Strategic property planning and advisory</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Risk assessment for property portfolios</span></li>
-                        </ul>
-                        <a href="{{ route('v2.services') }}" class="read-more">Learn More <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2 text-center">
-                        <img src="{{ asset('images/about/consultancy.jpg') }}" alt="Consultancy" class="img-fluid rounded">
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="feat-3">
-                <div class="row">
-                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                        <h3>Accounting &amp; Financial Management</h3>
-                        <p>
-                            Full-cycle financial management ensuring every shilling is accounted for and owners
-                            receive timely, accurate reports.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check2-all"></i> <span>Budget preparation and cost analysis</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Monthly management accounts and statements</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Statutory compliance and tax remittances</span></li>
-                        </ul>
-                        <a href="{{ route('v2.services') }}" class="read-more">Learn More <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2 text-center">
-                        <img src="{{ asset('images/about/financial-management.jpg') }}" alt="Financial Management" class="img-fluid rounded">
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="feat-4">
-                <div class="row">
-                    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                        <h3>Repair &amp; Maintenance</h3>
-                        <p>
-                            Prompt, reliable maintenance keeps your property in optimal condition and your tenants
-                            satisfied, protecting your investment's long-term value.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check2-all"></i> <span>24/7 emergency repair response</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Preventative maintenance scheduling</span></li>
-                            <li><i class="bi bi-check2-all"></i> <span>Vetted contractor and vendor management</span></li>
-                        </ul>
-                        <a href="{{ route('v2.services') }}" class="read-more">Learn More <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2 text-center">
-                        <img src="{{ asset('images/about/repair-maintenance.jpg') }}" alt="Maintenance" class="img-fluid rounded">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-{{-- ============================================================
      CALL TO ACTION
 ============================================================ --}}
 <section id="call-to-action" class="call-to-action section dark-background">
@@ -253,7 +168,7 @@
 {{-- ============================================================
      SERVICES
 ============================================================ --}}
-<section id="services" class="services section kc2-section-odd">
+<section id="services" class="services section kc2-section-white">
 
     <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
@@ -322,7 +237,7 @@
      DEVELOPMENTS UNDER MANAGEMENT
 ============================================================ --}}
 @if(isset($developments) && $developments->count())
-<section id="developments" class="section kc2-section-even">
+<section id="developments" class="section kc2-section-odd">
 
     <div class="container section-title" data-aos="fade-up">
         <h2>Our Portfolio</h2>
@@ -381,7 +296,7 @@
 {{-- ============================================================
      TESTIMONIALS
 ============================================================ --}}
-<section id="testimonials" class="testimonials section kc2-section-green-anim">
+<section id="testimonials" class="testimonials section kc2-section-white">
 
     <div class="container section-title" data-aos="fade-up">
         <h2>Testimonials</h2>
@@ -407,11 +322,10 @@
 
                 <div class="swiper-slide">
                     <div class="testimonial-item">
-                        <img src="{{ asset('v2/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2') }}" class="testimonial-img" alt="" style="display:none">
                         <div class="d-flex align-items-center mb-2">
                             <div class="ms-0">
-                                <h3>Property Owner, Westlands</h3>
-                                <h4>Residential Estate</h4>
+                                <h3>Grace M., Kileleshwa Gardens</h3>
+                                <h4>Residential Estate, Kileleshwa</h4>
                                 <div class="stars">
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
@@ -422,6 +336,12 @@
                             <span>Kent Consultants have managed our residential estate for over 8 years. Their professionalism, transparency and responsiveness are unmatched. Monthly reports are always on time.</span>
                             <i class="bi bi-quote quote-icon-right"></i>
                         </p>
+                        <div class="kc2-review-link">
+                            <a href="https://g.page/r/KentConsultantsLtd/review" target="_blank" rel="noopener" title="Read on Google Reviews">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 11.1H12v2.8h5.35c-.23 1.25-.94 2.31-2 3.02v2.5h3.24c1.9-1.75 3-4.33 3-7.4 0-.71-.07-1.38-.24-2.02z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.6-2.44l-3.24-2.5c-.9.6-2.04.96-3.36.96-2.58 0-4.77-1.74-5.55-4.08H3.1v2.58A9.99 9.99 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.45 13.94A5.97 5.97 0 0 1 6.14 12c0-.68.12-1.34.31-1.94V7.48H3.1A9.99 9.99 0 0 0 2 12c0 1.61.38 3.13 1.1 4.52l3.35-2.58z"/><path fill="#EA4335" d="M12 6.58c1.45 0 2.75.5 3.77 1.48l2.83-2.83C16.95 3.59 14.7 2.6 12 2.6A9.99 9.99 0 0 0 3.1 7.48l3.35 2.58C7.23 8.32 9.42 6.58 12 6.58z"/></svg>
+                                Google Review
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -429,8 +349,8 @@
                     <div class="testimonial-item">
                         <div class="d-flex align-items-center mb-2">
                             <div class="ms-0">
-                                <h3>Commercial Landlord, CBD</h3>
-                                <h4>Commercial Building</h4>
+                                <h3>James O., Parklands Plaza</h3>
+                                <h4>Commercial Building, Parklands</h4>
                                 <div class="stars">
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
@@ -441,6 +361,12 @@
                             <span>The team at Kent Consultants transformed the management of our commercial property. Tenant occupancy improved significantly and financial reporting is crystal clear.</span>
                             <i class="bi bi-quote quote-icon-right"></i>
                         </p>
+                        <div class="kc2-review-link">
+                            <a href="https://g.page/r/KentConsultantsLtd/review" target="_blank" rel="noopener" title="Read on Google Reviews">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 11.1H12v2.8h5.35c-.23 1.25-.94 2.31-2 3.02v2.5h3.24c1.9-1.75 3-4.33 3-7.4 0-.71-.07-1.38-.24-2.02z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.6-2.44l-3.24-2.5c-.9.6-2.04.96-3.36.96-2.58 0-4.77-1.74-5.55-4.08H3.1v2.58A9.99 9.99 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.45 13.94A5.97 5.97 0 0 1 6.14 12c0-.68.12-1.34.31-1.94V7.48H3.1A9.99 9.99 0 0 0 2 12c0 1.61.38 3.13 1.1 4.52l3.35-2.58z"/><path fill="#EA4335" d="M12 6.58c1.45 0 2.75.5 3.77 1.48l2.83-2.83C16.95 3.59 14.7 2.6 12 2.6A9.99 9.99 0 0 0 3.1 7.48l3.35 2.58C7.23 8.32 9.42 6.58 12 6.58z"/></svg>
+                                Google Review
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -448,8 +374,8 @@
                     <div class="testimonial-item">
                         <div class="d-flex align-items-center mb-2">
                             <div class="ms-0">
-                                <h3>Property Investor, Karen</h3>
-                                <h4>Mixed-Use Development</h4>
+                                <h3>Amina W., Karen Ridgeview</h3>
+                                <h4>Mixed-Use Development, Karen</h4>
                                 <div class="stars">
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                 </div>
@@ -460,6 +386,12 @@
                             <span>Handing over our Karen development to Kent Consultants was the best decision we made. Collections are up, maintenance issues are resolved swiftly, and our tenants are happier than ever.</span>
                             <i class="bi bi-quote quote-icon-right"></i>
                         </p>
+                        <div class="kc2-review-link">
+                            <a href="https://g.page/r/KentConsultantsLtd/review" target="_blank" rel="noopener" title="Read on Google Reviews">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 11.1H12v2.8h5.35c-.23 1.25-.94 2.31-2 3.02v2.5h3.24c1.9-1.75 3-4.33 3-7.4 0-.71-.07-1.38-.24-2.02z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.6-2.44l-3.24-2.5c-.9.6-2.04.96-3.36.96-2.58 0-4.77-1.74-5.55-4.08H3.1v2.58A9.99 9.99 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.45 13.94A5.97 5.97 0 0 1 6.14 12c0-.68.12-1.34.31-1.94V7.48H3.1A9.99 9.99 0 0 0 2 12c0 1.61.38 3.13 1.1 4.52l3.35-2.58z"/><path fill="#EA4335" d="M12 6.58c1.45 0 2.75.5 3.77 1.48l2.83-2.83C16.95 3.59 14.7 2.6 12 2.6A9.99 9.99 0 0 0 3.1 7.48l3.35 2.58C7.23 8.32 9.42 6.58 12 6.58z"/></svg>
+                                Google Review
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -473,7 +405,7 @@
 {{-- ============================================================
      FAQ
 ============================================================ --}}
-<section id="faq" class="faq section">
+<section id="faq" class="faq section kc2-section-odd">
 
     <div class="container section-title" data-aos="fade-up">
         <h2>FAQ</h2>
@@ -537,6 +469,32 @@
                         </div>
                     </div>
 
+                    <div class="accordion-item">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-5">
+                                What are your management fees?
+                            </button>
+                        </h2>
+                        <div id="faq-5" class="collapse" data-parent="#accordion-faq">
+                            <div class="accordion-body">
+                                Our management fees are typically in the range of <strong>5–10% of collected rent</strong>, depending on property type, size and scope of services required. The exact rate is confirmed during an initial site visit so we can give you a fair, tailored quote. There are no hidden charges; everything is set out clearly in your management agreement before we begin.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-6">
+                                What happens when we switch from our current manager?
+                            </button>
+                        </h2>
+                        <div id="faq-6" class="collapse" data-parent="#accordion-faq">
+                            <div class="accordion-body">
+                                We make the transition as smooth as possible. Once you instruct us, we handle the full handover: collecting lease agreements, tenant records, deposit schedules and service contracts from your outgoing manager. We notify all tenants in writing, update rent payment details and carry out an initial property inspection, all within a typical handover window of two to four weeks. There is no gap in management cover during the changeover.
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -547,7 +505,7 @@
 {{-- ============================================================
      CONTACT TEASER
 ============================================================ --}}
-<section id="contact" class="contact section kc2-section-green-anim">
+<section id="contact" class="contact section kc2-section-white">
 
     <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
@@ -589,10 +547,20 @@
             <div class="col-lg-8">
                 <form id="kc2-contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="200" novalidate>
                     <input type="hidden" name="access_key" value="{{ config('services.web3forms.key', '') }}">
-                    <input type="hidden" name="subject" value="New Enquiry — Kent Consultants Ltd (Design 2)">
+                    <input type="hidden" name="subject" value="New Enquiry | Kent Consultants Ltd">
                     <input type="hidden" name="botcheck" style="display:none">
 
                     <div class="row gy-4">
+                        <div class="col-md-12">
+                            <select name="inquiry_type" id="kc2-inquiry-type" class="form-control kc2-inquiry-select" required>
+                                <option value="" disabled selected>I am a... (please select)</option>
+                                <option value="Potential Client">I'm a potential client</option>
+                                <option value="Property Owner">I'm a property owner</option>
+                                <option value="Tenant">I'm a tenant</option>
+                                <option value="Maintenance Issue">I have a maintenance issue</option>
+                            </select>
+                            <div class="kc2-inquiry-hint" id="kc2-inquiry-hint"></div>
+                        </div>
                         <div class="col-md-6">
                             <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                         </div>
@@ -626,6 +594,61 @@
 @endsection
 
 @push('scripts')
+<script>
+/* ── Trust-bar counter animation ── */
+(function () {
+    function animateCounters() {
+        document.querySelectorAll('.kc2-counter').forEach(function (el) {
+            if (el.dataset.animated) return;
+            el.dataset.animated = '1';
+            var target   = parseInt(el.dataset.target, 10);
+            var prefix   = el.dataset.prefix  || '';
+            var suffix   = el.dataset.suffix  || '';
+            var duration = 1800;
+            var start    = null;
+            function step(ts) {
+                if (!start) start = ts;
+                var progress = Math.min((ts - start) / duration, 1);
+                var eased    = 1 - Math.pow(1 - progress, 3);
+                var current  = Math.round(eased * target);
+                el.textContent = prefix + current.toLocaleString() + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        });
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { animateCounters(); io.disconnect(); }
+        });
+    }, { threshold: 0.3 });
+
+    var bar = document.getElementById('trust-bar');
+    if (bar) io.observe(bar);
+})();
+</script>
+<script>
+/* ── Inquiry type hint & dynamic subject ── */
+(function () {
+    var hints = {
+        'Potential Client':  'We\'d love to tell you more. We\'ll reply within 24 hours.',
+        'Property Owner':    'We\'ll get back to you within 24 hours to discuss your management needs.',
+        'Tenant':            'For urgent issues please call us directly. We respond to all enquiries within 24 business hours.',
+        'Maintenance Issue': 'We treat maintenance as urgent. Our team will respond within 24 hours. For emergencies call +254 786 955 170.'
+    };
+    var sel   = document.getElementById('kc2-inquiry-type');
+    var hint  = document.getElementById('kc2-inquiry-hint');
+    var subj  = document.querySelector('#kc2-contact-form input[name="subject"]');
+    if (sel && hint && subj) {
+        sel.addEventListener('change', function () {
+            var val = sel.value;
+            hint.textContent = hints[val] || '';
+            subj.value = 'New Enquiry [' + val + '] | Kent Consultants Ltd';
+        });
+    }
+})();
+</script>
 <script>
 document.getElementById('kc2-contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();

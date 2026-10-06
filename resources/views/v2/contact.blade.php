@@ -83,10 +83,20 @@
                 </div>
                 <form id="kc2-contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="200" novalidate>
                     <input type="hidden" name="access_key" value="{{ config('services.web3forms.key', '') }}">
-                    <input type="hidden" name="subject" value="New Contact Enquiry — Kent Consultants Ltd">
+                    <input type="hidden" name="subject" value="New Contact Enquiry | Kent Consultants Ltd">
                     <input type="hidden" name="botcheck" style="display:none">
 
                     <div class="row gy-4">
+                        <div class="col-md-12">
+                            <select name="inquiry_type" id="kc2-inquiry-type" class="form-control kc2-inquiry-select" required>
+                                <option value="" disabled selected>I am a... (please select)</option>
+                                <option value="Potential Client">I'm a potential client</option>
+                                <option value="Property Owner">I'm a property owner</option>
+                                <option value="Tenant">I'm a tenant</option>
+                                <option value="Maintenance Issue">I have a maintenance issue</option>
+                            </select>
+                            <div class="kc2-inquiry-hint" id="kc2-inquiry-hint"></div>
+                        </div>
                         <div class="col-md-6">
                             <input type="text"  name="name"          class="form-control" placeholder="Your Name"     required>
                         </div>
@@ -182,6 +192,32 @@
                         </div>
                     </div>
 
+                    <div class="accordion-item">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cfaq-5">
+                                What are your management fees?
+                            </button>
+                        </h2>
+                        <div id="cfaq-5" class="collapse" data-parent="#contact-faq">
+                            <div class="accordion-body">
+                                Our management fees are typically in the range of <strong>5–10% of collected rent</strong>, depending on property type, size and scope of services required. The exact rate is confirmed during an initial site visit so we can give you a fair, tailored quote. There are no hidden charges; everything is set out clearly in your management agreement before we begin.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cfaq-6">
+                                What happens when we switch from our current manager?
+                            </button>
+                        </h2>
+                        <div id="cfaq-6" class="collapse" data-parent="#contact-faq">
+                            <div class="accordion-body">
+                                We make the transition as smooth as possible. Once you instruct us, we handle the full handover: collecting lease agreements, tenant records, deposit schedules and service contracts from your outgoing manager. We notify all tenants in writing, update rent payment details and carry out an initial property inspection, all within a typical handover window of two to four weeks. There is no gap in management cover during the changeover.
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -192,6 +228,27 @@
 @endsection
 
 @push('scripts')
+<script>
+/* ── Inquiry type hint & dynamic subject ── */
+(function () {
+    var hints = {
+        'Potential Client':  'We\'d love to tell you more. We\'ll reply within 24 hours.',
+        'Property Owner':    'We\'ll get back to you within 24 hours to discuss your management needs.',
+        'Tenant':            'For urgent issues please call us directly. We respond to all enquiries within 24 business hours.',
+        'Maintenance Issue': 'We treat maintenance as urgent. Our team will respond within 24 hours. For emergencies call +254 786 955 170.'
+    };
+    var sel   = document.getElementById('kc2-inquiry-type');
+    var hint  = document.getElementById('kc2-inquiry-hint');
+    var subj  = document.querySelector('#kc2-contact-form input[name="subject"]');
+    if (sel && hint && subj) {
+        sel.addEventListener('change', function () {
+            var val = sel.value;
+            hint.textContent = hints[val] || '';
+            subj.value = 'New Contact Enquiry [' + val + '] | Kent Consultants Ltd';
+        });
+    }
+})();
+</script>
 <script>
 document.getElementById('kc2-contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();

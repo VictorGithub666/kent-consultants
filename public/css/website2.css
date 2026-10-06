@@ -574,7 +574,14 @@ section, .section {
   border: 1px solid #ddd; color: var(--kc2-text);
   background: #fff; transition: border-color 0.3s; width: 100%;
 }
+.contact .php-email-form select {
+  font-size: 14px; padding: 10px 15px; box-shadow: none; border-radius: 4px;
+  border: 1px solid #ddd; color: var(--kc2-text);
+  background: #fff; transition: border-color 0.3s; width: 100%;
+  appearance: auto;
+}
 .contact .php-email-form input:focus,
+.contact .php-email-form select:focus,
 .contact .php-email-form textarea:focus { border-color: var(--kc2-gold); outline: none; }
 .contact .php-email-form button[type=submit] {
   background: var(--kc2-emerald); color: #fff;
@@ -599,6 +606,28 @@ section, .section {
  # Stats Bar (homepage)
 ============================================================ */
 .kc2-stats { background: var(--kc2-emerald); padding: 40px 0; }
+
+/* ── Inquiry-type dropdown & hint ─────────────────────────── */
+.kc2-inquiry-select option[value=""] { color: #999; }
+
+.kc2-inquiry-hint {
+  font-size: 13px;
+  color: var(--kc2-emerald);
+  margin-top: 6px;
+  min-height: 1.2em;
+  font-style: italic;
+  transition: opacity 0.3s;
+}
+
+/* Dark-section override (e.g. kc2-section-green-anim on homepage) */
+.kc2-section-green-anim .php-email-form select {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.22);
+  color: #fff;
+}
+.kc2-section-green-anim .php-email-form select option { color: var(--kc2-charcoal); background: #fff; }
+.kc2-section-green-anim .php-email-form select:focus { border-color: var(--kc2-gold); }
+.kc2-section-green-anim .kc2-inquiry-hint { color: var(--kc2-gold); }
 .kc2-stats .stat-item { text-align: center; color: #fff; }
 .kc2-stats .stat-item .number {
   font-size: 2.8rem; font-weight: 800; color: var(--kc2-gold); display: block; line-height: 1;
@@ -761,6 +790,71 @@ section, .section {
 }
 
 /* ============================================================
+ # TRUST BAR
+============================================================ */
+.kc2-trust-bar {
+  background: var(--kc2-charcoal);
+  padding: 48px 0;
+  position: relative;
+  z-index: 2;
+}
+.kc2-trust-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(212,175,55,0.06) 50%, transparent 100%);
+  background-size: 300% 100%;
+  animation: kc2-shimmer 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.kc2-trust-item {
+  padding: 8px 0;
+}
+
+.kc2-trust-number {
+  font-family: var(--heading-font);
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--kc2-gold);
+  line-height: 1.1;
+  min-height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kc2-trust-static {
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--kc2-gold);
+  line-height: 1.1;
+}
+
+.kc2-trust-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 6px;
+}
+
+.kc2-trust-item + .kc2-trust-item { border-left: none; }
+
+@media (min-width: 768px) {
+  .kc2-trust-bar .col-md-3:not(:last-child) .kc2-trust-item {
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+}
+
+@media (max-width: 575px) {
+  .kc2-trust-number,
+  .kc2-trust-static { font-size: 2rem; }
+}
+
+/* ============================================================
  # ABOUT VIDEO
 ============================================================ */
 .kc2-about-video-wrap {
@@ -858,6 +952,37 @@ section, .section {
   0%   { transform: translate(0, 0) scale(1); }
   50%  { transform: translate(60px, 40px) scale(1.1); }
   100% { transform: translate(-40px, 60px) scale(0.95); }
+}
+
+/* Plain white sections — clean, no animation */
+.kc2-section-white {
+  background: #ffffff;
+  --background-color: #ffffff;
+  --surface-color: #ffffff;
+}
+
+/* ============================================================
+ # TESTIMONIAL REVIEW LINK
+============================================================ */
+.kc2-review-link {
+  margin-top: 12px;
+}
+.kc2-review-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--kc2-text-muted);
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 4px 12px;
+  transition: border-color 0.25s, color 0.25s;
+  text-decoration: none;
+}
+.kc2-review-link a:hover {
+  border-color: #4285F4;
+  color: #4285F4;
 }
 
 /* ============================================================
