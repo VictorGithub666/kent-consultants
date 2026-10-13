@@ -63,7 +63,7 @@
             <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0">
                 <div style="padding:8px 0;">
                     <div style="font-family:'Open Sans',sans-serif;font-size:2.6rem;font-weight:800;color:#D4AF37;line-height:1.1;min-height:3.2rem;display:flex;align-items:center;justify-content:center;">
-                        <span class="kc2-counter" data-target="3000" data-prefix="Over " data-suffix="">0</span>
+                        <span class="kc2-counter" data-target="2000" data-prefix="Over " data-suffix="">0</span>
                     </div>
                     <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.65);margin-top:6px;">Units Managed</div>
                 </div>
@@ -487,7 +487,7 @@
                         </h2>
                         <div id="faq-5" class="collapse" data-parent="#accordion-faq">
                             <div class="accordion-body">
-                                Our management fees are typically in the range of <strong>5–10% of collected rent</strong>, depending on property type, size and scope of services required. The exact rate is confirmed during an initial site visit so we can give you a fair, tailored quote. There are no hidden charges; everything is set out clearly in your management agreement before we begin.
+                                Our fees are tailored to the specific requirements, scope of services, and unique characteristics of each property. As such, the fee structure is determined on a case-by-case basis to ensure it appropriately reflects the property's needs and management requirements.
                             </div>
                         </div>
                     </div>

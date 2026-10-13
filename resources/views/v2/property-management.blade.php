@@ -106,15 +106,15 @@
     </div>
 </section>
 
-{{-- Kent vs Typical --}}
+{{-- How We Rate Ourselves --}}
 <section class="section kc2-section-even">
     <div class="container section-title" data-aos="fade-up">
-        <h2>The Kent Difference</h2>
-        <p>How We Compare to Typical Property Managers</p>
+        <h2>Our Standards</h2>
+        <p>How We Rate Ourselves</p>
     </div>
     <div class="container">
         <div class="row g-4 justify-content-center">
-            <div class="col-lg-5" data-aos="fade-right">
+            <div class="col-lg-8" data-aos="fade-up">
                 <div class="kc2-compare-card kc2-compare-card--kent">
                     <h3><i class="bi bi-award-fill me-2"></i>Kent Consultants</h3>
                     <ul>
@@ -123,18 +123,6 @@
                         <li><i class="bi bi-check-circle-fill"></i> &lt;24hr maintenance response time</li>
                         <li><i class="bi bi-check-circle-fill"></i> Digital rent collection &amp; online statements</li>
                         <li><i class="bi bi-check-circle-fill"></i> 15+ years of Kenya market experience</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-5" data-aos="fade-left">
-                <div class="kc2-compare-card kc2-compare-card--others">
-                    <h3><i class="bi bi-building me-2"></i>Typical Firms</h3>
-                    <ul>
-                        <li><i class="bi bi-x-circle-fill"></i> Vague, delayed or paper-based statements</li>
-                        <li><i class="bi bi-x-circle-fill"></i> Rotating staff, no single point of contact</li>
-                        <li><i class="bi bi-x-circle-fill"></i> Slow, inconsistent maintenance turnaround</li>
-                        <li><i class="bi bi-x-circle-fill"></i> Manual, cash-based rent collection</li>
-                        <li><i class="bi bi-x-circle-fill"></i> Limited or generic market knowledge</li>
                     </ul>
                 </div>
             </div>
