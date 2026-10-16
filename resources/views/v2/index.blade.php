@@ -251,7 +251,7 @@
 
     <div class="container section-title" data-aos="fade-up">
         <h2>Our Portfolio</h2>
-        <p>Developments Under Our Management</p>
+        <p>Some Developments Under Our Management</p>
     </div>
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -304,8 +304,8 @@
 @endif
 
 {{-- ============================================================
-     TESTIMONIALS
-============================================================ --}}
+     TESTIMONIALS (commented out)
+============================================================
 <section id="testimonials" class="testimonials section kc2-section-white">
 
     <div class="container section-title" data-aos="fade-up">
@@ -348,7 +348,6 @@
                         </p>
                         <div class="kc2-review-link">
                             <a href="https://g.page/r/KentConsultantsLtd/review" target="_blank" rel="noopener" title="Read on Google Reviews">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 11.1H12v2.8h5.35c-.23 1.25-.94 2.31-2 3.02v2.5h3.24c1.9-1.75 3-4.33 3-7.4 0-.71-.07-1.38-.24-2.02z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.6-2.44l-3.24-2.5c-.9.6-2.04.96-3.36.96-2.58 0-4.77-1.74-5.55-4.08H3.1v2.58A9.99 9.99 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.45 13.94A5.97 5.97 0 0 1 6.14 12c0-.68.12-1.34.31-1.94V7.48H3.1A9.99 9.99 0 0 0 2 12c0 1.61.38 3.13 1.1 4.52l3.35-2.58z"/><path fill="#EA4335" d="M12 6.58c1.45 0 2.75.5 3.77 1.48l2.83-2.83C16.95 3.59 14.7 2.6 12 2.6A9.99 9.99 0 0 0 3.1 7.48l3.35 2.58C7.23 8.32 9.42 6.58 12 6.58z"/></svg>
                                 Google Review
                             </a>
                         </div>
@@ -373,7 +372,6 @@
                         </p>
                         <div class="kc2-review-link">
                             <a href="https://g.page/r/KentConsultantsLtd/review" target="_blank" rel="noopener" title="Read on Google Reviews">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 11.1H12v2.8h5.35c-.23 1.25-.94 2.31-2 3.02v2.5h3.24c1.9-1.75 3-4.33 3-7.4 0-.71-.07-1.38-.24-2.02z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.6-2.44l-3.24-2.5c-.9.6-2.04.96-3.36.96-2.58 0-4.77-1.74-5.55-4.08H3.1v2.58A9.99 9.99 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.45 13.94A5.97 5.97 0 0 1 6.14 12c0-.68.12-1.34.31-1.94V7.48H3.1A9.99 9.99 0 0 0 2 12c0 1.61.38 3.13 1.1 4.52l3.35-2.58z"/><path fill="#EA4335" d="M12 6.58c1.45 0 2.75.5 3.77 1.48l2.83-2.83C16.95 3.59 14.7 2.6 12 2.6A9.99 9.99 0 0 0 3.1 7.48l3.35 2.58C7.23 8.32 9.42 6.58 12 6.58z"/></svg>
                                 Google Review
                             </a>
                         </div>
@@ -398,7 +396,6 @@
                         </p>
                         <div class="kc2-review-link">
                             <a href="https://g.page/r/KentConsultantsLtd/review" target="_blank" rel="noopener" title="Read on Google Reviews">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 11.1H12v2.8h5.35c-.23 1.25-.94 2.31-2 3.02v2.5h3.24c1.9-1.75 3-4.33 3-7.4 0-.71-.07-1.38-.24-2.02z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.6-2.44l-3.24-2.5c-.9.6-2.04.96-3.36.96-2.58 0-4.77-1.74-5.55-4.08H3.1v2.58A9.99 9.99 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.45 13.94A5.97 5.97 0 0 1 6.14 12c0-.68.12-1.34.31-1.94V7.48H3.1A9.99 9.99 0 0 0 2 12c0 1.61.38 3.13 1.1 4.52l3.35-2.58z"/><path fill="#EA4335" d="M12 6.58c1.45 0 2.75.5 3.77 1.48l2.83-2.83C16.95 3.59 14.7 2.6 12 2.6A9.99 9.99 0 0 0 3.1 7.48l3.35 2.58C7.23 8.32 9.42 6.58 12 6.58z"/></svg>
                                 Google Review
                             </a>
                         </div>
@@ -411,11 +408,12 @@
     </div>
 
 </section>
+============================================================ --}}
 
 {{-- ============================================================
      FAQ
 ============================================================ --}}
-<section id="faq" class="faq section kc2-section-odd">
+<section id="faq" class="faq section kc2-section-white">
 
     <div class="container section-title" data-aos="fade-up">
         <h2>FAQ</h2>
@@ -515,7 +513,7 @@
 {{-- ============================================================
      CONTACT TEASER
 ============================================================ --}}
-<section id="contact" class="contact section kc2-section-white">
+<section id="contact" class="contact section kc2-section-odd">
 
     <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
