@@ -44,19 +44,19 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-            <a href="{{ route('v2.home') }}" class="logo d-flex align-items-center">
+            <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset('images/logo.png') }}" alt="Kent Consultants Ltd">
                 <h1 class="sitename ms-2">Kent Consultants</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ route('v2.home') }}" class="@yield('nav_home')">Home</a></li>
-                    <li><a href="{{ route('v2.property-management') }}" class="@yield('nav_pm')">Property Management</a></li>
-                    <li><a href="{{ route('v2.about') }}" class="@yield('nav_about')">About</a></li>
-                    <li><a href="{{ route('v2.services') }}" class="@yield('nav_services')">Services</a></li>
-                    <li><a href="{{ route('v2.careers') }}" class="@yield('nav_careers')">Careers</a></li>
-                    <li><a href="{{ route('v2.contact') }}" class="@yield('nav_contact')">Contact</a></li>
+                    <li><a href="{{ route('home') }}" class="@yield('nav_home')">Home</a></li>
+                    <li><a href="{{ route('property-management') }}" class="@yield('nav_pm')">Property Management</a></li>
+                    <li><a href="{{ route('about') }}" class="@yield('nav_about')">About</a></li>
+                    <li><a href="{{ route('services') }}" class="@yield('nav_services')">Services</a></li>
+                    <li><a href="{{ route('careers') }}" class="@yield('nav_careers')">Careers</a></li>
+                    <li><a href="{{ route('contact') }}" class="@yield('nav_contact')">Contact</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

@@ -43,7 +43,7 @@
                             <p class="deadline"><i class="bi bi-calendar3 me-1"></i>
                                 Deadline: {{ $career->application_deadline->format('M d, Y') }}
                             </p>
-                            <a href="{{ route('v2.careers.show', $career) }}" class="btn-apply">View &amp; Apply</a>
+                            <a href="{{ route('careers.show', $career) }}" class="btn-apply">View &amp; Apply</a>
                         </div>
                     </div>
                 @endforeach

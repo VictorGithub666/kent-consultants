@@ -31,7 +31,7 @@
                     operations to protect your asset and maximise your returns, all through one dedicated team.
                 </p>
                 <div class="mt-4">
-                    <a href="{{ route('v2.contact') }}" class="btn-get-started me-2">Book a Consultation</a>
+                    <a href="{{ route('contact') }}" class="btn-get-started me-2">Book a Consultation</a>
                     <a href="tel:+254734476303" class="read-more ms-2">
                         <i class="bi bi-telephone me-1"></i>Call Us
                     </a>
@@ -197,7 +197,7 @@
                 <p>Talk to our team today and see why landlords across Kenya consider Kent Consultants their most valued property management partner.</p>
             </div>
             <div class="col-xl-3 cta-btn-container text-center">
-                <a class="cta-btn align-middle" href="{{ route('v2.contact') }}">Book a Consultation</a>
+                <a class="cta-btn align-middle" href="{{ route('contact') }}">Book a Consultation</a>
             </div>
         </div>
     </div>

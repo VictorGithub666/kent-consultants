@@ -729,14 +729,20 @@ section, .section {
   background-repeat: no-repeat;
 }
 
+/* ── Hero overlay brightness ──────────────────────────────────
+   Adjust the alpha values below to control how dark the image appears.
+   Lower alpha  = brighter (more image shows through).
+   Higher alpha = darker  (more overlay covers the image).
+   Current values are intentionally light to keep the hero bright.
+──────────────────────────────────────────────────────────── */
 .kc2-hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(9, 10, 11, 0.206) 0%,
-    rgba(9,79,57,0.18) 60%,
-    rgba(9, 10, 11, 0.158) 100%
+    rgba(9, 10, 11, 0.08) 0%,   /* top tint      — raise to darken top */
+    rgba(9, 79, 57, 0.10) 60%,  /* mid green tint — raise to darken mid */
+    rgba(9, 10, 11, 0.25) 100%  /* bottom tint   — raise to darken bottom */
   );
 }
 

@@ -1,5 +1,5 @@
 {{-- resources/views/website/privacy-policy.blade.php --}}
-@extends('layouts.website')
+@extends('layouts.website2')
 
 @section('title', 'Privacy Policy - Kent Consultants Ltd')
 @section('description', 'Privacy Policy for Kent Consultants Ltd - Learn how we protect your personal information.')

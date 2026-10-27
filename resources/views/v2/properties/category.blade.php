@@ -23,16 +23,16 @@
     <div class="container">
 
         <div class="kc2-category-tabs" data-aos="fade-up">
-            <a href="{{ route('v2.properties.index') }}" class="kc2-cat-tab">All Properties</a>
-            <a href="{{ route('v2.properties.category', 'residential-estates') }}"
+            <a href="{{ route('properties.index') }}" class="kc2-cat-tab">All Properties</a>
+            <a href="{{ route('properties.category', 'residential-estates') }}"
                class="kc2-cat-tab {{ $category->slug === 'residential-estates' ? 'kc2-cat-tab--active' : '' }}">Residential Estates</a>
-            <a href="{{ route('v2.properties.category', 'low-cost-housing') }}"
+            <a href="{{ route('properties.category', 'low-cost-housing') }}"
                class="kc2-cat-tab {{ $category->slug === 'low-cost-housing' ? 'kc2-cat-tab--active' : '' }}">Low Cost Housing</a>
-            <a href="{{ route('v2.properties.category', 'residential-towers') }}"
+            <a href="{{ route('properties.category', 'residential-towers') }}"
                class="kc2-cat-tab {{ $category->slug === 'residential-towers' ? 'kc2-cat-tab--active' : '' }}">Residential Towers</a>
-            <a href="{{ route('v2.properties.category', 'commercial-buildings') }}"
+            <a href="{{ route('properties.category', 'commercial-buildings') }}"
                class="kc2-cat-tab {{ $category->slug === 'commercial-buildings' ? 'kc2-cat-tab--active' : '' }}">Commercial Buildings</a>
-            <a href="{{ route('v2.properties.category', 'warehouses') }}"
+            <a href="{{ route('properties.category', 'warehouses') }}"
                class="kc2-cat-tab {{ $category->slug === 'warehouses' ? 'kc2-cat-tab--active' : '' }}">Warehouses</a>
         </div>
 
@@ -85,7 +85,7 @@
             <i class="bi bi-building" style="font-size:3rem;color:var(--kc2-gold);opacity:0.5"></i>
             <h4 class="mt-3">No {{ $category->name }} Available</h4>
             <p class="text-muted">We currently have no listings in this category. Please check back soon or contact us directly.</p>
-            <a href="{{ route('v2.properties.index') }}" class="btn-get-started mt-2">View All Properties</a>
+            <a href="{{ route('properties.index') }}" class="btn-get-started mt-2">View All Properties</a>
         </div>
         @endif
     </div>
@@ -100,7 +100,7 @@
                 <p>Contact Kent Consultants Ltd to enquire about any of our managed {{ strtolower($category->name) }} or to discuss your property needs.</p>
             </div>
             <div class="col-xl-3 cta-btn-container text-center">
-                <a class="cta-btn align-middle" href="{{ route('v2.contact') }}">Contact Us</a>
+                <a class="cta-btn align-middle" href="{{ route('contact') }}">Contact Us</a>
             </div>
         </div>
     </div>

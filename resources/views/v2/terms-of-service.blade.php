@@ -1,5 +1,5 @@
 {{-- resources/views/website/terms-of-service.blade.php --}}
-@extends('layouts.website')
+@extends('layouts.website2')
 
 @section('title', 'Terms of Service - Kent Consultants Ltd')
 @section('description', 'Terms of Service for Kent Consultants Ltd - Read our terms and conditions.')

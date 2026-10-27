@@ -23,9 +23,9 @@
         {{-- Category quick-links --}}
         @if($categories->count() > 0)
         <div class="kc2-category-tabs" data-aos="fade-up">
-            <a href="{{ route('v2.properties.index') }}" class="kc2-cat-tab kc2-cat-tab--active">All</a>
+            <a href="{{ route('properties.index') }}" class="kc2-cat-tab kc2-cat-tab--active">All</a>
             @foreach($categories as $cat)
-            <a href="{{ route('v2.properties.category', $cat->slug) }}" class="kc2-cat-tab">{{ $cat->name }}</a>
+            <a href="{{ route('properties.category', $cat->slug) }}" class="kc2-cat-tab">{{ $cat->name }}</a>
             @endforeach
         </div>
         @endif
@@ -97,7 +97,7 @@
                 <p>Contact Kent Consultants Ltd to enquire about any of our managed properties or to discuss your property needs.</p>
             </div>
             <div class="col-xl-3 cta-btn-container text-center">
-                <a class="cta-btn align-middle" href="{{ route('v2.contact') }}">Contact Us</a>
+                <a class="cta-btn align-middle" href="{{ route('contact') }}">Contact Us</a>
             </div>
         </div>
     </div>

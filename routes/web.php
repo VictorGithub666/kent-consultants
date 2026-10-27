@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\V2\HomeController as V2HomeController;
-use App\Http\Controllers\Website\HomeController;
-use App\Http\Controllers\Website\PropertyController;
-use App\Http\Controllers\Website\CareerController;
+use App\Http\Controllers\V2\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
@@ -18,60 +15,36 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 // ============================================
-// Public Website Routes
+// Public Website Routes (V2 as main)
 // ============================================
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/services', [HomeController::class, 'services'])->name('services');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/property-management', [HomeController::class, 'propertyManagement'])->name('property-management');
+Route::get('/careers', [HomeController::class, 'careers'])->name('careers');
+Route::get('/careers/{career:slug}', [HomeController::class, 'careerShow'])->name('careers.show');
+Route::post('/careers/{career}/apply', [HomeController::class, 'careerApply'])->name('careers.apply');
 
 // Properties
 Route::prefix('properties')->name('properties.')->group(function () {
-    Route::get('/', [PropertyController::class, 'index'])->name('index');
-    Route::get('/{property:slug}', [PropertyController::class, 'show'])->name('show');
-    Route::get('/category/{slug}', [PropertyController::class, 'category'])->name('category');
-});
-
-// Careers
-Route::prefix('careers')->name('careers.')->group(function () {
-    Route::get('/', [CareerController::class, 'index'])->name('index');
-    Route::get('/{career:slug}', [CareerController::class, 'show'])->name('show');
-    Route::post('/{career}/apply', [CareerController::class, 'apply'])->name('apply');
-});
-
-// ============================================================
-// Design 2 (v2) Routes  — /v2/...
-// ============================================================
-Route::prefix('v2')->name('v2.')->group(function () {
-    Route::get('/',                      [V2HomeController::class, 'index'])->name('home');
-    Route::get('/about',                 [V2HomeController::class, 'about'])->name('about');
-    Route::get('/services',              [V2HomeController::class, 'services'])->name('services');
-    Route::get('/contact',               [V2HomeController::class, 'contact'])->name('contact');
-    Route::get('/careers',               [V2HomeController::class, 'careers'])->name('careers');
-    Route::get('/careers/{career:slug}', [V2HomeController::class, 'careerShow'])->name('careers.show');
-    Route::get('/property-management',   [V2HomeController::class, 'propertyManagement'])->name('property-management');
-
-    // Properties
-    Route::prefix('properties')->name('properties.')->group(function () {
-        Route::get('/',             [V2HomeController::class, 'propertiesIndex'])->name('index');
-        Route::get('/{slug}',       [V2HomeController::class, 'propertiesCategory'])->name('category');
-    });
+    Route::get('/', [HomeController::class, 'propertiesIndex'])->name('index');
+    Route::get('/category/{slug}', [HomeController::class, 'propertiesCategory'])->name('category');
 });
 
 // ============================================================
 // Legal Pages
 // ============================================================
 Route::get('/privacy-policy', function () {
-    return view('website.privacy-policy');
+    return view('v2.privacy-policy');
 })->name('privacy.policy');
 
 Route::get('/terms-of-service', function () {
-    return view('website.terms-of-service');
+    return view('v2.terms-of-service');
 })->name('terms.service');
 
 Route::get('/cookie-policy', function () {
-    return view('website.cookie-policy');
+    return view('v2.cookie-policy');
 })->name('cookie.policy');
 
 // ============================================
@@ -89,41 +62,39 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
         // Reset Password
-        Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])
-    ->name('password.reset');
-         Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
+        Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+        Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
     });
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-    
+
     // Protected Admin Routes
     Route::middleware(['auth', 'admin'])->group(function () {
-        
+
         // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        
+
         // Profile
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        
+
         // Users (requires manage_users permission)
         Route::resource('users', UserController::class);
-        
+
         // Properties
         Route::resource('properties', AdminPropertyController::class);
         Route::post('properties/{property}/change-status', [AdminPropertyController::class, 'changeStatus'])->name('properties.change-status');
-        
-        
+
         // Categories
         Route::resource('categories', PropertyCategoryController::class);
 
         // Features
         Route::resource('features', PropertyFeatureController::class);
-        
+
         // Careers
         Route::resource('careers', AdminCareerController::class);
         Route::post('careers/{career}/change-status', [AdminCareerController::class, 'changeStatus'])->name('careers.change-status');
-        
+
         // Career Applications
         Route::get('career-applications', [CareerApplicationController::class, 'index'])->name('career-applications.index');
         Route::get('career-applications/{application}', [CareerApplicationController::class, 'show'])->name('career-applications.show');

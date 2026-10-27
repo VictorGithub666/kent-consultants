@@ -216,7 +216,7 @@
                 <p>Contact us today for a free, no-obligation consultation. Let Kent Consultants deliver the professional property management solution your investment deserves.</p>
             </div>
             <div class="col-xl-3 cta-btn-container text-center">
-                <a class="cta-btn align-middle" href="{{ route('v2.contact') }}">Get in Touch</a>
+                <a class="cta-btn align-middle" href="{{ route('contact') }}">Get in Touch</a>
             </div>
         </div>
     </div>

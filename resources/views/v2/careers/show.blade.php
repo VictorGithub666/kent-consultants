@@ -11,7 +11,7 @@
 {{-- Page Header --}}
 <div class="kc2-page-header">
     <div class="container">
-        <a href="{{ route('v2.careers') }}" class="text-decoration-none" style="color:rgba(255,255,255,0.7);font-size:14px;">
+        <a href="{{ route('careers') }}" class="text-decoration-none" style="color:rgba(255,255,255,0.7);font-size:14px;">
             <i class="bi bi-arrow-left me-1"></i> Back to Careers
         </a>
         <div class="mt-2">

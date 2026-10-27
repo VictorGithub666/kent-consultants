@@ -186,7 +186,7 @@
                     <li><i class="bi bi-check2-circle"></i> <span>Proven track record since 2008</span></li>
                     <li><i class="bi bi-check2-circle"></i> <span>Transparent reporting and timely remittances</span></li>
                 </ul>
-                <a href="{{ route('v2.contact') }}" class="read-more mt-3">
+                <a href="{{ route('contact') }}" class="read-more mt-3">
                     <span>Get in Touch</span><i class="bi bi-arrow-right"></i>
                 </a>
             </div>

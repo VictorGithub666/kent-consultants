@@ -1,5 +1,5 @@
 {{-- resources/views/website/cookie-policy.blade.php --}}
-@extends('layouts.website')
+@extends('layouts.website2')
 
 @section('title', 'Cookie Policy - Kent Consultants Ltd')
 @section('description', 'Cookie Policy for Kent Consultants Ltd - Learn about how we use cookies on our website.')

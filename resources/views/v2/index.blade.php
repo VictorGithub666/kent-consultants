@@ -38,7 +38,7 @@
             designed to protect and maximise the value of your investment across Nairobi and its environs.
         </p>
         <div class="kc2-hero-btns animate__animated animate__fadeInUp animate__delay-1s">
-            <a href="{{ route('v2.contact') }}" class="btn-get-started">Talk to Us</a>
+            <a href="{{ route('contact') }}" class="btn-get-started">Talk to Us</a>
         </div>
     </div>
 
@@ -136,7 +136,7 @@
                     manage residential estates, commercial buildings, towers and warehouses across Nairobi and
                     its environs.
                 </p>
-                <a href="{{ route('v2.about') }}" class="read-more" data-aos="fade-up" data-aos-delay="300">
+                <a href="{{ route('about') }}" class="read-more" data-aos="fade-up" data-aos-delay="300">
                     <span>Read More</span><i class="bi bi-arrow-right"></i>
                 </a>
             </div>
@@ -169,7 +169,7 @@
                 </p>
             </div>
             <div class="col-xl-3 cta-btn-container text-center">
-                <a class="cta-btn align-middle" href="{{ route('v2.contact') }}">Get in Touch</a>
+                <a class="cta-btn align-middle" href="{{ route('contact') }}">Get in Touch</a>
             </div>
         </div>
     </div>
@@ -191,7 +191,7 @@
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="0">
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-house-check"></i></div>
-                    <a href="{{ route('v2.services') }}" class="stretched-link">
+                    <a href="{{ route('services') }}" class="stretched-link">
                         <h3>Property Management</h3>
                     </a>
                     <p>Comprehensive management of residential and commercial properties: tenant relations, maintenance, reporting and more.</p>
@@ -201,7 +201,7 @@
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-tags"></i></div>
-                    <a href="{{ route('v2.services') }}" class="stretched-link">
+                    <a href="{{ route('services') }}" class="stretched-link">
                         <h3>Sales &amp; Leasing</h3>
                     </a>
                     <p>Professional facilitation of property sales and lease agreements, connecting buyers, sellers, landlords and tenants.</p>
@@ -211,7 +211,7 @@
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-lightbulb"></i></div>
-                    <a href="{{ route('v2.services') }}" class="stretched-link">
+                    <a href="{{ route('services') }}" class="stretched-link">
                         <h3>Property Consultancy</h3>
                     </a>
                     <p>Expert advice on property investments, market trends and strategic decisions to grow your portfolio.</p>
@@ -221,7 +221,7 @@
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="150">
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-cash-coin"></i></div>
-                    <a href="{{ route('v2.services') }}" class="stretched-link">
+                    <a href="{{ route('services') }}" class="stretched-link">
                         <h3>Rent Collection</h3>
                     </a>
                     <p>Efficient, transparent rent and service charge collection with detailed reporting and timely remittance.</p>
@@ -231,7 +231,7 @@
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="250">
                 <div class="service-item kc2-service-card position-relative">
                     <div class="kc2-svc-icon"><i class="bi bi-tools"></i></div>
-                    <a href="{{ route('v2.services') }}" class="stretched-link">
+                    <a href="{{ route('services') }}" class="stretched-link">
                         <h3>Repair &amp; Maintenance</h3>
                     </a>
                     <p>Prompt, reliable maintenance services keeping every property in optimal condition for owners and tenants.</p>

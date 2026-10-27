@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\V2;
 
 use App\Http\Controllers\Controller;
+use App\Models\Career;
+use App\Models\CareerApplication;
 use App\Models\Property;
 use App\Models\PropertyCategory;
-use App\Models\Career;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -63,6 +65,31 @@ class HomeController extends Controller
     public function careerShow(Career $career)
     {
         return view('v2.careers.show', compact('career'));
+    }
+
+    public function careerApply(Request $request, Career $career)
+    {
+        $data = $request->validate([
+            'name'         => ['required', 'string', 'max:255'],
+            'email'        => ['required', 'email', 'max:255'],
+            'phone'        => ['nullable', 'string', 'max:50'],
+            'cover_letter' => ['nullable', 'string'],
+            'cv'           => ['required', 'file', 'mimes:pdf,doc,docx', 'max:5120'],
+        ]);
+
+        $cvPath = $request->file('cv')->store('cvs', 'public');
+
+        CareerApplication::create([
+            'career_id'      => $career->id,
+            'applicant_name' => $data['name'],
+            'email'          => $data['email'],
+            'phone'          => $data['phone'] ?? null,
+            'cover_letter'   => $data['cover_letter'] ?? null,
+            'cv_path'        => $cvPath,
+            'status'         => 'new',
+        ]);
+
+        return back()->with('success', 'Your application has been submitted successfully. We will be in touch!');
     }
 
     public function propertyManagement()
