@@ -238,6 +238,16 @@
                 </div>
             </div>
 
+            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="350">
+                <div class="service-item kc2-service-card position-relative">
+                    <div class="kc2-svc-icon"><i class="bi bi-stars"></i></div>
+                    <a href="{{ route('services') }}" class="stretched-link">
+                        <h3>Cleaning Services</h3>
+                    </a>
+                    <p>Professional cleaning for common areas, offices and residential units, keeping every property in pristine condition.</p>
+                </div>
+            </div>
+
         </div>
     </div>
 

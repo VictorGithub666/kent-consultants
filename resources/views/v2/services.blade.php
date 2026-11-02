@@ -91,6 +91,14 @@
                 </div>
             </div>
 
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item kc2-service-card position-relative">
+                    <div class="kc2-svc-icon"><i class="bi bi-stars"></i></div>
+                    <h3>Cleaning Services</h3>
+                    <p>Professional cleaning for common areas, office spaces and residential units, maintaining pristine standards across every property we manage.</p>
+                </div>
+            </div>
+
         </div>
     </div>
 
