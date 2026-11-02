@@ -90,7 +90,9 @@
                 <div class="credits">
                     Sclaters House, Parklands Road, Nairobi, Kenya |
                     <a href="tel:+254786955170">+254 786 955 170</a> <span>&</span>
-                     <a href="tel:+254734254796">+254 734 254 796</a>
+                    <a href="tel:+254734254796">+254 734 254 796</a> <span>&</span>
+                    <a href="tel:+254202364165">020 236 4165</a> <span>&</span>
+                    <a href="tel:+254202324377">020 232 4377</a>
                 </div>
             </div>
         </div>

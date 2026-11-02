@@ -103,7 +103,7 @@
                     </p>
                     <ul>
                         <li><strong>Email:</strong> info@kentconsultantsltd.co.ke</li>
-                        <li><strong>Phone:</strong> +254 786 955 170</li>
+                        <li><strong>Phone:</strong> +254 786 955 170 | +254 734 254 796 | 020 236 4165 | 020 232 4377</li>
                         <li><strong>Address:</strong> Sclaters House, Parklands Road, Nairobi, Kenya</li>
                     </ul>
                 </div>

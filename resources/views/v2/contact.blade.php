@@ -44,7 +44,9 @@
                         <h3>Call Us</h3>
                         <p>
                             <a href="tel:+254786955170">+254 786 955 170</a><br>
-                            <a href="tel:+254734254796">+254 734 254 796</a>
+                            <a href="tel:+254734254796">+254 734 254 796</a><br>
+                            <a href="tel:+254202364165">020 236 4165</a><br>
+                            <a href="tel:+254202324377">020 232 4377</a>
                         </p>
                     </div>
                 </div>
@@ -187,7 +189,7 @@
                         </h2>
                         <div id="cfaq-4" class="collapse" data-parent="#contact-faq">
                             <div class="accordion-body">
-                                We respond to all enquiries within 24 business hours. For urgent matters please call us directly on +254 786 955 170.
+                                We respond to all enquiries within 24 business hours. For urgent matters please call us directly on +254 786 955 170 or 020 236 4165.
                             </div>
                         </div>
                     </div>
@@ -235,7 +237,7 @@
         'Potential Client':  'We\'d love to tell you more. We\'ll reply within 24 hours.',
         'Property Owner':    'We\'ll get back to you within 24 hours to discuss your management needs.',
         'Tenant':            'For urgent issues please call us directly. We respond to all enquiries within 24 business hours.',
-        'Maintenance Issue': 'We treat maintenance as urgent. Our team will respond within 24 hours. For emergencies call +254 786 955 170.'
+        'Maintenance Issue': 'We treat maintenance as urgent. Our team will respond within 24 hours. For emergencies call +254 786 955 170 or 020 236 4165.'
     };
     var sel   = document.getElementById('kc2-inquiry-type');
     var hint  = document.getElementById('kc2-inquiry-hint');
